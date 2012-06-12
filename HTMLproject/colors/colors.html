@@ -1,0 +1,580 @@
+<html>
+	<title>Colors v0.1</title>
+	<body onload="OnLoad()">
+		<script type="text/javascript">
+		wizHueColors = [
+		/*
+["Кармин","Carmine","960018"],
+["Кардинал","Cardinal","c41e3a"],
+["Тициановый","Titian","d53e07"],
+["Красный","Red","ff0000"],
+["Алый","Scarlet","ff2400"],
+["Карминово-красный","Carmine red","ff0033"],
+["Киноварь","Vermilion","ff4d00"],
+["Международный оранжевый","International orange","ff4f00"],
+["Ализариновый","Alizarin","e32636"],
+["Малиновый","Crimson","dc143c"],
+["Каштановый","Chestnut","cd5c5c"],
+["Темно-коралловый","Dark coral","cd5b45"],
+["Морковный","Carrot","f36223"],
+["Сиена жженая","Burnt Siena","e97451"],
+["Коралловый","Coral","ff7f50"],
+["Лососевый","Salmon","ff8c69"],
+["Темно-лососевый","Dark salmon","e9967a"],
+["Оранжево-розовый","Pink-orange","ff9966"],
+["Розовый","Pink","ffc0cb"],
+["Бледно-розовый","Pale pink","fadadd"],
+["Розовато-лавандовый","Lavender Blush","fff0f5"],
+["Бледно-песочный","Pale Sandy Brown","fdeaa8"],
+["Циннвальдитовый","Zinnwaldite","ebc2af"],
+["Бледно-коричневый","Pale brown","987654"],
+["Темно-каштановый","Dark chestnut","986960"],
+["Красновато-коричневый","Russet","755a57"],
+["Кофейный","Coffee","442d25"],
+["Бистр","Bistre","3d2b1f"],
+["Темно-коричневый","Dark brown","654321"],
+["Коричный","Cinnamon","7b3f00"],
+["Сепия","Sepia","704214"],
+["Умбра","Umber","734a12"],
+["Кирпичный","Brick","884535"],
+["Терракотовый","Terracotta","904d30"],
+["Коричневый","Brown","964b00"],
+["Краснобуро-оранжевый","Tenne","cd5700"],
+["Выгоревший оранжевый","Burnt Orange","cc5500"],
+["Шоколадный","Chocolate","d2691e"],
+["Охра","Ochre","cc7722"],
+["Медный","Copper","b87333"],
+["Светло-коричневый","Light brown","cd853f"],
+["Рыжий","Reddish-brown","d77d31"],
+["Бронзовый","Bronze","cd7f32"],
+["Темно-золотой","Dark goldenrod","b8860b"],
+["Золотисто-березовый","Goldenrod","daa520"],
+["Гуммигут","Gamboge","e49b0f"],
+["Сиена","Siena","e28b00"],
+["Темно-мандариновый","Dark tangerine","ea7500"],
+["Тыквенный","Pumpkin","ff7518"],
+["Мандариновый","Tangerine","ff8800"],
+["Сигнальный оранжевый","Safety Orange","ff9900"],
+["Оранжевый","Orange","ffa500"],
+["Отборный желтый","Selective yellow","ffba00"],
+["Янтарный","Amber","ffbf00"],
+["Яндекса","Yandex","ffcc00"],
+["Желтого школьного автобуса","School bus yellow","ffd800"],
+["Золотой","Gold","ffd700"],
+["Горчичный","Mustard","ffdb58"],
+["Песочный","Sandy brown","fcdd76"],
+["Кожи буйвола","Buff","f0dc82"],
+["Старого льна","Flax","eedc82"],
+["Оранжево-персиковый","Peach orange","ffcc99"],
+["Белый навахо","Navajo white","ffdead"],
+["Темно-персиковый","Dark Peach","ffdab9"],
+["Желто-персиковый","Peach yellow","fadfad"],
+["Пшеничный","Wheat","f5deb3"],
+["Персиковый","Peach","ffe5b4"],
+["Желто-розовый","Yellow Pink","ffe4b2"],
+["Побега папайи","Papaya whip","ffefd5"],
+["Морской пены","Seashell","fff5ee"],
+["Белый","White","ffffff"],
+["Бежевый","Beige","f5f5dc"],
+["Льняной","Linen","faf0e6"],
+["Бедра испуганной нимфы","Scared nymph","faeedd"],
+["Сливочный","Light cream","f2e8c9"],
+["Желто-коричневый","Tan","d2b48c"],
+["Темный желто-коричневый","Dark tan","918151"],
+["Хаки","Khaki","806b2a"],
+["Темный хаки","Dark Khaki","4c3c18"],
+["Оливковый","Olive","808000"],
+["Нежно-оливковый","Olive Drab","6b8e23"],
+["Латунный","Brass","b5a642"],
+["Темно-грушевый","Dark pear","d8a903"],
+["Старого золота","Old Gold","cfb53b"],
+["Шафрановый","Saffron","f4c430"],
+["Грушевый","Pear","efd334"],
+["Желтый","Yellow","ffff00"],
+["Лимонный","Lemon","fde910"],
+["Детской неожиданности","Child's surprise","f7f21a"],
+["Кукурузный","Corn","fbec5d"],
+["Лимонно-кремовый","Lemon Cream","fffacd"],
+["Слоновой кости","Ivory","fffddf"],
+["Кремовый","Cream","f2ddc6"],
+["Серого зеленого чая","Gray Tea Green","cadaba"],
+["Болотный","Swamp green","acb78e"],
+["Cпаржи","Asparagus","7ba05b"],
+["Защитный","Camouflage green","78866b"],
+["Темно-оливковый","Dark Olive","556832"],
+["Зеленого папоротника","Fern green","4f7942"],
+["Травяной","Grass","5da130"],
+["Зеленый","Green","00ff00"],
+["Ярко-зеленый","Bright green","66ff00"],
+["Ядовито-зеленый","Viridian","7fff00"],
+["Лаймовый","Lime","ccff00"],
+["Фисташковый","Pistachio","bef574"],
+["Желто-зеленый","Green-yellow","adff2f"],
+["Салатовый","Chartreuse","99ff99"],
+["Зеленой мяты","Mint Green","98ff98"],
+["Зеленого чая","Tea Green","d0f0c0"],
+["Темного зеленого чая","Dark Tea Green","badbad"],
+["Зеленого мха","Moss green","addfad"],
+["Серо-зеленый","Celadon","ace1af"],
+["Бледно-зеленый","Pale green","77dd77"],
+["Зелено-морской","Sea Green","2e8b57"],
+["Темно-зеленый","Dark green","013220"],
+["Темный весенне-зеленый","Dark spring green","177245"],
+["Нефритовый","Jade","00a86b"],
+["Изумрудный","Emerald","50c878"],
+["Темный пастельно-зеленый","Dark pastel green","03c03c"],
+["Малахитовый","Malachite","0bda51"],
+["Весенне-зеленый","Spring Green","00ff7f"],
+["Аквамариновый","Aquamarine","7fffd4"],
+["Панг","Pang","c7fcec"],
+["Лягушки в обмороке","Fainted frog","7b917b"],
+["Маренго","Marengo","4c5866"],
+["Серой спаржи","Gray Asparagus","465945"],
+["Аспидно-серый","Dark slate gray","2f4f4f"],
+["Темно-бирюзовый","Dark turquoise","116062"],
+["Мурена","Moray","1c6b72"],
+["Зеленой сосны","Pine Green","01796f"],
+["Cине-зеленый","Teal","008080"],
+["Яйца дрозда","Robin egg blue","00cccc"],
+["Бирюзовый","Turquoise","30d5c8"],
+["Небесный","Sky","7fc7ff"],
+["Ярко-бирюзовый","Bright turquoise","08e8de"],
+["Морской волны","Aqua","00f0f0"],
+["Циан","Cyan","00ffff"],
+["Электрик","Electric","7df9ff"],
+["Бледно-синий","Pale Blue","afeeee"],
+["Серебристый","Silver","c0c0c0"],
+["Светло-серый","Light Grey","bbbbbb"],
+["Серого шифера","Slate gray","708090"],
+["Серый","Gray","808080"],
+["Мокрого асфальта","Wet asphalt","505050"],
+["Антрацитовый","Anthracite","464451"],
+["Черный","Black","000000"],
+["Берлинской лазури","Prussian blue","003153"],
+["Сапфировый","Sapphire","082567"],
+["Полуночно-синий","Midnight Blue","003366"],
+["Темно-синий","Navy blue","000080"],
+["Ультрамариновый","Ultramarine","120a8f"],
+["Темно-лазурный","Dark cerulean","08457e"],
+["Синей пыли","Powder blue","003399"],
+["Синий","Blue","0000ff"],
+["Кобальтовый","Cobalt","0047ab"],
+["Лазурно-синий","Cerulean blue","2a52be"],
+["Джинсовый","Denim","1560bd"],
+["Королевский синий","Royal Blue","4169e1"],
+["Лазурно-серый","Cerulean grey","007ba7"],
+["Синий Клейна","Klein Blue","3a75c4"],
+["Синей стали","Steel blue","4682b4"],
+["Воды пляжа Бонди","Bondi Blue","0095b6"],
+["Лазурный","Azure","007fff"],
+["Защитно-синий","Dodger blue","1e90ff"],
+["Васильковый","Cornflower blue","6495ed"],
+["Голубой","Light Blue","42aaff"],
+["Бледно-васильковый","Pale cornflower blue","abcdef"],
+["Барвинковый","Periwinkle","ccccff"],
+["Лавандовый","Lavender","e6e6fa"],
+["Чертополоховый","Thistle","d8bfd8"],
+["Сиреневый","Lilac","c8a2c8"],
+["Глициниевый","Wisteria","c9a0dc"],
+["Аметистовый","Amethyst","9966cc"],
+["Фиолетовый","Violet","8b00ff"],
+["Персидский синий","Persian blue","6600ff"],
+["Темно-фиолетовый","Dark violet","423189"],
+["Темный индиго","Dark Indigo","310062"],
+["Индиго","Indigo","4b0082"],
+["Темно-пурпурный","Purple","660099"],
+["Сливовый","Plum","660066"],
+["Фиолетово-баклажанный","Violet-eggplant","991199"],
+["Орхидеевый","Orchid","da70d6"],
+["Гелиотроповый","Heliotrope","df73ff"],
+["Фиалковый","Violaceous","ea8df7"],
+["Бледно-пурпурный","Pale magenta","f984e5"],
+["Фуксии","Fuchsia","f754e1"],
+["Пурпурный","Magenta","ff00ff"],
+["Ярко-розовый","Hot pink","fc0fc0"],
+["Ярко-фиолетовый","Bright violet","cd00cd"],
+["Баклажановый","Eggplant","990066"],
+["Розовато-лиловый","Mauve","993366"],
+["Фиолетово-красный","Red violet","c71585"],
+["Вишневый","Cherry","d62b60"],
+["Светло-вишневый","Cerise","de3163"],
+["Темно-розовый","Dark pink","e75480"],
+["Лиловый","Pale red-violet","db7093"],
+["Бледно-каштановый","Pale chestnut","ddadaf"],
+["Красновато-коричневый","Puce","cc8899"],
+["Розовый Маунтбэттена","Mountbatten pink","997a8d"],
+["Бледный розовато-лиловый","Pale mauve","996666"],
+["Умбра жженая","Burnt umber","8a3324"],
+["Бурый","Fulvous","45161c"],
+["Темно-алый","Dark Scarlet","560319"],
+["Бургундский","Burgundy","900020"],
+["Коричнево-малиновый","Maroon","800000"],
+["Сангиновый","Sanguine","92000a"],
+["Бордовый","Wine red","9b2d30"],
+["Бледно-карминный","Pale carmine","af4035"],
+["Ржаво-коричневый","Rust","b7410e"]
+*/
+["Silver", "Серебряный", "C0C0C0"],
+["Black", "Чёрный", "000000"],
+["Gray", "Серый", "808080"],
+["White", "Белый", "FFFFFF"],
+["Pale mauve", "Бледный розовато-лиловый", "996666"],
+["Chestnut", "Каштановый", "CD5C5C"],
+["Maroon", "Коричнево-малиновый", "800000"],
+["Red", "Красный", "FF0000"],
+["Pale carmine", "Бледно-карминный, ср. Кармин", "AF4035"],
+["Russet", "Красновато-коричневый", "755A57"],
+["Scarlet", "Ярко-красный, Алый", "FF2400"],
+["Burnt umber", "коричневый, Умбра жженая", "8A3324"],
+["Dark chestnut", "Тёмно-каштановый", "986960"],
+["Dark coral", "Тёмно-коралловый", "CD5B45"],
+["Burnt Sienna", "Сиена жженая", "E97451"],
+["Dark salmon", "Тёмная лососина", "E9967A"],
+["Coral", "Коралловый, Кораллово-красный", "FF7F50"],
+["Rust", "Ржаво-коричневый", "B7410E"],
+["Vermilion", "Киноварь, ср. Киноварь", "FF4D00"],
+["Zinnwaldite", "Циннвальдит", "EBC2AF"],
+["International orange (Safety orange)", "Международный (сигнальный) оранжевый", "FF4F00"],
+["Pink-orange", "Оранжево-розовый", "FF9966"],
+["Cinnamon", "Коричневый", "7B3F00"],
+["Bronze", "Бронзовый", "CD7F32"],
+["Pale Sandy Brown", "Бледно-песочный цвет", "DABDAB"],
+["Bistre", "Бистр", "3D2B1F"],
+["Pumpkin", "Тыква", "FF7518"],
+["Navajo white", "Белый навахо", "FFDEAD"],
+["Seashell", "Цвет морской пены", "FFF5EE"],
+["Burnt Orange", "Выгоревший оранжевый", "CC5500"],
+["Tenne", "Краснобуро-оранжевый", "CD5700"],
+["Gamboge", "Гуммигут", "E49B0F"],
+["Dark Peach", "Тёмно-персиковый", "FFDAB9"],
+["Sandy brown", "Песочный цвет", "F4A460"],
+["Copper", "Медный", "B87333"],
+["Linen", "Льняной", "FAF0E6"],
+["Peach-orange", "Оранжево-персиковый", "FFCC99"],
+["Pale brown", "Бледно-коричневый", "987654"],
+["Dark brown", "Тёмно-коричневый", "654321"],
+["Light brown", "Светло-коричневый", "CD853F"],
+["Sepia", "Сепия", "704214"],
+["Ochre", "Охра", "CC7722"],
+["Brown", "Коричневый", "964B00"],
+["Carrot", "Морковный", "ED9121"],
+["Tan", "Цвет загара", "D2B48C"],
+["Raw umber", "Умбра", "734A12"],
+["School bus yellow", "Цвет жёлтого школьного автобуса", "FFD800"],
+["Safety Orange (Blaze Orange)", "Сигнальный оранжевый", "FF9900"],
+["Papaya whip", "Побег папайи", "FFEFD5"],
+["Khaki", "Хаки", "C3B091"],
+["Dark tangerine", "Тёмно-мандариновый", "FFA812"],
+["Wheat", "Пшеничный", "F5DEB3"],
+["Peach", "Персиковый", "FFE5B4"],
+["Peach-yellow", "Жёлто-персиковый", "FADFAD"],
+["Orange", "Оранжевый", "FFA500"],
+["Goldenrod", "Золотисто-берёзовый", "DAA520"],
+["Dark goldenrod", "Тёмно-золотой", "B8860B"],
+["Selective yellow", "Отборный жёлтый", "FFBA00"],
+["Dark tan", "Тёмный желто-коричневый", "918151"],
+["Saffron", "Шафрановый", "F4C430"],
+["Amber", "Янтарный", "FFBF00"],
+["Mustard", "Горчичный", "FFDB58"],
+["Buff", "Кожа буйвола, Палевый", "F0DC82"],
+["Pale yellow", "Палевый", "F0DC82"],
+["Old Gold", "Старое золото", "CFB53B"],
+["Flax", "Льняной", "EEDC82"],
+["Gold", "Золотой", "FFD700"],
+["Lemon Cream", "Лимонно-кремовый", "FFFACD"],
+["Corn", "Кукурузный", "FBEC5D"],
+["Lemon", "Лимонный", "FDE910"],
+["Dark Khaki", "Тёмный хаки, Хаки", "BDB76B"],
+["Cream", "Кремовый", "FFFDD0"],
+["Beige", "Бежевый, Беж", "F5F5DC"],
+["Olive", "Оливковый", "808000"],
+["Yellow", "Жёлтый", "FFFF00"],
+["Pear", "Грушевый", "D1E231"],
+["Lime", "Лайм", "CCFF00"],
+["Swamp green", "Болотный", "ACB78E"],
+["Olive Drab", "Нежно-оливковый", "6B8E23"],
+["Green-yellow", "Жёлто-зелёный", "ADFF2F"],
+["Gray-Tea Green", "Зелёный серый чай", "CADABA"],
+["Chartreuse", "Салатовый цвет, Шартрез (цвет)", "7FFF00"],
+["Camouflage green", "хаки", "78866B"],
+["Asparagus", "Cпаржа", "7BA05B"],
+["Bright green", "Ярко-зелёный", "66FF00"],
+["Tea Green", "Зелёный чай", "D0F0C0"],
+["Dark Tea Green", "Тёмный зелёный чай", "BADBAD"],
+["Fern green", "Зелёный папоротник", "4F7942"],
+["Gray-asparagus", "Серая спаржа", "465945"],
+["Moss green", "Зелёный мох", "ADDFAD"],
+["Pastel green", "Пастельно-зелёный", "77DD77"],
+["Green", "Зелёный", "00FF00"],
+["Celadon", "Серо-зелёный", "ACE1AF"],
+["Dark pastel green", "Тёмный пастельно-зелёный", "03C03C"],
+["Emerald", "Изумрудный", "50C878"],
+["Malachite", "Малахитовая зелень (Малахитовый)", "0BDA51"],
+["Sea Green", "Зелёное море", "2E8B57"],
+["Dark spring green", "Тёмный весенне-зелёный", "177245"],
+["Spring Green", "Зелёная весна", "00FF7F"],
+["Jade", "Нефритовый", "00A86B"],
+["Aquamarine", "Аквамариновый", "7FFFD4"],
+["Viridian", "Ядовито-зелёный", "40826D"],
+["Pang", "Панг", "C7FCEC"],
+["Turquoise", "Бирюзовый, ср. Бирюза", "30D5C8"],
+["Pine Green", "Зелёная сосна", "01796F"],
+["Bright turquoise", "Ярко-бирюзовый", "08E8DE"],
+["Pale Blue", "Бледно-синий, голубой", "AFEEEE"],
+["Dark slate gray", "Тёмно-аспидный серый, Аспидно-серый", "2F4F4F"],
+["Teal", "Cине-зелёный", "008080"],
+["Robin egg blue", "Цвет яйца дрозда", "00CCCC"],
+["Aqua", "Цвет морской волны", "00FFFF"],
+["Cyan", "Голубой, Циан (цвет)", "00FFFF"],
+["Dark turquoise", "Тёмно-бирюзовый", "116062"],
+["Bondi Blue", "Вода пляжа Бонди", "0095B6"],
+["Cerulean", "Лазурный", "007BA7"],
+["Prussian blue", "Берлинская лазурь", "003153"],
+["Steel blue", "Синяя сталь", "4682B4"],
+["Dark cerulean", "Тёмно-лазурный", "08457E"],
+["Slate gray", "Серый шифер", "708090"],
+["Pale cornflower blue", "Бледно-васильковый", "ABCDEF"],
+["Dodger blue", "Защитно-синий", "1E90FF"],
+["Azure", "Лазурный, Азур", "007FFF"],
+["Denim", "Джинсовый синий", "1560BD"],
+["Klein Blue", "Синий Клейна", "3A75C4"],
+["Cobalt", "Кобальт синий", "0047AB"],
+["Cornflower blue", "Васильковый", "6495ED"],
+["Powder blue", "Синяя пыль", "003399"],
+["Cerulean blue", "Лазурно-синий", "2A52BE"],
+["Royal Blue", "Королевский синий", "4169E1"],
+["Burgundy", "Бургундский", "900020"],
+["Lavender", "Лаванда, лавандово-синий", "E6E6FA"],
+["Periwinkle", "Барвинок", "CCCCFF"],
+["Navy blue", "Тёмно-синий", "000080"],
+["Blue", "Синий", "0000FF"],
+["Ultramarine", "Ультрамариновый", "120A8F"],
+["Dark violet", "Глубокий фиолетовый цвет", "423189"],
+["Persian blue", "Персидский синий", "6600FF"],
+["Amethyst", "Аметистовый", "9966CC"],
+["Dark Indigo", "Тёмный индиго, Индиго", "310062"],
+["Violet", "Фиолетовый", "8B00FF"],
+["Indigo", "Индиго", "4B0082"],
+["Purple", "Пурпурный", "660099"],
+["Wisteria", "Глициния", "C9A0DC"],
+["Heliotrope", "Гелиотроп", "DF73FF"],
+["Thistle", "Чертополох", "D8BFD8"],
+["Lilac", "Сиреневый", "C8A2C8"],
+["Violet-eggplant", "Фиолетово-баклажанный", "991199"],
+["Plum", "Сливовый", "660066"],
+["Bright violet", "Ярко-фиолетовый", "CD00CD"],
+["Fuchsia", "Фуксия", "FF00FF"],
+["Magenta", "Пурпурный", "FF00FF"],
+["Orchid", "Орхидея", "DA70D6"],
+["Pale magenta", "Бледно-пурпурный", "F984E5"],
+["Hot pink", "Ярко-Розовый цвет", "FC0FC0"],
+["Eggplant", "Баклажановый", "990066"],
+["Red-violet", "Фиолетово-красный", "C71585"],
+["Mountbatten pink", "Розовый Маунтбэттена", "997A8D"],
+["Mauve", "Розовато-лиловый", "993366"],
+["Lavender Blush", "Розово-лавандовый", "FFF0F5"],
+["Pale red-violet", "Лиловый", "DB7093"],
+["Dark pink", "Тёмно-розовый", "E75480"],
+["Cerise", "Светлая вишня", "DE3163"],
+["Dark Scarlet", "Тёмно-алый, Алый", "560319"],
+["Puce", "Красновато-коричневый, Пюсовый (устар.), темно-коричневый, блошиный", "CC8899"],
+["Pastel pink", "Пастельно-розовый", "FFD1DC"],
+["Crimson", "Малиновый", "DC143C"],
+["Pink", "Розовый", "FFC0CB"],
+["Cardinal", "Тёмно-красный, Кардинал (цвет)", "C41E3A"],
+["Carmine", "Карминово-красный", "960018"],
+["Pale pink", "Бледно-розовый", "FADADD"],
+["Alizarin Crimson", "Ализариновый красный", "E32636"],
+["Sangria", "Сангрия", "92000A"],
+["Pale chestnut", "Бледно-каштановый", "DDADAF"],
+["Ash grey", "Пепельно-серый", "B2BEB5"],
+["Ivory", "Слоновая кость",  "FFFFF0"]
+];
+	
+ /** 
+ * Converts HSV to RGB value. 
+ * 
+ * @param {Integer} h Hue as a value between 0 - 360 degrees 
+ * @param {Integer} s Saturation as a value between 0 - 100 % 
+ * @param {Integer} v Value as a value between 0 - 100 % 
+ * @returns {Array} The RGB values  EG: [r,g,b], [255,255,255] 
+ */ 
+
+function hsvToRgb(h,s,v) {  
+  
+    var s = s / 100,  
+         v = v / 100;  
+  
+    var hi = Math.floor((h/60) % 6);  
+    var f = (h / 60) - hi;  
+    var p = v * (1 - s);  
+    var q = v * (1 - f * s);  
+    var t = v * (1 - (1 - f) * s);  
+  
+    var rgb = [];  
+  
+    switch (hi) {  
+        case 0: rgb = [v,t,p];break;  
+        case 1: rgb = [q,v,p];break;  
+        case 2: rgb = [p,v,t];break;  
+        case 3: rgb = [p,q,v];break;  
+        case 4: rgb = [t,p,v];break;  
+        case 5: rgb = [v,p,q];break;  
+    }  
+  
+    var r = Math.min(255, Math.round(rgb[0]*256)),  
+        g = Math.min(255, Math.round(rgb[1]*256)),  
+        b = Math.min(255, Math.round(rgb[2]*256));  
+  
+    return [r,g,b];  
+  
+}
+
+ /** 
+ * Converts RGB to HSV value. 
+ * 
+ * @param {Integer} r Red value, 0-255 
+ * @param {Integer} g Green value, 0-255 
+ * @param {Integer} b Blue value, 0-255 
+ * @returns {Array} The HSV values EG: [h,s,v], [0-360 degrees, 0-100%, 0-100%] 
+ */  
+ function rgbToHsv(r, g, b) {  
+   
+     var r = (r / 255),  
+          g = (g / 255),  
+      b = (b / 255);   
+   
+     var min = Math.min(Math.min(r, g), b),  
+         max = Math.max(Math.max(r, g), b),  
+         delta = max - min;  
+   
+     var value = max,  
+         saturation,  
+         hue;  
+   
+     // Hue  
+     if (max == min) {  
+         hue = 0;  
+     } else if (max == r) {  
+         hue = (60 * ((g-b) / (max-min))) % 360;  
+     } else if (max == g) {  
+         hue = 60 * ((b-r) / (max-min)) + 120;  
+     } else if (max == b) {  
+         hue = 60 * ((r-g) / (max-min)) + 240;  
+     }  
+   
+     if (hue < 0) {  
+         hue += 360;  
+     }  
+   
+     // Saturation  
+     if (max == 0) {  
+         saturation = 0;  
+     } else {  
+         saturation = 1 - (min/max);  
+     }  
+   
+     return [Math.round(hue), Math.round(saturation * 100), Math.round(value * 100)];  
+ }
+	
+var currentColor = 0;
+var showColorName = true;
+
+function componentToNumber(str, component)
+{
+	
+	var num = parseInt(str.substr(2 * component, 2), 16);
+	//alert(str);
+	return num;
+}
+
+function toRGBArray(str)
+{
+	return [componentToNumber(str, 0), componentToNumber(str, 1), componentToNumber(str, 2)];
+}
+
+
+function compareItems(a, b)
+{
+	var rgbA = toRGBArray(a[2]);
+	var rgbB = toRGBArray(b[2]);
+	var hsvA = rgbToHsv(rgbA[0], rgbA[1], rgbA[2]);
+	var hsvB = rgbToHsv(rgbB[0], rgbB[1], rgbB[2]);
+	for(var i = 0; i < 3; ++i)
+	{
+		if(hsvA[i] < hsvB[i])
+		{
+			return -1;
+		}
+		else if(hsvA[i] > hsvB[i])
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+	
+function OnLoad()
+{
+	document.all["CheckNameColor"].checked = showColorName;
+	wizHueColors.sort(compareItems);
+	SetNameColor();
+}
+
+function NextColor()
+{
+	if(wizHueColors.length - 1 > currentColor)
+	{
+	   ++currentColor;
+	}
+	else
+	{
+		currentColor = 0;
+	}
+	setColor();
+}
+
+function PrevColor()
+{
+	if(currentColor > 0)
+	{
+	   --currentColor;
+	}
+	else
+	{
+		currentColor = wizHueColors.length - 1;
+	}
+	setColor();	
+}
+
+function SetNameColor()
+{
+	showColorName = document.all["CheckNameColor"].checked;
+	setColor();
+}
+
+
+
+function setColor()
+{
+	var color = wizHueColors[currentColor];
+	var rgb = toRGBArray(color[2]);
+	var strColor = rgb[0].toString(10) + ";" + rgb[1].toString(10) + ";" + rgb[2].toString(10);
+	document.all["ColorPane"].bgColor = color[2];
+	document.all["ColorName"].innerHTML = color[1] + ", " + color[0] + " : " + strColor;
+	document.all["TextColor"].color = showColorName ? "000000" :  color[2] ;
+}
+	
+		</script>
+		<table width="100%" height="100%">
+			<tr >
+				<td valign="top" bgcolor="yellow" colspan="3" id="ColorPane"><font color="black" size="36" id="TextColor"><b id="ColorName">BlahBlah</b></font></td>
+		  </tr>
+		  <tr height="50">
+		  	 <td align="left"><input type="button" value="Previous" onclick="PrevColor()"></input></td>
+		  	 <td align="left"><input type="button" value="Next" onclick="NextColor()"></input></td>
+		  	 <td align="left"><input type="checkbox" onclick="SetNameColor()" id="CheckNameColor" checked="on">Show color names</input></td>
+		  </tr>
+	  </table>
+	</body>
+</html>

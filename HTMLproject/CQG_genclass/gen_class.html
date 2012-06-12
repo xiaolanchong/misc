@@ -1,0 +1,398 @@
+<!--
+powered by Eugene Gorbachev (eugeneg@cqg.com)
+Changelog
+1.0		2005-03-20 	
+			release
+1.1		2005-04-05 
+			misc bug fixes
+1.2		2005-06-23 
+			add copyright
+1.3		2005-10-03
+			+ Orwell2K project
+			+ Doxygen tags 
+			
+1.4		2005-10-20
+			+ Syntax highlighting
+			+ Class Doxygen tags
+			
+1.5		2006-01-17
+			+ new year have come! 2005->2006
+
+1.6		2006-01-23
+			+ small corrections
+
+2.0		2006-11-29
+			+ changed to CQG template			
+
+2.1		2007-07-29
+			+ fix generating a header file with CR as line delimiter		
+			+ remove redundant form fields (copyright and project)		
+			
+2.2      207-10-25
+         + added file names in a header		 
+-->
+<html>
+	<head>
+		<title>C++ quick class generator v2.2</title>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+		<style>
+			.cpp-pre
+			{
+				font-family : Lucida Console;
+				background-color :#FFFFBB;
+				border-width : 1px;
+				border-style : solid;
+				border-color : #BBBBBB;
+			}
+			.cpp-keyword 
+			{
+				color : blue
+			}
+			.cpp-comment 
+			{
+				color : green
+			}
+		</style>
+		<script language="javascript" src="highlight.js" runat="client"></script>
+		<SCRIPT language="jscript">
+
+var bRegenerateNumber = true;
+var nPrevRandomNumber;
+
+// validate all user input - file name, class name, header name etc.		
+function validateInput()
+{
+	var sClassName 			= document.all["ClassName"].value;
+	var sFileName 			   = document.all["FileName"].value;
+	var sDescription 		   = document.all["Description"].value;
+	var sAuthor 			   = document.all["Author"].value;
+	var sPrecompiledHeader 	= document.all["PrecompiledHeader"].value;
+	if( sClassName.length == 0)
+	{
+		alert("ClassName is empty")
+		return false;
+	}
+	var re = new RegExp("\\W","ig");
+	var arr = sClassName.match (re); 
+	if( arr != null )
+	{
+		alert("ClassName has unaccessable symbols (must contents only _, a..z, A..Z)");
+		return false;
+	}
+	return true;
+}		
+
+// center given string and surround by //
+function getCenteredString(SrcString, nSymInLine)
+{
+// exclude two //
+	var RealSymInLine = nSymInLine - 4;
+	var DstString = SrcString;
+	var nRemainLength = RealSymInLine - SrcString.length;
+	for( i = 0; i < Math.floor(nRemainLength/2); ++i)
+	{
+		DstString = " " + DstString + " "
+	}
+	if( nRemainLength > 0 && nRemainLength%2 ) DstString += " ";
+	DstString = "//" + DstString + "//"
+	return DstString;
+}
+
+// split class name on word starting capital lettres and inset _ between them (for include guard)
+// IMyChairInterface -> I_MY_CHAIR_INTERFACE
+function getCapitilizedString( str )
+{
+    var s = "";
+    var first = true;
+    for( i = 0; i < str.length; ++i )
+    {
+		var sym = str.charAt(i);
+		if( sym >= 'A' && sym <= 'Z' )
+		{
+			if( first == true ) first = false;
+			else				s += "_";
+		}
+		s += sym;
+    }
+	return s.toUpperCase();  
+}
+
+// create a random number with the given number of symbol
+function getRandom( nSymNumber )
+{
+// get random from 10^(n-1) to 10^n-1
+	var nFloor	= Math.pow( 10, nSymNumber - 1 );
+	var nCeiling= Math.pow( 10, nSymNumber) - 1;
+	var fVal = Math.random() * (nCeiling - nFloor) + nFloor;
+	return Math.ceil(fVal);  
+}		
+
+// replace \n to \n and // (for class description)
+function splitLine( sText )
+{
+	var re = new RegExp( "\r\n", "g");
+	var s = sText.replace( re, "\r\n*          "  );     
+	return s;
+}	
+
+function GenClassHeader(nSymInLine)
+{
+	var sTemplate = 
+	"/**************************************************************************\r\n" +
+	"* @file    %FullFileName%\r\n" +
+	"* @brief   %Description%\r\n"				+
+	"* @author  %Author%\r\n"					+
+	"* @date    %Date%\r\n"		                +
+	"**************************************************************************/\r\n"	+
+	"";
+	return sTemplate;
+}	
+		
+function gen_content(bIsHeaderFile, bHtmlOnly)
+{
+	var nSymInLine = 90;
+	var bGenClassHeader		= document.all["CheckClassTitle"].checked;
+	var sClassName 			= document.all["ClassName"].value;
+	var sFileName 			= document.all["FileName"].value;
+	var sDescription 		= document.all["Description"].value;
+	var sAuthor 			= document.all["Author"].value;
+	var sPrecompiledHeader 	= document.all["PrecompiledHeader"].value;
+	var sClassType			= document.all["CheckClassType"].checked ? "class" : "struct";
+	var sDestructorPrefix	= document.all["CheckVirtDesctructor"].checked ? "virtual " : "";
+	var re;
+	
+	var sTemplate = bGenClassHeader ? GenClassHeader(nSymInLine) : "";
+    sTemplate += "\r\n";
+
+	if( bIsHeaderFile == true )
+	{
+		sTemplate +=
+		"#ifndef %IncludeGuard%" +	"\r\n" +
+		"#define %IncludeGuard%" +	"\r\n" +
+		"\r\n" +
+		"";
+	}
+	else
+	{
+		sTemplate +=								
+		"#include \"%PrecompiledHeader%\""	+	"\r\n" +
+		"#include \"%FileName%.h\""			+	"\r\n" +
+		"\r\n" +
+		"";
+	}
+	
+	if( bIsHeaderFile == true )
+	{
+	sTemplate +=
+	"//! %Description%"	+	"\r\n" +
+	"%ClassType% %ClassName%"	+	"\r\n" +
+	"{"							+	"\r\n" +
+	"public:"					+	"\r\n" +
+	"   %ClassName%();"			+	"\r\n" +
+	"   %DestPrefix%~%ClassName%();"	+	"\r\n" +
+	"};"						+	"\r\n" +
+	""							+	"\r\n" +
+	"#endif // %IncludeGuard%"	+	
+	"";
+	   sFullFileName = sFileName + ".h"; 
+	}
+	else
+	{
+	sTemplate +=
+	"%ClassName%::%ClassName%()"	+	"\r\n" +
+	"{"								+	"\r\n" +
+	"}"								+	"\r\n" +
+	""								+	"\r\n" +
+	"%ClassName%::~%ClassName%()"	+	"\r\n" +
+	"{"								+	"\r\n" +	
+	"}"								+	
+	"";
+	   sFullFileName = sFileName + ".cpp";					
+	}
+
+	
+	var sDate 	= Date.value;                                                                              
+	
+	re = new RegExp( "%Author%", "g" );
+	sTemplate = sTemplate.replace( re, sAuthor );
+	
+	var dtNow = new Date();
+	var nTrueMonth = dtNow.getMonth() + 1; 
+	var sNow = (dtNow.getDate() < 10 ? "0" + dtNow.getDate() : dtNow.getDate())
+				 + "." + 
+				(nTrueMonth < 10 ? "0" + nTrueMonth : nTrueMonth)
+				+ "." + dtNow.getYear();
+	re = new RegExp( "%Date%", "g" );
+	sTemplate = sTemplate.replace( re, sNow );
+	
+	if( bRegenerateNumber )
+	{
+		nPrevRandomNumber = getRandom(16);
+		bRegenerateNumber = false;
+	}
+	var sIncludeGuard = "_" + getCapitilizedString(sClassName) + "_" + nPrevRandomNumber + "_";
+	re = new RegExp( "%IncludeGuard%", "g" );
+	sTemplate = sTemplate.replace( re, sIncludeGuard );
+
+	re = new RegExp( "%PrecompiledHeader%", "g" );
+	sTemplate = sTemplate.replace( re, sPrecompiledHeader );
+	
+	re = new RegExp( "%DestPrefix%", "g" );
+	sTemplate = sTemplate.replace( re, sDestructorPrefix );
+	
+	re = new RegExp( "%FileName%", "g" );
+	sTemplate = sTemplate.replace( re, sFileName );
+	
+	re = new RegExp( "%FullFileName%", "g" );
+	sTemplate = sTemplate.replace( re, sFullFileName );	
+	
+	re = new RegExp( "%ClassType%", "g" );
+	sTemplate = sTemplate.replace( re, sClassType );
+	
+	re = new RegExp( "%ClassName%", "g" );
+	sTemplate = sTemplate.replace( re, sClassName );
+	
+	// description field can contain macro names with %%, 
+	// so we replace this template in the end
+	re = new RegExp( "%Description%", "g" );
+	var sDescTemp = splitLine(sDescription);
+	sTemplate = sTemplate.replace( re, sDescTemp ); 
+	
+	return sTemplate;
+}		
+		
+function generate()
+{
+   var fso, f;
+   if ( validateInput() )
+   {
+		var bMakeCpp	= document.all["CheckMakeCPP"].checked ;
+		var sFileName 	= document.all["FileName"].value;
+		fso = new ActiveXObject("Scripting.FileSystemObject");
+		f = fso.CreateTextFile( sFileName + ".h", true, false);
+		var s = gen_content(true, false);
+		// save number, so regenerate
+		bRegenerateNumber = true;
+		f.Write(s);
+		f.Close();
+		if( bMakeCpp )
+		{
+			f = fso.CreateTextFile( sFileName + ".cpp", true, false);
+			var s = gen_content(false, false);
+			f.Write(s);
+			f.Close();
+		}
+	}
+}
+
+function onClassChange()
+{
+	document.all["FileName"].value 			= document.all["ClassName"].value;
+	createCodePreview();
+}
+
+function setDefault()
+{
+	document.all["ClassName"].value 		= "MyFirstClass";
+	document.all["FileName"].value 			= "MyFirstClass";
+	document.all["PrecompiledHeader"].value = "stdafx.h";
+	document.all["Description"].value		= "Not available";
+	document.all["Author"].value			= "Eugene Gorbachev (eugeneg@cqg.com)";
+}
+
+function onCreate()
+{
+	setDefault();
+	createCodePreview();
+}
+
+function createCodePreview()
+{
+	var sFileName = document.all["FileName"].value;
+	
+	document.all["FileNameH"].innerText		= sFileName + ".h";
+	document.all["FileNameCPP"].innerText	= sFileName + ".cpp";
+	
+	var s = gen_content(true, true);
+	var re;
+	//HACK for highlight, additional \n
+//	var re = new RegExp("//\n", "g");
+//	s = s.replace (re, "//\n\n" )
+	s = highlightCode( "cpp", "pre", true, s);
+
+	//alert(s);
+	document.all["CodePreviewH"].innerHTML		= s;
+	var bMakeCpp	= document.all["CheckMakeCPP"].checked ;
+	s = bMakeCpp ? gen_content(false, true) : "";
+	
+	s = s.replace (re, "//\n\n" )
+	s = highlightCode( "cpp", "pre", true, s);
+	
+	document.all["CodePreviewCPP"].innerHTML	= s;	
+}
+		</SCRIPT>
+	</head>
+	<body onload="onCreate()">
+		<H2 class="desc">Options</H2>
+		<table width="100%" ID="Table0">
+			<tr>
+				<td>
+					<INPUT TYPE="checkbox" CHECKED ID="CheckClassTitle" onclick="createCodePreview()">Class 
+					title
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<INPUT TYPE="checkbox" CHECKED ID="CheckMakeCPP" onclick="" NAME="Checkbox1">Make 
+					.cpp
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<INPUT TYPE="checkbox" CHECKED ID="CheckClassType" onclick="createCodePreview()" NAME="Checkbox1">class
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<INPUT TYPE="checkbox" CHECKED ID="CheckVirtDesctructor" onclick="createCodePreview()" NAME="Checkbox1">Virtual 
+					destructor
+				</td>
+			</tr>
+		</table>
+		<h2>Class title</h2>
+		<table width="100%">
+			<tr>
+				<td width="30%">Class Name</td>
+				<td><input type="text" onkeyup="onClassChange()" ID="ClassName" NAME="Text1" size="70%">
+				</td>
+			</tr>
+			<tr>
+				<td>File Name</td>
+				<td><input type="text" ID="FileName" NAME="Text1" size="70%" onkeyup="createCodePreview()">
+				</td>
+			</tr>
+			<tr>
+				<td>Precompiled header</td>
+				<td><input type="text" ID="PrecompiledHeader" NAME="Text1" size="70%" onkeyup="createCodePreview()">
+				</td>
+			</tr>
+			<tr>
+				<td>Author</td>
+				<td><input type="text" ID="Author" NAME="Text1" size="70%" onkeyup="createCodePreview()"></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><textarea type="text" ID="Description" NAME="Text1" cols="55" onkeyup="createCodePreview()"></textarea>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<input type="button" value="Generate" onclick="generate()">
+		<hr>
+		<h2 id="FileNameH"></h2>
+		<pre id="CodePreviewH"></pre>
+		<hr>
+		<h2 id="FileNameCPP"></h2>
+		<pre id="CodePreviewCPP"></pre>
+	</body>
+</html>
