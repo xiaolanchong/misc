@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 
 import datetime
-from HookManager import HookManager
+from pyhook import HookManager
 
 class UserPresence:
     def __init__(self):
