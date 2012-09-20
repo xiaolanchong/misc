@@ -10,9 +10,16 @@
 #-------------------------------------------------------------------------------
 
 import datetime
+import win32api
 from pyhook import HookManager
 
 class UserPresence:
+    def isUserActive(self):
+        idleTime = win32api.GetTickCount() - win32api.GetLastInputInfo()
+        return (idleTime / 1000) < 60
+
+
+    """
     def __init__(self):
         # create the hook mananger
         self.hm = HookManager()
@@ -39,7 +46,11 @@ class UserPresence:
         else:
             return datetime.datetime.now() < (self.lastUserActionTime + datetime.timedelta(seconds=60))
 
+    """
+
 def main():
+    z = UserPresence();
+    print(z.isUserActive())
     pass
 
 if __name__ == '__main__':

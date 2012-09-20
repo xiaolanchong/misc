@@ -20,20 +20,17 @@ import win32con
 import tkinter as tk
 
 from Activity import getActivity
-from  UserPresence import UserPresence
 
 ############################################################################
 class ActivityLogger:
     def __init__(self):
-        self.file = open('activity.txt', mode= 'w+', buffering=1, encoding='utf-8')
+        self.file = open('activity.txt', mode= 'a', buffering=1, encoding='utf-8')
 
     def AddNewActivity(self, appName, extraInfo, start, end):
         duration = end - start
-        s = '{:.1f}'.format(duration.total_seconds() / 60) + ', ' + \
-               start.strftime('%Y-%m-%d %H:%M') + ', ' + \
-               end.strftime('%Y-%m-%d %H:%M') + ', ' + \
-               appName + ', ' + extraInfo
-        print(s)
+        s = '{0:.1f}, {1}, {2}, {3}, {4}'.format(duration.total_seconds() / 60,
+               start.strftime('%Y-%m-%d %H:%M'), end.strftime('%Y-%m-%d %H:%M'),
+               appName, extraInfo)
         self.file.write(s + '\n')
 
 ############################################################################
@@ -42,12 +39,12 @@ class App():
         self.root = tk.Tk()
         self.label = tk.Label(text="")
         self.label.pack()
-        self.presenceTracker = UserPresence()
         self.activityLogger = ActivityLogger()
         exename, caption = getCurrentProcessName()
         self.currentActivity = getActivity(exename, caption)
         self.update_clock()
         self.root.protocol("WM_DELETE_WINDOW", self.onClose)
+        self.root.withdraw()
         self.root.mainloop()
 
     def update_clock(self):
@@ -55,7 +52,7 @@ class App():
         self.root.after(10000, self.update_clock)
 
     def oneCycle(self):
-        idle = not self.presenceTracker.isUserActive()
+        idle = not self.isUserActive()
         exename, caption = getCurrentProcessName()
         if exename and caption:
             self.currentActivity = self.currentActivity.OnTimer(idle, exename,
@@ -66,6 +63,10 @@ class App():
     def onClose(self):
         self.currentActivity.Close(self.activityLogger)
         self.root.destroy()
+
+    def isUserActive(self):
+        idleTime = win32api.GetTickCount() - win32api.GetLastInputInfo()
+        return (idleTime / 1000) < 60
 
 
 ############################################################################
