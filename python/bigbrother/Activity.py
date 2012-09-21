@@ -1,3 +1,5 @@
+#!/usr/bin/python3.2
+# -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
@@ -11,7 +13,12 @@
 
 import datetime
 
-class AppWork():
+class Activity:
+	def dumpIfTooLong(self, activityAccumulator):
+		if datetime.datetime.now() - self.startTime >= datetime.timedelta(minutes=5):
+			self.Close(activityAccumulator)
+
+class AppWork(Activity):
     def __init__(self, appName, title):
         self.appName = appName
         self.startTime = datetime.datetime.now()
@@ -20,20 +27,23 @@ class AppWork():
 
     def OnTimer(self, idle, appName, title, activityAccumulator):
         if idle or appName != self.appName:
-
             self.Close(activityAccumulator)
             return IdleAction() if idle else getActivity(appName, title)
         else:
             self.titles.add(title)
+            self.dumpIfTooLong(activityAccumulator)
             return self
 
     def Close(self, activityAccumulator):
             titles = '| '.join(self.titles)
             activityAccumulator.AddNewActivity(self.appName, titles, self.startTime,
                             datetime.datetime.now())
+            self.titles.clear()
+            self.startTime = datetime.datetime.now()
+
 
 ###############################################################################
-class IdleAction():
+class IdleAction(Activity):
     def __init__(self):
         self.startTime = datetime.datetime.now()
 
@@ -43,11 +53,13 @@ class IdleAction():
             assert(len(appName))
             return getActivity(appName, title)
         else:
+            self.dumpIfTooLong(activityAccumulator)
             return self
 
     def Close(self, activityAccumulator):
          activityAccumulator.AddNewActivity('<away>', '', self.startTime,
                             datetime.datetime.now())
+         self.startTime = datetime.datetime.now()
 
 def getActivity(appName, title):
     assert(len(appName) and appName[-3] != 'exe')

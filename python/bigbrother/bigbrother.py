@@ -1,3 +1,5 @@
+#!/usr/bin/python3.2
+# -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
@@ -92,7 +94,7 @@ def getCurrentProcessName():
         else:
             exename = win32process.GetModuleFileNameEx(pshandle, 0)
     except Exception as e:
-        print(e)
+      #  print(e)
         return (None, None)
     finally:
         win32api.CloseHandle(pshandle)
