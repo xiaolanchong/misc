@@ -48,6 +48,12 @@ class ParserTest(unittest.TestCase):
             ]
        self.assertListEqual(result, list(p.getSentences()))
 
+    def testRemoveFurigana(self):
+        p = textparser.TextParser('錨《いかり》の騒々しい物音', True)
+        self.assertListEqual(['錨の騒々しい物音'], p.getSentences())
+        p = textparser.TextParser('錨の騒々《そうぞう》しい物音', True)
+        self.assertListEqual(['錨の騒々しい物音'], p.getSentences())
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(ParserTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

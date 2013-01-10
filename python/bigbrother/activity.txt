@@ -1,1 +1,636 @@
-0.1, 2012-09-20 06:27, 2012-09-20 06:27, PyScripter, PyScripter - D:\project\PythonProject\bigbrother\bigbrother.py
+0.2, 2012-09-20 15:43, 2012-09-20 15:43, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.2, 2012-09-20 15:43, 2012-09-20 15:43, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-20 15:44, 2012-09-20 15:44, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.2, 2012-09-20 15:44, 2012-09-20 15:44, python, tk
+0.7, 2012-09-20 15:44, 2012-09-20 15:45, firefox, winapi - How do I get rid of Python Tkinter root window? - Stack Overflow - Mozilla Firefox| python open built-in function: difference between modes a, a+, w, w+, and r+? - Stack Overflow - Mozilla Firefox
+0.2, 2012-09-20 15:45, 2012-09-20 15:45, BCompare, New Text Compare* - Text Compare - Beyond Compare
+1.3, 2012-09-20 15:45, 2012-09-20 15:46, firefox, winapi - How do I get rid of Python Tkinter root window? - Stack Overflow - Mozilla Firefox
+2.2, 2012-09-20 15:46, 2012-09-20 15:49, <away>, 
+1.3, 2012-09-20 15:49, 2012-09-20 15:51, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+2.0, 2012-09-20 15:51, 2012-09-20 15:53, firefox, python windows taskbar - Google 検索 - Mozilla Firefox| python system tray icon - Google 検索 - Mozilla Firefox| python windows taskbar icon - Google 検索 - Mozilla Firefox| SysTrayIcon.py - Mozilla Firefox| Small Values of Cool: Windows system tray icons with Python - Mozilla Firefox| wxpython - how to set a menubar icon on mac osx using wx - Stack Overflow - Mozilla Firefox| 新しいタブ - Mozilla Firefox| What's the simplest way to put a python script into the system tray (Windows) - Stack Overflow - Mozilla Firefox| Cross-platform Python GUI suitable for taskbar (Win) and menubar (mac) functionality? - Stack Overflow - Mozilla Firefox
+0.2, 2012-09-20 15:53, 2012-09-20 15:53, devenv, cqg - Microsoft Visual Studio (Administrator)
+1.2, 2012-09-20 15:53, 2012-09-20 15:54, wincvs, wincvs - [D:\project\CQG\trunk\client\]| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.8, 2012-09-20 15:54, 2012-09-20 15:55, <away>, 
+1.2, 2012-09-20 15:55, 2012-09-20 15:56, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+5.8, 2012-09-20 15:56, 2012-09-20 16:02, <away>, 
+0.5, 2012-09-20 16:02, 2012-09-20 16:02, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+0.2, 2012-09-20 16:02, 2012-09-20 16:02, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 16:02, 2012-09-20 16:03, dwm, cqg - Microsoft Visual Studio (Administrator) (Not Responding)
+0.2, 2012-09-20 16:03, 2012-09-20 16:03, devenv, Start Page - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 16:03, 2012-09-20 16:03, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.2, 2012-09-20 16:03, 2012-09-20 16:03, notepad, activity - Notepad
+0.2, 2012-09-20 16:03, 2012-09-20 16:03, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+2.0, 2012-09-20 16:03, 2012-09-20 16:05, firefox, SysTrayIcon.py - Mozilla Firefox
+0.5, 2012-09-20 16:05, 2012-09-20 16:06, <away>, 
+0.7, 2012-09-20 16:06, 2012-09-20 16:06, notepad, activity - Notepad
+0.3, 2012-09-20 16:06, 2012-09-20 16:07, firefox, SysTrayIcon.py - Mozilla Firefox
+0.5, 2012-09-20 16:07, 2012-09-20 16:07, anki, HanziDeck (43/3205 张卡片到期) - Anki| HanziDeck* (41/3205 张卡片到期) - Anki| HanziDeck* (39/3205 张卡片到期) - Anki
+1.0, 2012-09-20 16:07, 2012-09-20 16:08, firefox, SysTrayIcon.py - Mozilla Firefox
+0.7, 2012-09-20 16:08, 2012-09-20 16:09, <away>, 
+0.2, 2012-09-20 16:09, 2012-09-20 16:09, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-20 16:09, 2012-09-20 16:10, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-20 16:10, 2012-09-20 16:10, dwm, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\] (Not Responding)
+0.2, 2012-09-20 16:10, 2012-09-20 16:10, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+2.0, 2012-09-20 16:10, 2012-09-20 16:12, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-20 16:12, 2012-09-20 16:13, firefox, Language Learning Forum - Mozilla Firefox| SysTrayIcon.py - Mozilla Firefox| Language Learning Forum: Language Learning Log - Mozilla Firefox
+0.5, 2012-09-20 16:13, 2012-09-20 16:13, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.8, 2012-09-20 16:13, 2012-09-20 16:14, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-20 16:14, 2012-09-20 16:14, dwm, cqg - Microsoft Visual Studio (Administrator) (Not Responding)
+0.2, 2012-09-20 16:14, 2012-09-20 16:15, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+1.8, 2012-09-20 16:15, 2012-09-20 16:16, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 16:16, 2012-09-20 16:17, firefox, Language Learning Forum: Language Learning Log - Mozilla Firefox
+1.0, 2012-09-20 16:17, 2012-09-20 16:18, notepad, activity - Notepad
+2.5, 2012-09-20 16:18, 2012-09-20 16:20, anki, HanziDeck* (22/3205 张卡片到期) - Anki| HanziDeck* (20/3205 张卡片到期) - Anki| HanziDeck* (38/3205 张卡片到期) - Anki| HanziDeck (16/3205 张卡片到期) - Anki| HanziDeck* (29/3205 张卡片到期) - Anki| HanziDeck* (27/3205 张卡片到期) - Anki| HanziDeck* (25/3205 张卡片到期) - Anki| HanziDeck* (31/3205 张卡片到期) - Anki| HanziDeck* (33/3205 张卡片到期) - Anki| HanziDeck* (15/3205 张卡片到期) - Anki| HanziDeck* (18/3205 张卡片到期) - Anki| HanziDeck (36/3205 张卡片到期) - Anki| HanziDeck* (24/3205 张卡片到期) - Anki| HanziDeck* (12/3205 张卡片到期) - Anki| HanziDeck* (37/3205 张卡片到期) - Anki
+0.2, 2012-09-20 16:20, 2012-09-20 16:20, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-20 16:20, 2012-09-20 16:21, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-20 16:21, 2012-09-20 16:21, devenv, cqg - Microsoft Visual Studio (Administrator)
+1.0, 2012-09-20 16:21, 2012-09-20 16:22, anki, HanziDeck* (5/3205 张卡片到期) - Anki| HanziDeck* (0/3205 张卡片到期) - Anki| HanziDeck* (4/3205 张卡片到期) - Anki| HanziDeck* (3/3205 张卡片到期) - Anki| HanziDeck* (9/3205 张卡片到期) - Anki| HanziDeck* (7/3205 张卡片到期) - Anki
+0.2, 2012-09-20 16:22, 2012-09-20 16:22, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 16:22, 2012-09-20 16:22, anki, Anki
+0.3, 2012-09-20 16:22, 2012-09-20 16:23, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.5, 2012-09-20 16:23, 2012-09-20 16:23, BCompare, BarDataSource.cpp - Text Compare - Beyond Compare
+1.0, 2012-09-20 16:23, 2012-09-20 16:24, CQG, New Issue
+27.2, 2012-09-20 16:24, 2012-09-20 16:51, <away>, 
+1.2, 2012-09-20 16:51, 2012-09-20 16:52, BCompare, BarDataSource.h - Text Compare - Beyond Compare
+1.3, 2012-09-20 16:52, 2012-09-20 16:54, <away>, 
+3.7, 2012-09-20 16:54, 2012-09-20 16:57, BCompare, BarDataSource.cpp - Text Compare - Beyond Compare| TFBarDataSourceFactory.cpp - Text Compare - Beyond Compare| CQGBagsManager.cpp - Text Compare - Beyond Compare| BaseBarDataSourceFactory.h - Text Compare - Beyond Compare| After - Folder Compare - Beyond Compare| FilteredDataAccessor.h - Text Compare - Beyond Compare| TFlowBarWriter.cpp - Text Compare - Beyond Compare| TradeSystemProxyDataSource.cpp - Text Compare - Beyond Compare| StudyDataBarDataSourceFactory.h - Text Compare - Beyond Compare
+1.0, 2012-09-20 16:57, 2012-09-20 16:58, CQG, New Issue
+0.3, 2012-09-20 16:58, 2012-09-20 16:59, BCompare, ConsolidateBarWriter.h - Text Compare - Beyond Compare| CQGBagsManager.cpp - Text Compare - Beyond Compare
+0.3, 2012-09-20 16:59, 2012-09-20 16:59, CQG, New Issue
+1.5, 2012-09-20 16:59, 2012-09-20 17:01, BCompare, After - Folder Compare - Beyond Compare| BarDataSourceFactoryWithConsolidate.h - Text Compare - Beyond Compare| BarDataSource.cpp - Text Compare - Beyond Compare| BaseBarDataSourceFactory.h - Text Compare - Beyond Compare
+1.7, 2012-09-20 17:01, 2012-09-20 17:02, devenv, cqg - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 19:32, 2012-09-20 19:32, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.5, 2012-09-20 19:32, 2012-09-20 19:32, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.7, 2012-09-20 19:32, 2012-09-20 19:33, notepad++, d:\project\github\python\bigbrother\activity.txt - Notepad++
+1.7, 2012-09-20 19:33, 2012-09-20 19:35, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 19:35, 2012-09-20 19:35, notepad++, d:\project\github\python\bigbrother\activity.txt - Notepad++
+0.2, 2012-09-20 19:35, 2012-09-20 19:35, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-20 19:35, 2012-09-20 19:35, notepad, activity - Notepad
+0.2, 2012-09-20 19:35, 2012-09-20 19:35, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.0, 2012-09-20 19:35, 2012-09-20 19:36, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-20 19:36, 2012-09-20 19:37, <away>, 
+2.8, 2012-09-20 19:37, 2012-09-20 19:40, devenv, Attach to Process| APIModules (Debugging) - Microsoft Visual Studio (Administrator)|  + pool = 0x00000000 {parent=??? child=??? sibling=??? ...}| APIModules - Microsoft Visual Studio (Administrator)|  + thd = 0x0290cdf0 {pool=0x00000000 td=0x00000174 cancel=0 ...}| Microsoft Visual Studio
+0.8, 2012-09-20 19:40, 2012-09-20 19:41, <away>, 
+5.7, 2012-09-20 19:41, 2012-09-20 19:47, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Downloading public symbols
+0.3, 2012-09-20 19:47, 2012-09-20 19:47, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| QUICKSEARCH
+5.5, 2012-09-20 19:47, 2012-09-20 19:52, devenv, Attach to Process| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio| Find and Replace
+0.3, 2012-09-20 19:52, 2012-09-20 19:53, notepad, activity - Notepad
+1.0, 2012-09-20 19:53, 2012-09-20 19:54, devenv, APIModules - Microsoft Visual Studio (Administrator)| Attach to Process| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 19:54, 2012-09-20 19:54, Dbgview, DebugView on \\Z7PEUGENEG (local)
+1.3, 2012-09-20 19:54, 2012-09-20 19:55, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+1.2, 2012-09-20 19:55, 2012-09-20 19:56, firefox, apr_thread_exit hangup - Google 検索 - Mozilla Firefox| [Fwd: Bug: Apache hangs if script invokes fork/waitpid] - Mozilla Firefox| Learning Languages - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-20 19:56, 2012-09-20 19:57, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-20 19:57, 2012-09-20 19:57, firefox, Learning Languages - Mozilla Firefox
+0.2, 2012-09-20 19:57, 2012-09-20 19:57, notepad++, d:\project\github\python\bigbrother\UserPresence.py - Notepad++
+0.8, 2012-09-20 20:01, 2012-09-20 20:02, PyScripter, PyScripter - D:\project\github\python\bigbrother\bigbrother.py
+0.3, 2012-09-20 20:02, 2012-09-20 20:02, notepad, activity - Notepad
+0.2, 2012-09-20 20:02, 2012-09-20 20:03, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.8, 2012-09-20 20:03, 2012-09-20 20:03, notepad, activity - Notepad
+0.3, 2012-09-20 20:03, 2012-09-20 20:04, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+2.8, 2012-09-20 20:04, 2012-09-20 20:07, wish, Git Gui (github) D:/project/github
+0.3, 2012-09-20 20:07, 2012-09-20 20:07, notepad, activity - Notepad
+1.0, 2012-09-20 20:07, 2012-09-20 20:08, PyScripter, PyScripter - D:\project\github\python\bigbrother\bigbrother.py
+0.5, 2012-09-20 20:08, 2012-09-20 20:08, firefox, apr_thread_exit hangup - Google 検索 - Mozilla Firefox| Language Learning Forum: Specific Languages - Mozilla Firefox| Language Learning Forum - Mozilla Firefox
+1.7, 2012-09-20 20:08, 2012-09-20 20:10, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-20 20:10, 2012-09-20 20:11, firefox, ExitThread hangs due to CoInitialize / CoUninitialize – Группы Google - Mozilla Firefox| exitthread hangup - Google 検索 - Mozilla Firefox| Группы Google - Mozilla Firefox
+0.3, 2012-09-20 20:11, 2012-09-20 20:11, notepad, activity - Notepad
+2.2, 2012-09-20 20:11, 2012-09-20 20:13, firefox, The best mandarin software (Specific Languages) Language Learning Forum - Mozilla Firefox| Language Learning Survey - Mozilla Firefox| ExitThread hangs due to CoInitialize / CoUninitialize – Группы Google - Mozilla Firefox| exitthread hangup - Google 検索 - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.8, 2012-09-20 20:13, 2012-09-20 20:14, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-20 20:14, 2012-09-20 20:14, firefox, Language Learning Survey - Mozilla Firefox
+1.8, 2012-09-20 20:14, 2012-09-20 20:16, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Find and Replace
+1.5, 2012-09-20 20:16, 2012-09-20 20:18, firefox, catldllmodulet - Google 検索 - Mozilla Firefox| CAtlDllModuleT のメソッド - Mozilla Firefox| CAtlDllModuleT のメンバ (ATL) - Mozilla Firefox| CAtlModuleT クラス (ATL) - Mozilla Firefox| CAtlDllModuleT クラス (ATL) - Mozilla Firefox
+8.2, 2012-09-20 20:18, 2012-09-20 20:26, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Find Symbol [25 of 350434]| Find and Replace
+0.5, 2012-09-20 20:26, 2012-09-20 20:26, firefox, atl com server hinstance - Google 検索 - Mozilla Firefox| Getting Dll Module Handle in ATL 7.0 projects - CodeProject - Mozilla Firefox| CAtlDllModuleT のメソッド - Mozilla Firefox
+3.7, 2012-09-20 20:26, 2012-09-20 20:30, devenv, Attach to Process| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio| Find and Replace
+0.7, 2012-09-20 20:30, 2012-09-20 20:31, firefox, DllMain entry point - Mozilla Firefox| dll main - Google 検索 - Mozilla Firefox
+0.8, 2012-09-20 20:31, 2012-09-20 20:31, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-20 20:31, 2012-09-20 20:32, firefox, DllMain entry point - Mozilla Firefox| DisableThreadLibraryCalls function - Mozilla Firefox
+0.7, 2012-09-20 20:32, 2012-09-20 20:33, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 20:33, 2012-09-20 20:33, firefox, 新しいタブ - Mozilla Firefox
+0.2, 2012-09-20 20:33, 2012-09-20 20:33, devenv, opcelstub_9 Property Pages
+0.3, 2012-09-20 20:33, 2012-09-20 20:33, firefox, _DllMain@12 already defined in nafxcwd.lib - Google 検索 - Mozilla Firefox| Link error when adding MFC header in dll project - Mozilla Firefox
+2.3, 2012-09-20 20:33, 2012-09-20 20:36, devenv, APIModules - Microsoft Visual Studio (Administrator)| Find and Replace
+0.3, 2012-09-20 20:36, 2012-09-20 20:36, firefox, How to use your own DllMain in MFC Dll's - Mozilla Firefox| dllmain in mfc - Google 検索 - Mozilla Firefox
+2.2, 2012-09-20 20:36, 2012-09-20 20:38, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.2, 2012-09-20 20:38, 2012-09-20 20:39, firefox, A LNK2005 error occurs when the CRT library and MFC libraries are linked in the wrong order in Visual C++ - Mozilla Firefox| How to use your own DllMain in MFC Dll's - Mozilla Firefox| Link error when adding MFC header in dll project - Mozilla Firefox
+1.7, 2012-09-20 20:39, 2012-09-20 20:41, devenv, opcelstub_9 Property Pages| APIModules - Microsoft Visual Studio (Administrator)
+1.0, 2012-09-20 20:41, 2012-09-20 20:42, firefox, Initializing Regular DLLs - Mozilla Firefox| winapp in dll - Google 検索 - Mozilla Firefox| DLL using MFC without CWinApp? - Stack Overflow - Mozilla Firefox| 新しいタブ - Mozilla Firefox| Converting Windows Application to DLL - Mozilla Firefox| Regular DLLs Dynamically Linked to MFC - Mozilla Firefox
+1.7, 2012-09-20 20:42, 2012-09-20 20:44, devenv, APIModules - Microsoft Visual Studio (Administrator)| opcelstub_9 Property Pages
+2.5, 2012-09-20 20:44, 2012-09-20 20:46, firefox, Mozilla Firefox| .NET 247 - Mozilla Firefox| DLL using MFC without CWinApp? - Stack Overflow - Mozilla Firefox| mfc dll hmodule - Google 検索 - Mozilla Firefox| 如何在DLL中获取该DLL本身的HMODULE? - VC/MFC / 进程/线程/DLL - Mozilla Firefox| HMODULE from current DLL - Mozilla Firefox| Tip: Detecting a HMODULE/HINSTANCE Handle Within the Module You're Running In - Mozilla Firefox
+1.3, 2012-09-20 20:46, 2012-09-20 20:47, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)
+1.3, 2012-09-20 20:47, 2012-09-20 20:49, firefox, Don’t do anything in DllMain… Please - Mozilla Firefox| 如何在DLL中获取该DLL本身的HMODULE? - VC/MFC / 进程/线程/DLL - Mozilla Firefox| don't do anything in dllmain - Google 検索 - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.5, 2012-09-20 20:49, 2012-09-20 20:49, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+1.0, 2012-09-20 20:49, 2012-09-20 20:50, firefox, Don’t do anything in DllMain… Please - Mozilla Firefox| Best Practices for Creating DLLs - Mozilla Firefox
+1.3, 2012-09-20 20:50, 2012-09-20 20:52, WINWORD, DLL_bestprac [Read-Only] [Compatibility Mode] - Microsoft Word
+0.5, 2012-09-20 20:52, 2012-09-20 20:52, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-20 20:52, 2012-09-20 20:53, WINWORD, DLL_bestprac [Read-Only] [Compatibility Mode] - Microsoft Word
+1.8, 2012-09-20 20:53, 2012-09-20 20:55, firefox, CAtlDllModuleT::DllGetClassObject - Mozilla Firefox| CAtlDllModuleT::DllGetClassObject (ATL) - Mozilla Firefox| dllgetclassobject msdn - Google 検索 - Mozilla Firefox| CAtlDllModuleT Members (ATL) - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-20 20:55, 2012-09-20 20:55, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-20 20:55, 2012-09-20 20:55, firefox, CAtlDllModuleT::DllGetClassObject (ATL) - Mozilla Firefox
+0.8, 2012-09-20 20:55, 2012-09-20 20:56, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-20 20:56, 2012-09-20 20:56, firefox, CAtlDllModuleT::DllGetClassObject (ATL) - Mozilla Firefox
+0.2, 2012-09-20 20:56, 2012-09-20 20:56, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-20 20:56, 2012-09-20 20:57, notepad, activity - Notepad
+0.2, 2012-09-20 20:57, 2012-09-20 20:57, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+4.2, 2012-09-20 20:57, 2012-09-20 21:01, anki, ChineseWords* (63/3197 张卡片到期) - Anki| ChineseWords (63/3197 张卡片到期) - Anki| ChineseWords* (57/3197 张卡片到期) - Anki| ChineseWords* (55/3197 张卡片到期) - Anki| ChineseWords* (51/3197 张卡片到期) - Anki| ChineseWords* (58/3197 张卡片到期) - Anki| ChineseWords (56/3197 张卡片到期) - Anki| ChineseWords* (45/3197 张卡片到期) - Anki| ChineseWords* (54/3197 张卡片到期) - Anki| ChineseWords* (60/3197 张卡片到期) - Anki| ChineseWords* (50/3197 张卡片到期) - Anki| ChineseWords (48/3197 张卡片到期) - Anki| ChineseWords* (46/3197 张卡片到期) - Anki| ChineseWords* (61/3197 张卡片到期) - Anki| ChineseWords* (52/3197 张卡片到期) - Anki| ChineseWords* (48/3197 张卡片到期) - Anki| ChineseWords* (59/3197 张卡片到期) - Anki| ChineseWords* (62/3197 张卡片到期) - Anki
+0.7, 2012-09-20 21:01, 2012-09-20 21:02, wish, OpenSSH| Git Gui (github) D:/project/github| Git Gui (github): push github
+5.2, 2012-09-20 21:02, 2012-09-20 21:07, anki, ChineseWords* (28/3197 张卡片到期) - Anki| ChineseWords* (43/3197 张卡片到期) - Anki| ChineseWords* (31/3197 张卡片到期) - Anki| ChineseWords* (36/3197 张卡片到期) - Anki| ChineseWords* (35/3197 张卡片到期) - Anki| ChineseWords* (27/3197 张卡片到期) - Anki| Anki| ChineseWords* (20/3197 张卡片到期) - Anki| ChineseWords* (29/3197 张卡片到期) - Anki| ChineseWords* (30/3197 张卡片到期) - Anki| ChineseWords* (24/3197 张卡片到期) - Anki| ChineseWords* (17/3197 张卡片到期) - Anki| ChineseWords* (42/3197 张卡片到期) - Anki| ChineseWords* (38/3197 张卡片到期) - Anki| ChineseWords (18/3197 张卡片到期) - Anki| ChineseWords* (22/3197 张卡片到期) - Anki| ChineseWords* (18/3197 张卡片到期) - Anki| ChineseWords* (25/3197 张卡片到期) - Anki| ChineseWords* (40/3197 张卡片到期) - Anki| ChineseWords (41/3197 张卡片到期) - Anki| ChineseWords* (34/3197 张卡片到期) - Anki| ChineseWords* (39/3197 张卡片到期) - Anki| ChineseWords* (15/3197 张卡片到期) - Anki| ChineseWords* (33/3197 张卡片到期) - Anki| ChineseWords* (37/3197 张卡片到期) - Anki| ChineseWords* (14/3197 张卡片到期) - Anki| ChineseWords* (44/3197 张卡片到期) - Anki| ChineseWords* (32/3197 张卡片到期) - Anki
+1.0, 2012-09-20 21:07, 2012-09-20 21:08, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+1.3, 2012-09-20 21:08, 2012-09-20 21:09, <away>, 
+0.2, 2012-09-21 13:21, 2012-09-21 13:21, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.8, 2012-09-21 13:21, 2012-09-21 13:22, firefox, Два.ч — Иностранные языки - Mozilla Firefox| Mozilla Firefox スタートページ - Mozilla Firefox
+0.2, 2012-09-21 13:22, 2012-09-21 13:22, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+9.2, 2012-09-21 13:22, 2012-09-21 13:31, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-21 13:31, 2012-09-21 13:32, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\src\]| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 13:32, 2012-09-21 13:32, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.2, 2012-09-21 13:32, 2012-09-21 13:32, BCompare, opcelstub.transport.IDataSender_1.4_68.h <--> IDataSender.h* - Text Compare - Beyond Compare
+0.2, 2012-09-21 13:32, 2012-09-21 13:32, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 13:32, 2012-09-21 13:33, BCompare, Beyond Compare
+0.2, 2012-09-21 13:33, 2012-09-21 13:33, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.3, 2012-09-21 13:33, 2012-09-21 13:33, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]| Update settings
+0.2, 2012-09-21 13:33, 2012-09-21 13:33, BCompare, CQGRTDServer.rtd.RTDServerModule_1.3_71.cpp <--> RTDServerModule.cpp - Text Compare - Beyond Compare
+0.3, 2012-09-21 13:33, 2012-09-21 13:34, wincvs, Update settings| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+1.3, 2012-09-21 13:34, 2012-09-21 13:35, BCompare, CQGRTDServer.rtd.RTDServer_1.6_72.cpp <--> RTDServer.cpp - Text Compare - Beyond Compare| CQGRTDServer.rtd.RTDServer_1.3_73.h <--> RTDServer.h - Text Compare - Beyond Compare| CQGRTDServer.rtd.RTDServer_1.6_72.cpp <--> RTDServer.cpp* - Text Compare - Beyond Compare
+0.5, 2012-09-21 13:35, 2012-09-21 13:35, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.5, 2012-09-21 13:35, 2012-09-21 13:36, devenv, APIModules - Microsoft Visual Studio (Administrator)| File Modification Detected
+2.7, 2012-09-21 13:36, 2012-09-21 13:39, anki, HanziDeck* (5/3204 张卡片到期) - Anki| HanziDeck* (23/3205 张卡片到期) - Anki| HanziDeck* (16/3204 张卡片到期) - Anki| HanziDeck* (21/3204 张卡片到期) - Anki| HanziDeck* (19/3204 张卡片到期) - Anki| HanziDeck* (8/3204 张卡片到期) - Anki| HanziDeck* (12/3204 张卡片到期) - Anki| HanziDeck* (10/3204 张卡片到期) - Anki| HanziDeck (26/3205 张卡片到期) - Anki| HanziDeck (22/3205 张卡片到期) - Anki| HanziDeck* (18/3204 张卡片到期) - Anki| HanziDeck* (7/3204 张卡片到期) - Anki| HanziDeck* (14/3204 张卡片到期) - Anki
+1.8, 2012-09-21 13:39, 2012-09-21 13:40, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 13:40, 2012-09-21 13:41, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 13:41, 2012-09-21 13:41, firefox, 新しいタブ - Mozilla Firefox
+0.5, 2012-09-21 13:41, 2012-09-21 13:41, anki, HanziDeck* (2/3204 张卡片到期) - Anki| HanziDeck* (0/3204 张卡片到期) - Anki| HanziDeck* (4/3204 张卡片到期) - Anki
+0.3, 2012-09-21 13:41, 2012-09-21 13:42, firefox, Rarely bored in target languages? (General discussion) Language Learning Forum - Mozilla Firefox| Language Learning Forum - Mozilla Firefox
+0.2, 2012-09-21 13:42, 2012-09-21 13:42, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 13:42, 2012-09-21 13:42, BCompare, libs.AsyncLogger.AsyncLogger_1.1.2.2_75.h <--> AsyncLogger.h - Text Compare - Beyond Compare
+0.2, 2012-09-21 13:42, 2012-09-21 13:42, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+0.5, 2012-09-21 13:42, 2012-09-21 13:43, BCompare, libs.AsyncLogger.AsyncLogger_1.1.2.2_76.cpp <--> AsyncLogger.cpp* - Text Compare - Beyond Compare
+2.7, 2012-09-21 13:43, 2012-09-21 13:45, devenv, APIModules - Microsoft Visual Studio (Administrator)| AsyncLogger Property Pages| CQGRTDServer Property Pages
+0.7, 2012-09-21 13:45, 2012-09-21 13:46, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| QUICKSEARCH
+0.2, 2012-09-21 13:46, 2012-09-21 13:46, logcln32, Login - CQG IC - v12x4301
+3.7, 2012-09-21 13:46, 2012-09-21 13:50, anki, English* (11/1026 张卡片到期) - Anki| English (24/1026 张卡片到期) - Anki| HanziDeck* (0/3204 张卡片到期) - Anki| English* (22/1026 张卡片到期) - Anki| English* (9/1026 张卡片到期) - Anki| Anki| English* (17/1026 张卡片到期) - Anki| English* (6/1026 张卡片到期) - Anki| English* (15/1026 张卡片到期) - Anki| English* (1/1026 张卡片到期) - Anki| English* (3/1026 张卡片到期) - Anki| English (4/1026 张卡片到期) - Anki| English* (20/1026 张卡片到期) - Anki| English* (18/1026 张卡片到期) - Anki| English* (7/1026 张卡片到期) - Anki| 记忆库统计图表| English* (16/1026 张卡片到期) - Anki| English* (13/1026 张卡片到期) - Anki
+5.7, 2012-09-21 13:50, 2012-09-21 13:55, firefox, Language Learning Forum: General discussion - Mozilla Firefox| Rarely bored in target languages? (General discussion) Language Learning Forum - Mozilla Firefox| Dream Language Learning App (General discussion) Language Learning Forum - Mozilla Firefox| How Yoda sounds in other languages (General discussion) Language Learning Forum - Mozilla Firefox
+0.3, 2012-09-21 13:55, 2012-09-21 13:56, <away>, 
+17.9, 2012-09-21 13:56, 2012-09-21 14:14, firefox, the latter - Google 検索 - Mozilla Firefox| whee - Google 検索 - Mozilla Firefox| Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence? - Mozilla Firefox| Dream Language Learning App (General discussion) Language Learning Forum - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-21 14:14, 2012-09-21 14:14, OUTLOOK, zorch - eugeneg@cqg.com - Microsoft Outlook
+0.8, 2012-09-21 14:14, 2012-09-21 14:15, firefox, Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence? - Mozilla Firefox
+0.2, 2012-09-21 14:15, 2012-09-21 14:15, OUTLOOK, Zelenograd - eugeneg@cqg.com - Microsoft Outlook
+0.7, 2012-09-21 14:15, 2012-09-21 14:15, firefox, Dream Language Learning App (General discussion) Language Learning Forum - Mozilla Firefox| Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence? - Mozilla Firefox
+0.2, 2012-09-21 14:15, 2012-09-21 14:16, OUTLOOK, Zelenograd - eugeneg@cqg.com - Microsoft Outlook
+0.2, 2012-09-21 14:16, 2012-09-21 14:16, firefox, Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence? - Mozilla Firefox
+0.2, 2012-09-21 14:16, 2012-09-21 14:16, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 14:16, 2012-09-21 14:16, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 14:16, 2012-09-21 14:16, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.7, 2012-09-21 14:16, 2012-09-21 14:17, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| QUICKSEARCH
+0.5, 2012-09-21 14:17, 2012-09-21 14:17, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\clientexe\Release\private\cqg.ini - Notepad++| Find
+0.2, 2012-09-21 14:17, 2012-09-21 14:18, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 14:18, 2012-09-21 14:18, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 14:18, 2012-09-21 14:18, DWWIN, Default IME
+0.2, 2012-09-21 14:18, 2012-09-21 14:18, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 14:18, 2012-09-21 14:18, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 14:18, 2012-09-21 14:19, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 14:19, 2012-09-21 14:19, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 14:19, 2012-09-21 14:19, notepad, RTD_2012_09_21_141633S - Notepad
+0.3, 2012-09-21 14:19, 2012-09-21 14:20, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+1.2, 2012-09-21 14:20, 2012-09-21 14:21, devenv, Attach to Process| Disassembly (Running) - Microsoft Visual Studio (Administrator)| Disassembly (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 14:21, 2012-09-21 14:21, cmd, Administrator: C:\Windows\System32\cmd.exe - c:\Python32\python.exe  bigbrother.py
+0.3, 2012-09-21 14:21, 2012-09-21 14:21, devenv, Disassembly (Running) - Microsoft Visual Studio (Administrator)| Disassembly (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 14:21, 2012-09-21 14:21, notepad, RTD_2012_09_21_141633S - Notepad
+0.2, 2012-09-21 14:21, 2012-09-21 14:22, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.7, 2012-09-21 14:22, 2012-09-21 14:22, notepad, RTD_2012_09_21_141633S - Notepad
+0.3, 2012-09-21 14:22, 2012-09-21 14:23, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 14:23, 2012-09-21 14:23, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.5, 2012-09-21 14:23, 2012-09-21 14:23, devenv, APIModules - Microsoft Visual Studio (Administrator)| Start Page - Microsoft Visual Studio (Administrator)
+1.3, 2012-09-21 14:23, 2012-09-21 14:25, firefox, Language Learning Forum: General discussion - Mozilla Firefox| Omegle: Talk to strangers! - Mozilla Firefox| Dream Language Learning App (General discussion) Language Learning Forum - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-21 14:25, 2012-09-21 14:25, devenv, APIModules - Microsoft Visual Studio (Administrator)
+6.3, 2012-09-21 14:25, 2012-09-21 14:31, firefox, содержание алкоголя в крови - Google 検索 - Mozilla Firefox| Расчет содержания спирта в крови - Mozilla Firefox| В России могут вернуть уровень допустимого содержания алкоголя в крови водителей в 0,2 или 0,3 промилле — Газета.Ru | Автомобили - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-21 14:31, 2012-09-21 14:31, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 14:31, 2012-09-21 14:31, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 14:31, 2012-09-21 14:32, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.2, 2012-09-21 14:32, 2012-09-21 14:32, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 14:32, 2012-09-21 14:32, explorer, Start menu
+1.5, 2012-09-21 14:32, 2012-09-21 14:33, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 14:33, 2012-09-21 14:34, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.2, 2012-09-21 14:34, 2012-09-21 14:35, notepad, RTD_2012_09_21_143148S - Notepad
+10.9, 2012-09-21 14:35, 2012-09-21 14:46, <away>, 
+6.5, 2012-09-21 14:46, 2012-09-21 14:52, firefox, Language Learning Forum: General discussion - Mozilla Firefox| Google course-builder (General discussion) Language Learning Forum - Mozilla Firefox| CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox| course-builder - Course Builder - Google Project Hosting - Mozilla Firefox
+0.3, 2012-09-21 14:52, 2012-09-21 14:53, <away>, 
+1.5, 2012-09-21 14:53, 2012-09-21 14:54, firefox, CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox
+0.5, 2012-09-21 14:54, 2012-09-21 14:55, <away>, 
+2.7, 2012-09-21 14:55, 2012-09-21 14:57, firefox, CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox
+0.5, 2012-09-21 14:57, 2012-09-21 14:58, <away>, 
+5.0, 2012-09-21 14:58, 2012-09-21 15:03, firefox, CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox
+0.2, 2012-09-21 15:03, 2012-09-21 15:03, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 15:03, 2012-09-21 15:03, OUTLOOK, Zelenograd - eugeneg@cqg.com - Microsoft Outlook
+0.2, 2012-09-21 15:03, 2012-09-21 15:03, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+3.0, 2012-09-21 15:03, 2012-09-21 15:06, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| Total Commander| QUICKSEARCH
+7.2, 2012-09-21 15:06, 2012-09-21 15:14, <away>, 
+0.2, 2012-09-21 15:14, 2012-09-21 15:14, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 15:14, 2012-09-21 15:14, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 15:14, 2012-09-21 15:14, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| QUICKSEARCH
+0.3, 2012-09-21 15:14, 2012-09-21 15:15, devenv, APIModules - Microsoft Visual Studio (Administrator)
+2.0, 2012-09-21 15:15, 2012-09-21 15:17, firefox, Место для дискуссий - Mozilla Firefox| Место для дискуссий - Что лично вам власть сделала хорошего или плохого? - Mozilla Firefox| Google course-builder (General discussion) Language Learning Forum - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-21 15:17, 2012-09-21 15:17, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.3, 2012-09-21 15:17, 2012-09-21 15:18, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| cqgoledbprv.dll Properties
+0.2, 2012-09-21 15:18, 2012-09-21 15:18, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 15:18, 2012-09-21 15:19, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 15:19, 2012-09-21 15:19, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 15:19, 2012-09-21 15:20, EXCEL, Opening - Microsoft Excel| Microsoft Excel - LabelsRTD  [Compatibility Mode]
+1.2, 2012-09-21 15:20, 2012-09-21 15:21, firefox, Место для дискуссий - Что лично вам власть сделала хорошего или плохого? - Mozilla Firefox| Два.ч — Иностранные языки - Mozilla Firefox| Два.ч — Иностранные языки - - Mozilla Firefox
+0.2, 2012-09-21 15:21, 2012-09-21 15:21, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\clientexe\Release\private\cqg.ini - Notepad++
+0.5, 2012-09-21 15:21, 2012-09-21 15:21, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 15:21, 2012-09-21 15:22, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 15:22, 2012-09-21 15:22, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 15:22, 2012-09-21 15:22, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.2, 2012-09-21 15:22, 2012-09-21 15:23, firefox, Два.ч — Иностранные языки - Mozilla Firefox
+1.2, 2012-09-21 15:23, 2012-09-21 15:24, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 15:24, 2012-09-21 15:25, <away>, 
+0.2, 2012-09-21 15:25, 2012-09-21 15:25, OUTLOOK, Inbox - eugeneg@cqg.com - Microsoft Outlook
+4.5, 2012-09-21 15:25, 2012-09-21 15:30, firefox, Language Learning Forum: General discussion - Mozilla Firefox| Два.ч — Иностранные языки - Mozilla Firefox| CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox| Ычан — Иностранные языки - Mozilla Firefox| Nurses win language discrimination case (General discussion) Language Learning Forum - Mozilla Firefox
+1.0, 2012-09-21 15:30, 2012-09-21 15:31, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.3, 2012-09-21 15:31, 2012-09-21 15:32, <away>, 
+0.2, 2012-09-21 15:32, 2012-09-21 15:32, firefox, Language Learning Forum: General discussion - Mozilla Firefox
+0.2, 2012-09-21 15:32, 2012-09-21 15:32, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\clientexe\Release\private\cqg.ini - Notepad++
+0.7, 2012-09-21 15:32, 2012-09-21 15:33, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 15:33, 2012-09-21 15:33, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.5, 2012-09-21 15:33, 2012-09-21 15:34, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+21.7, 2012-09-21 15:34, 2012-09-21 15:55, firefox, Google 阅读器 (50) - Mozilla Firefox| Chinese Resources - Mozilla Firefox| Online Mandarin Dictionaries | Confused Laowai - Mozilla Firefox| Google 阅读器 (46) - Mozilla Firefox| Google 阅读器 (49) - Mozilla Firefox| Google 阅读器 (52) - Mozilla Firefox| Language Exchange Community - Practice Foreign Languages - Mozilla Firefox| 牛词网在线词典 NIUWORD.COM 中文俚语词典 - Mozilla Firefox| 教育部異體字字典 - Mozilla Firefox| Глэдис Эйлуорд — маленькая женщина, приносящая счастье | SadPanda, китайская кухня, китайский язык, Китай, 中国 - Mozilla Firefox| Google 阅读器 (47) - Mozilla Firefox| 10 Really Interesting and Cool Chinese Characters - Mozilla Firefox| 新しいタブ - Mozilla Firefox| 在线翻译_在线词典_英语在线翻译_海词词典_中国最专业的网络词典 - Mozilla Firefox| 探查的俄文俄语翻译，探查俄语什么意思 - "查查"俄语在线词典 - Mozilla Firefox| Niuword - A collaborative online slang dictionary | Social Mandarin - Mozilla Firefox| 牛词网在线词典 NIUWORD.COM 汉语流行语词典 - Mozilla Firefox| Chinese Resources - Google Docs - Mozilla Firefox| 異體字字典 [Dictionary of Character Variants] | Social Mandarin - Mozilla Firefox| 異體字字典網站首頁 - Mozilla Firefox| 俄语在线翻译_俄文词典_俄语学习--查查俄语在线词典 - Mozilla Firefox| "在线翻译_在线词典_英语在线翻译_在线例句--"查查"在线词典" - Mozilla Firefox| Online dictionary EN-CN & CN-EN | Social Mandarin - Mozilla Firefox
+0.2, 2012-09-21 15:55, 2012-09-21 15:56, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.2, 2012-09-21 15:56, 2012-09-21 15:57, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+10.5, 2012-09-21 15:57, 2012-09-21 16:07, firefox, Mozilla Firefox| Chinese Word List - Google Docs - Mozilla Firefox| 10 Really Interesting and Cool Chinese Characters - Mozilla Firefox| pastebin - Stuff - post number 2196978 - Mozilla Firefox| What do you know if you learned the most frequent Chinese characters? - Mozilla Firefox| Google 阅读器 (44) - Mozilla Firefox| Google 阅读器 (45) - Mozilla Firefox| Learn Chinese from a famous essay – 背影 (The Sight of Father’s Back) | Social Mandarin - Mozilla Firefox| How long it takes to learn Mandarin? - Mozilla Firefox
+0.2, 2012-09-21 16:07, 2012-09-21 16:07, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\clientexe\Release\private\cqg.ini - Notepad++
+0.3, 2012-09-21 16:07, 2012-09-21 16:08, OUTLOOK, Zelenograd - eugeneg@cqg.com - Microsoft Outlook| Inbox - eugeneg@cqg.com - Microsoft Outlook
+1.5, 2012-09-21 16:08, 2012-09-21 16:09, cqg, 07:09   CQGNet - Integrated Client 119123    P001| 07:08   CQGNet - Integrated Client 119123    P001
+4.0, 2012-09-21 16:09, 2012-09-21 16:13, firefox, How long it takes to learn Mandarin? - Mozilla Firefox
+0.7, 2012-09-21 16:13, 2012-09-21 16:14, <away>, 
+2.0, 2012-09-21 16:14, 2012-09-21 16:16, firefox, How long it takes to learn Mandarin? - Mozilla Firefox
+0.2, 2012-09-21 16:16, 2012-09-21 16:16, <away>, 
+15.5, 2012-09-21 16:16, 2012-09-21 16:32, firefox, How long it takes to learn Mandarin? - Mozilla Firefox| Open the Door and See a Mountain – No-nonsense Chinese Idioms | Chinese Hacks - Mozilla Firefox| Google 阅读器 (44) - Mozilla Firefox| Chris | Chinese Hacks - Mozilla Firefox| Дайна Колосова - Mozilla Firefox| Chinese Resources - Mozilla Firefox| Диалоги - Mozilla Firefox| КИТАЙСКИЕ ИЕРОГЛИФЫ - Mozilla Firefox| What do you know if you learned the most frequent Chinese characters? - Mozilla Firefox| «Открой дверь и увидишь гору» (китайская идиома) | SadPanda, китайская кухня, китайский язык, Китай, 中国 - Mozilla Firefox| Новости - Mozilla Firefox
+0.3, 2012-09-21 16:32, 2012-09-21 16:32, cqg, 07:32   DJI - DJ Industrial Average, Daily   P001
+4.5, 2012-09-21 16:32, 2012-09-21 16:36, firefox, suv - Google 検索 - Mozilla Firefox| Open the Door and See a Mountain – No-nonsense Chinese Idioms | Social Mandarin - Mozilla Firefox| coupe - Google 検索 - Mozilla Firefox| Диалоги - Mozilla Firefox| 新しいタブ - Mozilla Firefox| minivan - Google 検索 - Mozilla Firefox| Новости - Mozilla Firefox
+0.3, 2012-09-21 16:36, 2012-09-21 16:37, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 16:37, 2012-09-21 16:37, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\libs\AsyncLogger\AsyncLogger.h - Notepad++
+0.7, 2012-09-21 16:37, 2012-09-21 16:38, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+6.3, 2012-09-21 16:38, 2012-09-21 16:44, devenv, APIModules - Microsoft Visual Studio (Administrator)
+13.4, 2012-09-21 16:44, 2012-09-21 16:57, <away>, 
+2.0, 2012-09-21 16:57, 2012-09-21 16:59, devenv, APIModules - Microsoft Visual Studio (Administrator)
+2.0, 2012-09-21 16:59, 2012-09-21 17:01, <away>, 
+1.2, 2012-09-21 17:01, 2012-09-21 17:03, devenv, APIModules - Microsoft Visual Studio (Administrator)
+5.5, 2012-09-21 17:03, 2012-09-21 17:08, <away>, 
+0.7, 2012-09-21 17:08, 2012-09-21 17:09, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.3, 2012-09-21 17:09, 2012-09-21 17:09, BCompare, CQGRTDServer.rtd.RTDServer_1.6_1.cpp <--> RTDServer.cpp - Text Compare - Beyond Compare| CQGRTDServer.rtd.RTDServer_1.3_0.h <--> RTDServer.h - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:09, 2012-09-21 17:09, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+1.2, 2012-09-21 17:09, 2012-09-21 17:10, BCompare, CQGRTDServer.rtd.Configurator_1.3_2.cpp <--> Configurator.cpp - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:10, 2012-09-21 17:11, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.7, 2012-09-21 17:11, 2012-09-21 17:11, BCompare, libs.AsyncLogger.AsyncLogger_1.1.2.2_4.cpp <--> AsyncLogger.cpp - Text Compare - Beyond Compare| libs.AsyncLogger.AsyncLogger_1.1.2.2_3.h <--> AsyncLogger.h - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:11, 2012-09-21 17:11, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+6.2, 2012-09-21 17:11, 2012-09-21 17:18, firefox, Google 阅读器 (39) - Mozilla Firefox| Два.ч — Иностранные языки - Mozilla Firefox| Google 阅读器 (44) - Mozilla Firefox| Google 阅读器 (45) - Mozilla Firefox| Language Learning Forum: General discussion - Mozilla Firefox| Google 阅读器 (43) - Mozilla Firefox| Google 阅读器 (42) - Mozilla Firefox| Google 阅读器 (40) - Mozilla Firefox| Google 阅读器 (41) - Mozilla Firefox| Новости - Mozilla Firefox
+0.2, 2012-09-21 17:18, 2012-09-21 17:18, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+0.3, 2012-09-21 17:18, 2012-09-21 17:18, BCompare, libs.AsyncLogger.AsyncLogger_1.1.2.2_5.h <--> AsyncLogger.h - Text Compare - Beyond Compare| libs.AsyncLogger.AsyncLogger_1.1.2.2_6.cpp <--> AsyncLogger.cpp - Text Compare - Beyond Compare
+0.7, 2012-09-21 17:18, 2012-09-21 17:19, firefox, ZorchTeam < People < CQGiki - Mozilla Firefox| ZorchTeamInspectionMatrix < People < CQGiki - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.2, 2012-09-21 17:19, 2012-09-21 17:19, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+0.2, 2012-09-21 17:19, 2012-09-21 17:19, cqg, 08:19   DJI - DJ Industrial Average, Daily   P001
+0.5, 2012-09-21 17:19, 2012-09-21 17:20, siebel, CQGenie| CQGenie - Defects & Suggestions List View
+0.2, 2012-09-21 17:20, 2012-09-21 17:20, notepad++, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\libs\AsyncLogger\AsyncLogger.h - Notepad++
+1.2, 2012-09-21 17:20, 2012-09-21 17:21, siebel, CQGenie - Defects & Suggestions List View
+0.2, 2012-09-21 17:21, 2012-09-21 17:21, notepad++, *new  2 - Notepad++
+2.7, 2012-09-21 17:21, 2012-09-21 17:24, siebel, CQGenie - WIP| CQGenie - Defects & Suggestions List View| CQGenie - All Checkin Information
+0.2, 2012-09-21 17:24, 2012-09-21 17:24, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+2.7, 2012-09-21 17:24, 2012-09-21 17:27, siebel, CQGenie - Defects & Suggestions List View
+0.2, 2012-09-21 17:27, 2012-09-21 17:27, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 17:27, 2012-09-21 17:27, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.2, 2012-09-21 17:27, 2012-09-21 17:27, firefox, ZorchTeamInspectionMatrix < People < CQGiki - Mozilla Firefox
+0.2, 2012-09-21 17:27, 2012-09-21 17:27, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.5, 2012-09-21 17:27, 2012-09-21 17:28, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.2, 2012-09-21 17:28, 2012-09-21 17:28, IntegrityClient, * Edit Task : 1916154 - eugeneg@m3smksprdint.moscow.cqg:7001 
+0.2, 2012-09-21 17:28, 2012-09-21 17:28, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 17:28, 2012-09-21 17:28, BCompare, CQGRTDServer.rtd.RTDServer_1.6_7.cpp <--> RTDServer.cpp - Text Compare - Beyond Compare
+5.5, 2012-09-21 17:28, 2012-09-21 17:34, devenv, APIModules - Microsoft Visual Studio (Administrator)
+2.3, 2012-09-21 17:34, 2012-09-21 17:36, firefox, Google 阅读器 (39) - Mozilla Firefox| Google 阅读器 (38) - Mozilla Firefox| Google 阅读器 (36) - Mozilla Firefox| Language Learning Forum: General discussion - Mozilla Firefox| «Открой дверь и увидишь гору» (китайская идиома) | SadPanda, китайская кухня, китайский язык, Китай, 中国 - Mozilla Firefox
+3.5, 2012-09-21 17:36, 2012-09-21 17:40, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 17:40, 2012-09-21 17:40, firefox, course-builder - Course Builder - Google Project Hosting - Mozilla Firefox
+1.0, 2012-09-21 17:40, 2012-09-21 17:41, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 17:41, 2012-09-21 17:41, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 17:41, 2012-09-21 17:42, devenv, APIModules - Microsoft Visual Studio (Administrator)
+2.8, 2012-09-21 17:42, 2012-09-21 17:44, firefox, Google 阅读器 (36) - Mozilla Firefox| Google 阅读器 (35) - Mozilla Firefox| ZorchTeamInspectionMatrix < People < CQGiki - Mozilla Firefox
+0.3, 2012-09-21 17:44, 2012-09-21 17:45, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 17:45, 2012-09-21 17:45, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 17:45, 2012-09-21 17:45, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.7, 2012-09-21 17:45, 2012-09-21 17:47, siebel, CQGenie - Defects & Suggestions List View| Error
+0.2, 2012-09-21 17:47, 2012-09-21 17:47, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 17:47, 2012-09-21 17:47, notepad++, *new  2 - Notepad++
+0.7, 2012-09-21 17:47, 2012-09-21 17:48, siebel, CQGenie - Defects & Suggestions List View| Message Properties
+0.2, 2012-09-21 17:48, 2012-09-21 17:48, OUTLOOK, Defect 555254001 Details - Message (Plain Text) 
+0.3, 2012-09-21 17:48, 2012-09-21 17:49, siebel, CQGenie - Defects & Suggestions List View| Message Properties
+0.2, 2012-09-21 17:49, 2012-09-21 17:49, OUTLOOK, Defect 555254001 Details - Message (Plain Text) 
+0.2, 2012-09-21 17:49, 2012-09-21 17:49, notepad++, *new  2 - Notepad++
+1.0, 2012-09-21 17:49, 2012-09-21 17:50, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001| Creating root task
+0.3, 2012-09-21 17:50, 2012-09-21 17:50, siebel, CQGenie - Defects & Suggestions List View
+0.2, 2012-09-21 17:50, 2012-09-21 17:50, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+1.0, 2012-09-21 17:50, 2012-09-21 17:51, BCompare, CQGRTDServer.rtd.RTDServer_1.6_9.cpp <--> RTDServer.cpp - Text Compare - Beyond Compare| CQGRTDServer.rtd.Configurator_1.4_10.h <--> Configurator.h - Text Compare - Beyond Compare| CQGRTDServer.rtd.RTDServer_1.3_8.h <--> RTDServer.h* - Text Compare - Beyond Compare| CQGRTDServer.rtd.RTDServer_1.3_8.h <--> RTDServer.h - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:51, 2012-09-21 17:52, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.3, 2012-09-21 17:52, 2012-09-21 17:52, BCompare, CQGRTDServer.rtd.Configurator_1.3_11.cpp <--> Configurator.cpp - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:52, 2012-09-21 17:52, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\cqgcommon\]
+1.2, 2012-09-21 17:52, 2012-09-21 17:53, BCompare, libs.AsyncLogger.AsyncLogger_1.1.2.2_12.cpp <--> AsyncLogger.cpp - Text Compare - Beyond Compare| CQGRTDServer.rtd.Configurator_1.4_10.h <--> Configurator.h - Text Compare - Beyond Compare| CQGRTDServer.rtd.Configurator_1.4_10.h <--> Configurator.h* - Text Compare - Beyond Compare
+0.3, 2012-09-21 17:53, 2012-09-21 17:54, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 17:54, 2012-09-21 17:54, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| Stack for thread 6040
+0.2, 2012-09-21 17:54, 2012-09-21 17:54, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 17:54, 2012-09-21 17:55, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+1.2, 2012-09-21 17:55, 2012-09-21 17:56, BCompare, CQGRTDServer.rtd.Configurator_1.3_13.cpp <--> Configurator.cpp - Text Compare - Beyond Compare
+0.2, 2012-09-21 17:56, 2012-09-21 17:56, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 17:56, 2012-09-21 17:56, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 17:56, 2012-09-21 17:56, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 17:56, 2012-09-21 17:56, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 17:56, 2012-09-21 17:57, EXCEL, Microsoft Excel - Book1 - Book1
+0.2, 2012-09-21 17:57, 2012-09-21 17:57, cqg, 08:57   Quote SpreadSheet   P001
+0.2, 2012-09-21 17:57, 2012-09-21 17:57, EXCEL, Microsoft Excel - Book1 - Book1
+1.8, 2012-09-21 17:57, 2012-09-21 17:59, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| EXCEL.EXE:6032 Properties| Stack for thread 6508
+0.2, 2012-09-21 17:59, 2012-09-21 17:59, cqg, 08:59   Quote SpreadSheet   P001
+0.2, 2012-09-21 17:59, 2012-09-21 17:59, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 17:59, 2012-09-21 17:59, EXCEL, Microsoft Excel - Book1
+0.2, 2012-09-21 17:59, 2012-09-21 18:00, PROCEXP64, EXCEL.EXE:7328 Properties
+0.2, 2012-09-21 18:00, 2012-09-21 18:00, EXCEL, Microsoft Excel - Book1
+1.3, 2012-09-21 18:00, 2012-09-21 18:01, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| EXCEL.EXE:7328 Properties
+2.8, 2012-09-21 18:01, 2012-09-21 18:04, <away>, 
+0.2, 2012-09-21 18:04, 2012-09-21 18:04, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 18:04, 2012-09-21 18:04, EXCEL, Microsoft Excel - Book1
+0.7, 2012-09-21 18:04, 2012-09-21 18:05, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| Stack for thread 9108| EXCEL.EXE:7328 Properties
+2.5, 2012-09-21 18:05, 2012-09-21 18:07, devenv, Attach to Process| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| CQGRTDServer Property Pages| APIModules (Running) - Microsoft Visual Studio (Administrator)| Command| APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 18:07, 2012-09-21 18:08, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 18:08, 2012-09-21 18:09, devenv, APIModules - Microsoft Visual Studio (Administrator)| CQGRTDServer Property Pages
+0.3, 2012-09-21 18:09, 2012-09-21 18:09, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 18:09, 2012-09-21 18:09, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 18:09, 2012-09-21 18:09, Tests, d:\project\CQG\br_CDPRealTimeDataPerfImprPh2\clientexe\Debug\StandaloneAutoTests\Tests.exe
+0.2, 2012-09-21 18:09, 2012-09-21 18:10, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.5, 2012-09-21 18:10, 2012-09-21 18:10, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| No Debugging Information
+0.2, 2012-09-21 18:10, 2012-09-21 18:10, EXCEL, Microsoft Excel
+0.2, 2012-09-21 18:10, 2012-09-21 18:10, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-21 18:10, 2012-09-21 18:11, EXCEL, Microsoft Excel
+1.5, 2012-09-21 18:11, 2012-09-21 18:13, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 18:13, 2012-09-21 18:13, EXCEL, Microsoft Excel
+0.2, 2012-09-21 18:13, 2012-09-21 18:13, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+2.3, 2012-09-21 18:13, 2012-09-21 18:16, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+8.0, 2012-09-21 18:16, 2012-09-21 18:24, <away>, 
+1.0, 2012-09-21 18:24, 2012-09-21 18:25, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Downloading public symbols
+0.2, 2012-09-21 18:25, 2012-09-21 18:25, firefox, Google 阅读器 (34) - Mozilla Firefox
+3.3, 2012-09-21 18:25, 2012-09-21 18:28, anki, ChineseWords* (42/3197 张卡片到期) - Anki| ChineseWords* (40/3197 张卡片到期) - Anki| ChineseWords* (20/3197 张卡片到期) - Anki| ChineseWords* (46/3197 张卡片到期) - Anki| ChineseWords* (35/3197 张卡片到期) - Anki| ChineseWords (46/3197 张卡片到期) - Anki| ChineseWords* (28/3197 张卡片到期) - Anki| ChineseWords* (39/3197 张卡片到期) - Anki| ChineseWords (32/3197 张卡片到期) - Anki| ChineseWords* (34/3197 张卡片到期) - Anki| ChineseWords* (27/3197 张卡片到期) - Anki| ChineseWords* (30/3197 张卡片到期) - Anki| ChineseWords* (37/3197 张卡片到期) - Anki| ChineseWords* (45/3197 张卡片到期) - Anki| ChineseWords* (22/3197 张卡片到期) - Anki| ChineseWords* (21/3197 张卡片到期) - Anki| ChineseWords* (24/3197 张卡片到期) - Anki
+1.5, 2012-09-21 18:28, 2012-09-21 18:30, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+4.3, 2012-09-21 18:30, 2012-09-21 18:34, <away>, 
+1.3, 2012-09-21 18:34, 2012-09-21 18:35, firefox, JAlUP-starting-inventory-edited.png (PNG 画像, 612x460 px) - Mozilla Firefox| Google 阅读器 (34) - Mozilla Firefox
+0.2, 2012-09-21 18:35, 2012-09-21 18:35, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-21 18:35, 2012-09-21 18:36, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| EXCEL.EXE:5912 Properties
+0.8, 2012-09-21 18:36, 2012-09-21 18:37, devenv, APIModules - Microsoft Visual Studio (Administrator)| Attach to Process
+0.3, 2012-09-21 18:37, 2012-09-21 18:37, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+0.2, 2012-09-21 18:37, 2012-09-21 18:38, devenv, CQGRTDServer Property Pages
+7.0, 2012-09-21 18:38, 2012-09-21 18:45, firefox, style gangnam - Google 検索 - Mozilla Firefox| ZorchTeamInspectionMatrix < People < CQGiki - Mozilla Firefox| Google 翻译 - Mozilla Firefox| Chinese Resources - Mozilla Firefox| Дайна Колосова - Mozilla Firefox| Диалоги - Mozilla Firefox| 新しいタブ - Mozilla Firefox| Новости - Mozilla Firefox
+1.0, 2012-09-21 18:45, 2012-09-21 18:46, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| Exceptions| Microsoft Visual Studio
+0.2, 2012-09-21 18:46, 2012-09-21 18:46, cqg, 09:46   Quote SpreadSheet   P001
+0.2, 2012-09-21 18:46, 2012-09-21 18:46, EXCEL, Microsoft Excel
+0.2, 2012-09-21 18:46, 2012-09-21 18:46, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 18:46, 2012-09-21 18:46, EXCEL, Microsoft Excel
+1.8, 2012-09-21 18:46, 2012-09-21 18:48, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 18:48, 2012-09-21 18:48, cqg, 09:48   Quote SpreadSheet   P001
+0.3, 2012-09-21 18:48, 2012-09-21 18:49, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 18:49, 2012-09-21 18:49, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+1.2, 2012-09-21 18:49, 2012-09-21 18:50, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio| Find and Replace
+0.2, 2012-09-21 18:50, 2012-09-21 18:50, cqg, 09:50   Quote SpreadSheet   P001
+0.3, 2012-09-21 18:50, 2012-09-21 18:50, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 18:50, 2012-09-21 18:51, EXCEL, Microsoft Excel
+0.8, 2012-09-21 18:51, 2012-09-21 18:52, devenv, Exceptions| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 18:52, 2012-09-21 18:52, EXCEL, Microsoft Excel
+0.8, 2012-09-21 18:52, 2012-09-21 18:53, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| Exceptions| APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+1.7, 2012-09-21 18:53, 2012-09-21 18:54, EXCEL, Microsoft Excel
+1.0, 2012-09-21 18:54, 2012-09-21 18:55, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+2.2, 2012-09-21 18:55, 2012-09-21 18:57, cqg, 09:56   CQG: ??????????? ??? ?????????   P001| 09:57   CQG: ??????????? ??? ?????????   P001| 09:55   CQG Homepage   P001| 09:55   http://www.cqg.com/   P001
+0.3, 2012-09-21 18:57, 2012-09-21 18:58, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 18:58, 2012-09-21 18:58, cqg, 09:58   CQGNet - Integrated Client 119123    P001
+1.5, 2012-09-21 18:58, 2012-09-21 19:00, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 19:00, 2012-09-21 19:00, EXCEL, Microsoft Excel
+0.2, 2012-09-21 19:00, 2012-09-21 19:00, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 19:00, 2012-09-21 19:00, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 19:00, 2012-09-21 19:00, devenv, No Debugging Information
+0.2, 2012-09-21 19:00, 2012-09-21 19:01, EXCEL, Microsoft Excel
+1.8, 2012-09-21 19:01, 2012-09-21 19:02, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 19:02, 2012-09-21 19:03, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 19:03, 2012-09-21 19:03, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 19:03, 2012-09-21 19:03, EXCEL, Microsoft Excel
+2.5, 2012-09-21 19:03, 2012-09-21 19:05, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)| aprutil Property Pages| No Debugging Information| apr Property Pages| APIModules (Running) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 19:05, 2012-09-21 19:06, cqg, 10:05   CQGNet - Integrated Client 119123    P001
+0.2, 2012-09-21 19:06, 2012-09-21 19:06, EXCEL, Microsoft Excel
+1.0, 2012-09-21 19:06, 2012-09-21 19:07, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| apr Property Pages
+8.3, 2012-09-21 19:07, 2012-09-21 19:15, firefox, Mozilla Firefox| Chinese Resources - Mozilla Firefox| Language Learning Forum - Mozilla Firefox| Moving to Korea to learn Korean? (Specific Languages) Language Learning Forum - Mozilla Firefox| Language Learning Forum: Specific Languages - Mozilla Firefox| What to memorize in Russian (Specific Languages) Language Learning Forum - Mozilla Firefox| Место для дискуссий - Mozilla Firefox
+2.3, 2012-09-21 19:15, 2012-09-21 19:17, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| No Debugging Information| log4cxx_static Property Pages| APIModules (Running) - Microsoft Visual Studio (Administrator)
+2.8, 2012-09-21 19:17, 2012-09-21 19:20, firefox, 日语 - 共享资料 - Mozilla Firefox| Chinese Resources - Mozilla Firefox| ダウンロードマネージャ| 爱问共享资料 - 免费高速上传下载 - 新浪旗下在线资料分享站 - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.8, 2012-09-21 19:20, 2012-09-21 19:21, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.0, 2012-09-21 19:21, 2012-09-21 19:22, firefox, 日语 - 共享资料 - Mozilla Firefox| 他的资料 - Mozilla Firefox| 日语语法大全整理笔记.doc を開く| 日语语法大全整理笔记.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+0.7, 2012-09-21 19:22, 2012-09-21 19:23, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 19:23, 2012-09-21 19:23, WINWORD, 日语语法大全整理笔记 (Protected View) - Microsoft Word
+1.3, 2012-09-21 19:23, 2012-09-21 19:24, firefox, 日语语法大全整理笔记.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 她的资料 - Mozilla Firefox| 共享资料 - Mozilla Firefox| 他的资料 - Mozilla Firefox| 新しいタブ - Mozilla Firefox| 日语 - 共享资料 - Mozilla Firefox
+0.2, 2012-09-21 19:24, 2012-09-21 19:25, OUTLOOK, zorch - eugeneg@cqg.com - Microsoft Outlook
+0.7, 2012-09-21 19:25, 2012-09-21 19:25, firefox, 日语 - 共享资料 - Mozilla Firefox| 新版中日交流标准日本语__初级__下册.pdf_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+1.7, 2012-09-21 19:25, 2012-09-21 19:27, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| Windows
+0.2, 2012-09-21 19:27, 2012-09-21 19:27, EXCEL, Microsoft Excel
+2.5, 2012-09-21 19:27, 2012-09-21 19:30, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 19:30, 2012-09-21 19:30, EXCEL, Microsoft Excel
+1.2, 2012-09-21 19:30, 2012-09-21 19:31, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 19:31, 2012-09-21 19:31, cqg, 10:31   CQGNet - Integrated Client 119123    P001
+0.3, 2012-09-21 19:31, 2012-09-21 19:31, EXCEL, Microsoft Excel
+2.8, 2012-09-21 19:31, 2012-09-21 19:34, devenv,  + px = 0x00000000 {m_loggerPtr={...} }| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Open File in Solution [53 of 1643]| APIModules - Microsoft Visual Studio (Administrator)|  + pi_ = 0x0f2ce980 {px_=0x0cf54c80 }| APIModules (Running) - Microsoft Visual Studio (Administrator)|  + m_loggerPtr = {p=??? }
+0.7, 2012-09-21 19:34, 2012-09-21 19:35, firefox, 新版中日交流标准日本语__初级__下册.pdf_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 新版中日交流标准日本语__初级__下册.pdf を開く
+2.8, 2012-09-21 19:35, 2012-09-21 19:38, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+3.3, 2012-09-21 19:38, 2012-09-21 19:41, firefox, 新编日语1-4单词.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 考研日语作文 习作评改 常见问题示例.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 新しいタブ - Mozilla Firefox| 日语 - 共享资料 - Mozilla Firefox| 新版中日交流标准日本语__初级__下册.pdf_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 考研日语 203 非专业 外来语词汇汇总.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+0.2, 2012-09-21 19:41, 2012-09-21 19:41, WINWORD, 考研日语 外来语词汇 (Protected View) - Microsoft Word
+0.2, 2012-09-21 19:41, 2012-09-21 19:41, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+2.0, 2012-09-21 19:41, 2012-09-21 19:43, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 19:43, 2012-09-21 19:44, EXCEL, Microsoft Excel
+2.2, 2012-09-21 19:44, 2012-09-21 19:46, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| log4cxx_static Property Pages| Microsoft Visual Studio
+5.5, 2012-09-21 19:46, 2012-09-21 19:51, firefox, Mozilla Firefox| Japanese - Google Drive - Mozilla Firefox| Japanese Resources - Mozilla Firefox| Google Drive - Mozilla Firefox| 日语 - 共享资料 - Mozilla Firefox| 言吉日语N2文法详解.pdf_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 日语 - 免费下载 - 爱问共享资料 - Mozilla Firefox| 日语热点词汇——合并.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+1.5, 2012-09-21 19:51, 2012-09-21 19:53, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+1.0, 2012-09-21 19:53, 2012-09-21 19:54, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 19:54, 2012-09-21 19:54, notepad, activity - Notepad
+5.0, 2012-09-21 19:54, 2012-09-21 19:59, EXCEL, Microsoft Excel| Convert Text to Columns Wizard - Step 2 of 3
+1.0, 2012-09-21 19:59, 2012-09-21 20:00, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+5.0, 2012-09-21 20:00, 2012-09-21 20:05, <away>, 
+0.2, 2012-09-21 20:05, 2012-09-21 20:05, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+3.3, 2012-09-21 20:05, 2012-09-21 20:09, EXCEL, Microsoft Excel
+2.0, 2012-09-21 20:09, 2012-09-21 20:11, devenv, APIModules - Microsoft Visual Studio (Administrator)| No Debugging Information
+0.2, 2012-09-21 20:11, 2012-09-21 20:11, cqg, 11:11   CQGNet - Integrated Client 119123    P001
+1.2, 2012-09-21 20:11, 2012-09-21 20:12, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 20:12, 2012-09-21 20:12, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 20:12, 2012-09-21 20:12, AcroRd32, 言吉日语N2文法详解.pdf - Adobe Reader
+0.3, 2012-09-21 20:12, 2012-09-21 20:13, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.7, 2012-09-21 20:13, 2012-09-21 20:13, firefox, 日语 - 共享资料 - Mozilla Firefox| ダウンロードマネージャ| 华东师范大学二外日语考研真题及参考答案2008-2009.rar_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+2.0, 2012-09-21 20:13, 2012-09-21 20:15, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| Windows
+0.2, 2012-09-21 20:15, 2012-09-21 20:16, TOTALCMD64, 压缩文件属性
+0.3, 2012-09-21 20:16, 2012-09-21 20:16, AcroRd32, 2008.pdf - Adobe Reader
+0.2, 2012-09-21 20:16, 2012-09-21 20:16, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 20:16, 2012-09-21 20:16, firefox, 日语 - 共享资料 - Mozilla Firefox
+0.8, 2012-09-21 20:16, 2012-09-21 20:17, WINWORD, 日语语法大全整理笔记 (Protected View) - Microsoft Word
+2.5, 2012-09-21 20:17, 2012-09-21 20:20, firefox, 日语 - 共享资料 - Mozilla Firefox| 他的资料 - Mozilla Firefox| 史上最强日语读解技巧.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+0.5, 2012-09-21 20:20, 2012-09-21 20:20, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 20:20, 2012-09-21 20:20, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.8, 2012-09-21 20:20, 2012-09-21 20:21, firefox, 他的资料 - Mozilla Firefox| 2011年12月日语等级考试 N2 答案解析版.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 2011年12月日语等级考试 N2 答案解析版.doc を開く
+0.2, 2012-09-21 20:21, 2012-09-21 20:21, siebel, CQGenie - Defects & Suggestions List View
+0.2, 2012-09-21 20:21, 2012-09-21 20:21, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 20:21, 2012-09-21 20:22, firefox, 他的资料 - Mozilla Firefox
+0.5, 2012-09-21 20:22, 2012-09-21 20:22, WINWORD, 2011年12月日语等级考试 N2 答案解析版 (Protected View) - Microsoft Word
+0.2, 2012-09-21 20:22, 2012-09-21 20:23, WENLIN, Wenlin Dialog
+1.2, 2012-09-21 20:23, 2012-09-21 20:24, WINWORD, 2011年12月日语等级考试 N2 答案解析版 (Protected View) - Microsoft Word
+0.2, 2012-09-21 20:24, 2012-09-21 20:24, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.5, 2012-09-21 20:24, 2012-09-21 20:25, firefox, 他的资料 - Mozilla Firefox| 2011年7月N2日语真题 完整版.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 2011年7月n2真题.doc を開く
+1.3, 2012-09-21 20:25, 2012-09-21 20:27, <away>, 
+0.5, 2012-09-21 20:27, 2012-09-21 20:27, firefox, 2011年12月日语等级考试 N2 答案解析版.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 他的资料 - Mozilla Firefox| 2011年7月N2日语真题 完整版.doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox
+0.2, 2012-09-21 20:27, 2012-09-21 20:27, siebel, CQGenie - Defects & Suggestions List View
+0.7, 2012-09-21 20:27, 2012-09-21 20:28, anki, ChineseWords* (19/3197 张卡片到期) - Anki| ChineseWords* (18/3197 张卡片到期) - Anki| Anki
+1.0, 2012-09-21 20:28, 2012-09-21 20:29, firefox, Два.ч — Иностранные языки - Mozilla Firefox| 新しいタブ - Mozilla Firefox
+0.3, 2012-09-21 20:29, 2012-09-21 20:29, OUTLOOK, zorch - eugeneg@cqg.com - Microsoft Outlook
+0.2, 2012-09-21 20:29, 2012-09-21 20:30, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 20:30, 2012-09-21 20:30, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 20:30, 2012-09-21 20:30, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 20:30, 2012-09-21 20:30, PROCEXP64, EXCEL.EXE:4328 Properties| Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+1.7, 2012-09-21 20:30, 2012-09-21 20:32, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 20:32, 2012-09-21 20:32, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.2, 2012-09-21 20:32, 2012-09-21 20:32, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 20:32, 2012-09-21 20:33, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| EXCEL.EXE:9004 Properties
+0.2, 2012-09-21 20:33, 2012-09-21 20:33, devenv, No Debugging Information
+1.3, 2012-09-21 20:33, 2012-09-21 20:34, firefox, 日语 - 共享资料 - Mozilla Firefox| 他的资料 - Mozilla Firefox
+0.2, 2012-09-21 20:34, 2012-09-21 20:35, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 20:35, 2012-09-21 20:35, EXCEL, Microsoft Excel - Book1 - Book1
+3.2, 2012-09-21 20:35, 2012-09-21 20:38, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 20:38, 2012-09-21 20:38, cqg, 11:38   CQGNet - Integrated Client 119123    P001
+0.2, 2012-09-21 20:38, 2012-09-21 20:38, EXCEL, Microsoft Excel - Book1 - Book1
+2.2, 2012-09-21 20:38, 2012-09-21 20:40, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)
+2.3, 2012-09-21 20:40, 2012-09-21 20:43, firefox, 最新最常用N2语法精装版(常用句型例句解析).doc_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 日语N2必会动词.pdf_免费高速下载_新浪爱问共享资料 - Mozilla Firefox| 沒有一個中文的論壇為什麼? (Multilingual Lounge) Language Learning Forum - Mozilla Firefox| 日语N2必会动词.pdf を開く| 他的资料 - Mozilla Firefox| Language Learning Forum: Multilingual Lounge - Mozilla Firefox| 日语 - 共享资料 - Mozilla Firefox| N2语法加强版.doc を開く
+0.5, 2012-09-21 20:43, 2012-09-21 20:43, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.0, 2012-09-21 20:43, 2012-09-21 20:44, CQG, MKS Lite 3.13.1.0 - m3smksprdint.moscow.cqg:7001
+3.5, 2012-09-21 20:44, 2012-09-21 20:48, <away>, 
+0.3, 2012-09-21 20:48, 2012-09-21 20:48, devenv, APIModules - Microsoft Visual Studio (Administrator)| No Debugging Information
+0.2, 2012-09-21 20:48, 2012-09-21 20:48, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 20:48, 2012-09-21 20:48, EXCEL, Microsoft Excel - Book1 - Book1
+0.7, 2012-09-21 20:48, 2012-09-21 20:49, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.3, 2012-09-21 20:49, 2012-09-21 20:49, explorer, Start menu| Program Manager
+0.3, 2012-09-21 20:49, 2012-09-21 20:50, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 20:50, 2012-09-21 20:50, explorer, Start menu
+0.2, 2012-09-21 20:50, 2012-09-21 20:50, cqg, 11:50   CQGNet - Integrated Client 119123    P001
+0.2, 2012-09-21 20:50, 2012-09-21 20:50, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 20:50, 2012-09-21 20:51, msiexec, CQGNet_maint - InstallShield Wizard
+0.2, 2012-09-21 20:51, 2012-09-21 20:51, devenv, APIModules - Microsoft Visual Studio (Administrator)
+1.0, 2012-09-21 20:51, 2012-09-21 20:52, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.7, 2012-09-21 20:52, 2012-09-21 20:53, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.2, 2012-09-21 20:53, 2012-09-21 20:53, explorer, Start menu
+2.0, 2012-09-21 20:53, 2012-09-21 20:55, logcln32, Login - CQG IC - v13x5802| CQGNet
+0.2, 2012-09-21 20:55, 2012-09-21 20:55, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.5, 2012-09-21 20:55, 2012-09-21 20:56, firefox, 沒有一個中文的論壇為什麼? (Multilingual Lounge) Language Learning Forum - Mozilla Firefox
+2.2, 2012-09-21 20:56, 2012-09-21 20:58, cqg, 11:58   CQGNet - Integrated Client 119123    P001| DATA is DELAYED   CQGNet - Integrated Client 119123    P001| 11:56   CQGNet - Integrated Client 119123    P001| 11:57   CQGNet - Integrated Client 119123    P001
+0.8, 2012-09-21 20:58, 2012-09-21 20:59, <away>, 
+1.0, 2012-09-21 20:59, 2012-09-21 21:00, cqg, 11:59   CQGNet - Integrated Client 119123    P001| 12:00   CQGNet - Integrated Client 119123    P001
+0.5, 2012-09-21 21:00, 2012-09-21 21:00, <away>, 
+0.2, 2012-09-21 21:00, 2012-09-21 21:00, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.5, 2012-09-21 21:00, 2012-09-21 21:01, EXCEL, Microsoft Excel| Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 21:01, 2012-09-21 21:01, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+1.0, 2012-09-21 21:01, 2012-09-21 21:02, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:02, 2012-09-21 21:02, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 21:02, 2012-09-21 21:03, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:03, 2012-09-21 21:03, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+1.0, 2012-09-21 21:03, 2012-09-21 21:04, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| CQGRTDServer.dll Properties
+0.2, 2012-09-21 21:04, 2012-09-21 21:04, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 21:04, 2012-09-21 21:04, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.8, 2012-09-21 21:04, 2012-09-21 21:05, PROCEXP64, Process Explorer| Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| EXCEL.EXE:2944 Properties
+0.2, 2012-09-21 21:05, 2012-09-21 21:05, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 21:05, 2012-09-21 21:06, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| Total Commander
+0.2, 2012-09-21 21:06, 2012-09-21 21:06, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.2, 2012-09-21 21:06, 2012-09-21 21:06, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.7, 2012-09-21 21:06, 2012-09-21 21:07, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]| Stack for thread 2856
+0.7, 2012-09-21 21:07, 2012-09-21 21:07, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 21:07, 2012-09-21 21:08, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| QUICKSEARCH
+0.3, 2012-09-21 21:08, 2012-09-21 21:08, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 21:08, 2012-09-21 21:08, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 21:08, 2012-09-21 21:09, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 21:09, 2012-09-21 21:09, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.5, 2012-09-21 21:09, 2012-09-21 21:09, dwm, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\] (Not Responding)
+1.2, 2012-09-21 21:09, 2012-09-21 21:10, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:10, 2012-09-21 21:11, cqg, 12:10   CQGNet - Integrated Client 119123    P001
+0.3, 2012-09-21 21:11, 2012-09-21 21:11, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:11, 2012-09-21 21:11, Dbgview, DebugView on \\Z7PEUGENEG (local)
+0.5, 2012-09-21 21:11, 2012-09-21 21:12, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| Total Commander
+0.2, 2012-09-21 21:12, 2012-09-21 21:12, EXCEL, Opening - Microsoft Excel
+0.2, 2012-09-21 21:12, 2012-09-21 21:12, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 21:12, 2012-09-21 21:12, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.5, 2012-09-21 21:12, 2012-09-21 21:13, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 21:13, 2012-09-21 21:13, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+0.8, 2012-09-21 21:13, 2012-09-21 21:14, BCompare, log4cxx-0.10.0.src.main.cpp.threadcxx_1.1_14.cpp <--> threadcxx.cpp - Text Compare - Beyond Compare| log4cxx-0.10.0.src.main.cpp.threadcxx_1.1_14.cpp <--> threadcxx.cpp* - Text Compare - Beyond Compare
+0.3, 2012-09-21 21:14, 2012-09-21 21:15, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-21 21:15, 2012-09-21 21:15, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 21:15, 2012-09-21 21:15, Dbgview, DebugView on \\Z7PEUGENEG (local)
+0.7, 2012-09-21 21:15, 2012-09-21 21:16, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 21:16, 2012-09-21 21:16, BCompare, log4cxx-0.10.0.src.main.cpp.threadcxx_1.1_14.cpp <--> threadcxx.cpp - Text Compare - Beyond Compare
+0.5, 2012-09-21 21:16, 2012-09-21 21:17, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.5, 2012-09-21 21:17, 2012-09-21 21:17, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| Total Commander
+0.5, 2012-09-21 21:17, 2012-09-21 21:18, EXCEL, Microsoft Excel| Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.7, 2012-09-21 21:18, 2012-09-21 21:19, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 21:19, 2012-09-21 21:19, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:19, 2012-09-21 21:19, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.3, 2012-09-21 21:19, 2012-09-21 21:19, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.2, 2012-09-21 21:19, 2012-09-21 21:20, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:20, 2012-09-21 21:20, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 21:20, 2012-09-21 21:20, PROCEXP64, Process Explorer| Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 21:20, 2012-09-21 21:20, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:20, 2012-09-21 21:20, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:20, 2012-09-21 21:21, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:21, 2012-09-21 21:21, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 21:21, 2012-09-21 21:21, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+1.5, 2012-09-21 21:21, 2012-09-21 21:23, devenv, APIModules - Microsoft Visual Studio (Administrator)| Find and Replace
+0.3, 2012-09-21 21:23, 2012-09-21 21:23, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 21:23, 2012-09-21 21:23, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.3, 2012-09-21 21:23, 2012-09-21 21:23, Dbgview, DebugView on \\Z7PEUGENEG (local)
+0.3, 2012-09-21 21:23, 2012-09-21 21:24, EXCEL, Microsoft Excel| Microsoft Excel - LabelsRTD  [Compatibility Mode]
+2.0, 2012-09-21 21:24, 2012-09-21 21:26, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 21:26, 2012-09-21 21:26, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.3, 2012-09-21 21:26, 2012-09-21 21:26, EXCEL, Microsoft Excel - LabelsRTD  [Compatibility Mode]
+0.5, 2012-09-21 21:26, 2012-09-21 21:27, Dbgview, DebugView on \\Z7PEUGENEG (local)
+0.8, 2012-09-21 21:27, 2012-09-21 21:28, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Running) - Microsoft Visual Studio (Administrator)| CQGRTDServer Property Pages
+0.5, 2012-09-21 21:28, 2012-09-21 21:28, EXCEL, Microsoft Excel - Book1 - LabelsRTD  [Compatibility Mode]| Microsoft Excel - Book1 - Book1
+3.0, 2012-09-21 21:28, 2012-09-21 21:31, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| No Debugging Information| APIModules - Microsoft Visual Studio (Administrator)| Microsoft Visual Studio
+0.2, 2012-09-21 21:31, 2012-09-21 21:31, EXCEL, Microsoft Excel - Book1 - LabelsRTD  [Compatibility Mode]
+5.2, 2012-09-21 21:31, 2012-09-21 21:37, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:37, 2012-09-21 21:37, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+2.5, 2012-09-21 21:37, 2012-09-21 21:39, devenv, APIModules - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| No Debugging Information| Microsoft Visual Studio
+0.2, 2012-09-21 21:39, 2012-09-21 21:39, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+3.2, 2012-09-21 21:39, 2012-09-21 21:43, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)
+0.7, 2012-09-21 21:43, 2012-09-21 21:43, firefox, Mozilla Firefox| 他的资料 - Mozilla Firefox| Два.ч — Иностранные языки - Mozilla Firefox
+0.2, 2012-09-21 21:43, 2012-09-21 21:43, OUTLOOK, zorch - eugeneg@cqg.com - Microsoft Outlook
+1.0, 2012-09-21 21:43, 2012-09-21 21:44, firefox, 共享资料 - Mozilla Firefox
+1.7, 2012-09-21 21:44, 2012-09-21 21:46, <away>, 
+0.2, 2012-09-21 21:46, 2012-09-21 21:46, firefox, 共享资料 - Mozilla Firefox
+1.0, 2012-09-21 21:46, 2012-09-21 21:47, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 21:47, 2012-09-21 21:47, Dbgview, DebugView on \\Z7PEUGENEG (local)
+0.3, 2012-09-21 21:47, 2012-09-21 21:48, explorer, Program Manager
+0.2, 2012-09-21 21:48, 2012-09-21 21:48, 7zFM, C:\Users\eugeneg\Desktop\Excel_hung_BeforeAfter.zip\After\ChangeReview\CQGRTDServer\rtd\
+0.2, 2012-09-21 21:48, 2012-09-21 21:48, OUTLOOK, Microsoft Outlook
+0.3, 2012-09-21 21:48, 2012-09-21 21:48, explorer, Program Manager
+4.3, 2012-09-21 21:48, 2012-09-21 21:53, firefox, Google 阅读器 (33) - Mozilla Firefox| Google 阅读器 (34) - Mozilla Firefox| Google 阅读器 (32) - Mozilla Firefox| 共享资料 - Mozilla Firefox| CourseBuilderChecklist - course-builder - Checklist of all steps to create a course using Course Builder. - Course Builder - Google Project Hosting - Mozilla Firefox| Google 阅读器 (29) - Mozilla Firefox| Google 阅读器 (31) - Mozilla Firefox
+0.3, 2012-09-21 21:53, 2012-09-21 21:53, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]
+0.2, 2012-09-21 21:53, 2012-09-21 21:53, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 21:53, 2012-09-21 21:54, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\client\]| wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+0.2, 2012-09-21 21:54, 2012-09-21 21:54, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 21:54, 2012-09-21 21:54, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+0.2, 2012-09-21 21:54, 2012-09-21 21:54, BCompare, log4cxx-0.10.0.src.main.cpp.filewatchdog_1.1_15.cpp <--> filewatchdog.cpp - Text Compare - Beyond Compare
+0.2, 2012-09-21 21:54, 2012-09-21 21:54, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+0.2, 2012-09-21 21:54, 2012-09-21 21:55, BCompare, log4cxx-0.10.0.src.main.cpp.threadcxx_1.1_16.cpp <--> threadcxx.cpp - Text Compare - Beyond Compare
+0.5, 2012-09-21 21:55, 2012-09-21 21:55, wincvs, wincvs - [D:\project\CQG\br_CDPRealTimeDataPerfImprPh2\3rdParty\]
+0.3, 2012-09-21 21:55, 2012-09-21 21:55, 7zFM, C:\Users\eugeneg\Desktop\Excel_hung_BeforeAfter.zip\After\ChangeReview\CQGRTDServer\| C:\Users\eugeneg\Desktop\Excel_hung_BeforeAfter.zip\After\ChangeReview\CQGRTDServer\rtd\
+0.7, 2012-09-21 21:55, 2012-09-21 21:56, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED| Total Commander| QUICKSEARCH
+0.2, 2012-09-21 21:56, 2012-09-21 21:56, devenv, APIModules - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 21:56, 2012-09-21 21:56, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+2.2, 2012-09-21 21:56, 2012-09-21 21:59, devenv, APIModules - Microsoft Visual Studio (Administrator)
+7.7, 2012-09-21 21:59, 2012-09-21 22:06, firefox, Mozilla Firefox| Old Nabble - Log4cxx - Dev - svn commit: r673097 - in /logging/log4cxx/trunk: ./ src/changes/ src/main/cpp/ src/main/include/log4cxx/helpers/ src/main/include/log4cxx/net/ src/test/cpp/ - Mozilla Firefox| log4cxx 0.10.0, threadcxx_8cpp-source.html - Mozilla Firefox| Debian -- wheezy の liblog4cxx10 パッケージに関する詳細 - Mozilla Firefox| Old Nabble - Log4cxx - Users - MutexException at exit when using SocketHubAppender - Mozilla Firefox| Debian Package Tracking System - log4cxx - Mozilla Firefox| Binary compatibility report for the library log4cxx from version 0.9.7 to 0.10.0 on x86 - Mozilla Firefox| log4cxx 0.10.0-1.2 MIGRATED to testing - Mozilla Firefox| UbuntuDiff: Available patches from Ubuntu - Mozilla Firefox| Issue LOG4CXX-246 - Mozilla Firefox| 'svn commit: r608565 - in /logging/log4cxx/trunk/src/main: cpp/class.cpp' - MARC - Mozilla Firefox| threadexception log4cxx - Google 検索 - Mozilla Firefox| [#LOGCXX-330] Unhandled ThreadException when closing the AsyncAppender - ASF JIRA - Mozilla Firefox| 新しいタブ - Mozilla Firefox| Debian -- wheezy の log4cxx ソースパッケージに関する詳細 - Mozilla Firefox| RE: AsyncAppender::close() throws ThreadException (bug?) - Mozilla Firefox
+0.3, 2012-09-21 22:06, 2012-09-21 22:07, devenv, APIModules - Microsoft Visual Studio (Administrator)| No Debugging Information
+0.2, 2012-09-21 22:07, 2012-09-21 22:07, EXCEL, Microsoft Excel - Book1 - Book1
+0.2, 2012-09-21 22:07, 2012-09-21 22:07, TOTALCMD64, Total Commander (x64) 8.01 - NOT REGISTERED
+0.2, 2012-09-21 22:07, 2012-09-21 22:07, EXCEL, Microsoft Excel - Book1 - Book1
+0.3, 2012-09-21 22:07, 2012-09-21 22:07, devenv, APIModules (Debugging) - Microsoft Visual Studio (Administrator)
+0.2, 2012-09-21 22:07, 2012-09-21 22:08, EXCEL, Microsoft Excel - Book1 - LabelsRTD  [Compatibility Mode]
+1.0, 2012-09-21 22:08, 2012-09-21 22:09, devenv, APIModules (Running) - Microsoft Visual Studio (Administrator)| APIModules (Debugging) - Microsoft Visual Studio (Administrator)| APIModules - Microsoft Visual Studio (Administrator)
+0.3, 2012-09-21 22:09, 2012-09-21 22:09, WINWORD, DLL_bestprac [Read-Only] [Compatibility Mode] - Microsoft Word
+0.5, 2012-09-21 22:09, 2012-09-21 22:09, notepad++, C:\Users\eugeneg\Desktop\DLL best practices.txt - Notepad++| *new  2 - Notepad++| Save As
+0.2, 2012-09-21 22:09, 2012-09-21 22:10, PROCEXP64, Process Explorer - Sysinternals: www.sysinternals.com [ZELIK\eugeneg]
+0.2, 2012-09-21 22:10, 2012-09-21 22:10, notepad, DLL best practices - Notepad
+0.2, 2012-09-21 22:10, 2012-09-21 22:10, firefox, 'svn commit: r608565 - in /logging/log4cxx/trunk/src/main: cpp/class.cpp' - MARC - Mozilla Firefox

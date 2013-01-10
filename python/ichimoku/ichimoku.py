@@ -6,9 +6,9 @@ from sentenceparser import SentenceParser
 from dictionary import Dictionary
 from glossary import Glossary
 
-def parseSentence(parser, dict, text):
+def parseSentence(parser, dictionary, text):
     def isWordInDictionary(word):
-        return dict.getReadingAndDefinition(word)[0] is not None
+        return dictionary.getReadingAndDefinition(word)[0] is not None
     allWords = parser.splitIntoWords(text, isWordInDictionary)
     return allWords
 
@@ -26,10 +26,10 @@ def main():
         p = textparser.TextParser(contents)
         sentenceParser = SentenceParser()
         glossary = Glossary()
-        dict = Dictionary()
+        dictionary = Dictionary()
         for sentence in p.getSentences()[1:100]:
-            allWords = parseSentence(sentenceParser, dict, sentence)
-            addToGlossary(glossary, allWords, sentence, dict)
+            allWords = parseSentence(sentenceParser, dictionary, sentence)
+            addToGlossary(glossary, allWords, sentence, dictionary)
             #print(sentence, allWords)
         with open('out.txt', 'w', encoding='utf-8') as outFile:
             for word, definition, sentence in glossary.getItems():
