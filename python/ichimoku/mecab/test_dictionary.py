@@ -20,9 +20,9 @@ class DictionaryTest(unittest.TestCase):
 
     def testCommonPrefix(self):
         res = self.dict.commonPrefixSearch('か')
-        kaTokens = [ Token(359, 359, 22, 5360, 14505916, 0),
-                     Token(776, 776, 31, 10872, 17590041, 0),
-                     Token(1001, 1001, 33, 12742, 18988624, 0) ]
+        kaTokens = [ Token('か', 359, 359, 22, 5360, 14505916, 0),
+                     Token('か', 776, 776, 31, 10872, 17590041, 0),
+                     Token('か', 1001, 1001, 33, 12742, 18988624, 0) ]
         self.assertEqual(kaTokens, res)
 
     def testFeature(self):

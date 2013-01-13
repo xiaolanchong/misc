@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from struct import unpack
+import utils
 
 class CharInfo:
     def __init__(self, type, defaultType, length, group, invoke):
@@ -34,7 +35,7 @@ class CharProperty:
             calcFileSize = uintSize + categoryBuffer * categoryNum + uintSize * 0xffff
             for i in range(categoryNum):
                 categoryStr, = unpack(str(categoryBuffer) + 's', inFile.read(categoryBuffer))
-                self.__categories.append( str(categoryStr, encoding).rstrip('\x00'))
+                self.__categories.append( utils.extractString(categoryStr, encoding))
             for i in range(0xffff):
                 packedCharInfo, = unpack('<I', inFile.read(uintSize))
                 charInfo = CharInfo( (packedCharInfo      ) & 0x3FFFF,

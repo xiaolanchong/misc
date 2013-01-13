@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 class Token:
-    def __init__(self, leftAttribute, rightAttribute,
-                        partOfSpeechId, wordCost,
-                        featureId, compound):
+    def __init__(self, text, leftAttribute, rightAttribute,
+                       partOfSpeechId, wordCost,
+                       featureId, compound):
+        self.text = text
         self.leftAttribute = leftAttribute
         self.rightAttribute = rightAttribute
         self.partOfSpeechId = partOfSpeechId
@@ -12,8 +13,18 @@ class Token:
         self.featureId = featureId
         self.compound = compound
 
+##    def __init__(self, text, noTextToken):
+##        self.text = text
+##        self.leftAttribute = noTextToken.leftAttribute
+##        self.rightAttribute = noTextToken.rightAttribute
+##        self.partOfSpeechId = noTextToken.partOfSpeechId
+##        self.wordCost = noTextToken.wordCost
+##        self.featureId = noTextToken.featureId
+##        self.compound = noTextToken.compound
+
     def __eq__(self, other):
-        return  self.leftAttribute == other.leftAttribute and \
+        return  self.text == other.text and \
+                self.leftAttribute == other.leftAttribute and \
                 self.rightAttribute == other.rightAttribute and  \
                 self.partOfSpeechId == other.partOfSpeechId and  \
                 self.wordCost == other.wordCost and \
@@ -24,6 +35,7 @@ class Token:
         return not self.__eq__(other)
 
     def __repr__(self):
-        return 'la:{0}, ra:{1}, pos:{2}, cost:{3}, feature:{4}, compound:{5}'.format(
-                    self.leftAttribute, self.rightAttribute, self.partOfSpeechId,
-                    self.wordCost, self.featureId, self.compound)
+        return 'text:{0}, la:{1}, ra:{2}, pos:{3}, cost:{4}, feature:{5}, compound:{6}'.format(
+                    self.text, self.leftAttribute, self.rightAttribute,
+                    self.partOfSpeechId, self.wordCost, self.featureId,
+                    self.compound)
