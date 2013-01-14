@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import unittest
 from dictionary import Dictionary
 from dicttoken import Token
 
 class DictionaryTest(unittest.TestCase):
     def setUp(self):
-        self.dict = Dictionary(r'c:\Users\Eugene\Documents\Anki\addons\japanese\support\sys.dic')
+        self.dict = Dictionary(r'data/sys.dic')
 
     def testInternalCommonPrefix(self):
         res = self.dict.internalCommonPrefixSearch('船')

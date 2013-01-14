@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
+import utils
 
 isWin = True
 
@@ -26,8 +28,8 @@ class MecabRunner(object):
         self.mecab = None
         self.lineDelimiter = '|'
         self.mecabArgs = ['--node-format=' + nodeFormat + self.lineDelimiter,
-                          '--eos-format=' + eosNodeFormat,
-                          '--unk-format=' + unknownNodeFormat]
+                          '--eos-format=' + eosNodeFormat + self.lineDelimiter,
+                          '--unk-format=' + unknownNodeFormat + self.lineDelimiter]
 
     def setup(self):
         base = '..\\support\\'
@@ -55,7 +57,7 @@ class MecabRunner(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = str(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = utils.text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         return exprFromMecab.split(self.lineDelimiter)[:-1]
 
@@ -63,7 +65,7 @@ class MecabOutputGetter(MecabRunner):
     def __init__(self):
         fmt = '%m,%f[6],[pos],%h,[cost],%pw,%pC,%pc,%phl,%phr,'\
               '[l2]%pb,%P,%pP,%pA,%pB'
-        MecabRunner.__init__(self, fmt)
+        MecabRunner.__init__(self, fmt, '\n', '=' + fmt)
 
     def run(self, expr):
         lines = MecabRunner.run(self, expr)
@@ -72,15 +74,20 @@ class MecabOutputGetter(MecabRunner):
 
 
     def getParam(self, expr):
-        m = re.match('(.+?),(.+?),\[pos\],(\d+),\[cost\],(-?\d+),(-?\d+),(-?\d+),(-?\d+),(-?\d+),\[l2\].*', expr, re.S)
+        if len(expr) == 0:
+            return
+      #  if re.match('\[(.+?)\]', expr, re.S):
+      #      return
+        m = re.match('\=?(.+?),(.*?),\[pos\],(\d+),\[cost\],(-?\d+),(-?\d+),(-?\d+),(-?\d+),(-?\d+),\[l2\].*', expr, re.S)
         if m:
             morphema, dictForm, pos, wordCost, linkCost, totalCost, leftAttr, rightAttr = m.groups()
             return [morphema, dictForm, pos, wordCost, linkCost, totalCost, leftAttr, rightAttr]
         else:
-            raise RuntimeError('Incorrect mecab output')
+            raise RuntimeError('Incorrect mecab output: ' + expr)
 
 if __name__ == '__main__':
     runner = MecabOutputGetter()
-    res = runner.run('船が検疫所に着いたのは、朝の四時頃にちがいない。')
+    #res = runner.run('船が検疫所に着いたのは、朝の四時頃にちがいない。')
+    res = runner.run('すべてに滲《し》み込み')
     for line in res:
         print(' '.join(line))

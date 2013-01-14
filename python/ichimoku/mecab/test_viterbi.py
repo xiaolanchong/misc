@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 import unittest
 from viterbi import Viterbi
 from node import Node
@@ -38,23 +40,50 @@ class ViterbiTest(unittest.TestCase):
                           '四', '時', '頃', 'に', 'ちがい',
                           'ない', '。', '<EOS>'], res)
 
-    def testRunMecab(self):
-       # runner = MecabRunner()
-       # res = runner.run(self.defaultText)
-       # print(res)
-       pass
+    #@unittest.skip("temp skipping")
+    def testCompareMecabWithOneSentence(self):
+        self.compareOneSentence(self.defaultText)
 
-    def testCompareMecab(self):
+    def testNoneToken(self):
+        expr = '船客の大部分はまだ眠っていた。' # FAILS !!!
+        self.compareOneSentence(expr)
+
+    def testUnknownNode(self):
+        expr = 'すべてに滲《し》み込み'
+        self.compareOneSentence(expr)
+
+    def compareOneSentence(self, expr):
         v = Viterbi()
-        nodes = v.getBestPath(self.defaultText)
+        nodes = v.getBestPath(expr)
         writer = Writer()
         pyResult = writer.getMecabOutput(v.getTokenizer(), nodes)
         runner = MecabOutputGetter()
-        mecabResult = runner.run(self.defaultText)
+        mecabResult = runner.run(expr)
+       # print(pyResult)
+      #  print(mecabResult)
         self.assertEqual(len(mecabResult), len(pyResult))
         for i in range(len(mecabResult)):
             self.assertEqual(mecabResult[i], pyResult[i])
 
+
+    def out(text, mecabOutput, pyOutput):
+        z = text + ' | ' + str(pyResult) + str(mecabResult)
+
+    @unittest.skip("temp skipping")
+    def testEntireFile(self):
+        v = Viterbi()
+        writer = Writer()
+        runner = MecabOutputGetter()
+        with open(r'testdata/MaigraitInNewYork_ch1.txt', 'r', encoding='utf-8') as inFile:
+            for line in inFile.readlines():
+                text = line.strip()
+                nodes = v.getBestPath(text)
+                pyResult = writer.getMecabOutput(v.getTokenizer(), nodes)
+
+                mecabResult = runner.run(text)
+                self.assertEqual(len(mecabResult), len(pyResult),  text + ' | ' + str(pyResult) + str(mecabResult))  #text)
+                for i in range(len(mecabResult)):
+                    self.assertEqual(mecabResult[i], pyResult[i])
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(ViterbiTest)

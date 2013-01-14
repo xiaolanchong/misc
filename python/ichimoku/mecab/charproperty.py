@@ -5,7 +5,7 @@ import utils
 class CharInfo:
     def __init__(self, type, defaultType, length, group, invoke):
         self.type = type
-        self.defaultType= defaultType
+        self.defaultType = defaultType
         self.length = length
         self.group = group
         self.invoke= invoke

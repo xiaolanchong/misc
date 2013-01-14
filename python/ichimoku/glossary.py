@@ -6,7 +6,7 @@ class Glossary:
         self.foundWords = []
         self.unknownWords = []
 
-    def add(self, word, definition, usageSample):
+    def add(self, word, reading, definition, usageSample):
         if word not in self.words:
             self.words.add(word)
             if reading and definition:

@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from tokenizer import Tokenizer
 from connector import Connector
 from node import Node
 
 class Viterbi:
     def __init__(self):
-        self.tokenizer = Tokenizer('test/sys.dic', 'test/char.bin')
-        self.connector = Connector('test/matrix.bin')
+        dataDir = 'data/'
+        self.tokenizer = Tokenizer(dataDir + 'sys.dic', dataDir + 'unk.dic',
+                                   dataDir + 'char.bin')
+        self.connector = Connector(dataDir + 'matrix.bin')
 
     def getTokenizer(self):
         return self.tokenizer
@@ -24,16 +27,19 @@ class Viterbi:
                     endNodes[pos + len(node.token.text)].append(node)
         eosNode = self.tokenizer.getEOSNode()
         self.connect(endNodes[-1], eosNode)
-        return Viterbi.createBackwardPath(eosNode)
+        return self.createBackwardPath(eosNode)
 
     def connect(self, beginNodes, endNode):
         bestNode = None
-        bestCost = 0x7fffffff
+        bestCost = sys.maxsize
         bestNodeConnection = 0
         for beginNode in beginNodes:
-            connectionCost = self.connector.getCost(beginNode.token.rightAttribute,
+            if True: # beginNode.isKnown and endNode.isKnown:
+                connectionCost = self.connector.getCost(beginNode.token.rightAttribute,
                                                     endNode.token.leftAttribute)
-            totalCost = beginNode.totalCost + endNode.token.wordCost + connectionCost
+                totalCost = beginNode.totalCost + endNode.token.wordCost + connectionCost
+            else:
+                totalCost = beginNode.totalCost
             if totalCost < bestCost:
                 bestCost = totalCost
                 bestNode = beginNode
@@ -41,7 +47,7 @@ class Viterbi:
         if bestNode:
             Node.connect(bestNode, endNode, bestNodeConnection, bestCost)
 
-    def createBackwardPath(endNode):
+    def createBackwardPath(self, endNode):
         beginNode = endNode
         path = []
         while(endNode):
@@ -49,5 +55,4 @@ class Viterbi:
             endNode = endNode.leftNode
         path.reverse()
         return path
-
 

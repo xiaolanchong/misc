@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 from node import Node
 from dicttoken import Token
 
@@ -29,10 +30,10 @@ class Writer:
                 continue
             else:
                 text = node.token.text
-            featureStr = tokenizer.getFeature(node.token.featureId)
+            featureStr = tokenizer.getFeature(node.token.featureId, node.isKnown)
             featureStr = featureStr.split(',')
             nodeInfo.append(text)
-            nodeInfo.append(featureStr[6])
+            nodeInfo.append(featureStr[6] if len(featureStr) >= 7 else '')
             nodeInfo.append(str(node.token.partOfSpeechId))
             nodeInfo.append(str(node.token.wordCost))
             nodeInfo.append(str(node.connectionCost))

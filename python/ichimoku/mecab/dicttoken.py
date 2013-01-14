@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 class Token:
@@ -12,15 +11,6 @@ class Token:
         self.wordCost = wordCost
         self.featureId = featureId
         self.compound = compound
-
-##    def __init__(self, text, noTextToken):
-##        self.text = text
-##        self.leftAttribute = noTextToken.leftAttribute
-##        self.rightAttribute = noTextToken.rightAttribute
-##        self.partOfSpeechId = noTextToken.partOfSpeechId
-##        self.wordCost = noTextToken.wordCost
-##        self.featureId = noTextToken.featureId
-##        self.compound = noTextToken.compound
 
     def __eq__(self, other):
         return  self.text == other.text and \

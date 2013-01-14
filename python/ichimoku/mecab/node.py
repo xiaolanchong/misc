@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from dicttoken import Token
+
 class Node:
     def __init__(self, token):
         self.leftNode = None
@@ -7,10 +9,11 @@ class Node:
         self.totalCost = 0
         self.token = token
         self.connectionCost = 0
+        self.isKnown = True
 
-    #def setRightNode(self, node):
-    #    self.rightNode = node
-
+    def createUnknownNode(text):
+        t = Token(text, 0, 0, 0, 0, 0, 0)
+        return Node(t)
 
     def connect(left, right, connectionCost, totalCost):
         assert(left)
