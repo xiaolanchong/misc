@@ -14,8 +14,8 @@ def parseSentence(parser, dictionary, text):
 
 def addToGlossary(glossary, allWords, sentence, dictionary):
     for word in allWords:
-        definition = dictionary.getReadingAndDefinition(word)[1]
-        glossary.add(word, definition, sentence)
+        reading, definition = dictionary.getReadingAndDefinition(word)
+        glossary.add(word, reading, definition, sentence)
 
 def main():
     if len(sys.argv) != 2:
@@ -27,13 +27,13 @@ def main():
         sentenceParser = SentenceParser()
         glossary = Glossary()
         dictionary = Dictionary()
-        for sentence in p.getSentences()[1:100]:
+        for sentence in p.getSentences(): #[1:100]:
             allWords = parseSentence(sentenceParser, dictionary, sentence)
             addToGlossary(glossary, allWords, sentence, dictionary)
             #print(sentence, allWords)
         with open('out.txt', 'w', encoding='utf-8') as outFile:
-            for word, definition, sentence in glossary.getItems():
-                outFile.write('{0:<10}   {1}   {2}\n'.format(word, definition,sentence))
+            for word, reading, definition, sentence in glossary.getFoundWords():
+                outFile.write('{0:<10}  {1:<10}  {2:<10}  {3}\n'.format(word, reading, definition,sentence))
 
 
 if __name__ == '__main__':

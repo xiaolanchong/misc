@@ -3,12 +3,19 @@
 class Glossary:
     def __init__(self):
         self.words = set()
-        self.orderedItems = []
+        self.foundWords = []
+        self.unknownWords = []
 
-    def add(self, word, definition, usageSample):
+    def add(self, word, reading, definition, usageSample):
         if word not in self.words:
             self.words.add(word)
-            self.orderedItems.append((word, definition, usageSample))
+            if reading and definition:
+                self.foundWords.append((word, reading, definition, usageSample))
+            else:
+                self.unknownWords.append((word, usageSample))
 
-    def getItems(self):
-        return self.orderedItems
+    def getFoundWords(self):
+        return self.foundWords
+
+    def getUnknownWords(self):
+        return self.unknownWords
