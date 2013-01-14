@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import io
+import sys
 from struct import unpack, calcsize
 from doublearray import DoubleArray
 from dicttoken import Token
 import utils
+
+if sys.version < '3':
+     text_type = unicode
+else:
+   text_type = str
 
 class Dictionary:
     def __init__(self, fileName):
@@ -15,7 +22,7 @@ class Dictionary:
         self.loadFromBinary(fileName)
 
     def getToken(self, tokenId):
-        fmt = 'HHHhII'
+        fmt = str('HHHhII')
         tokenSize = calcsize(fmt)
         #NOTE: dictionary tokens don't store their texts,
         #      which are available either looking up the token features
@@ -37,7 +44,7 @@ class Dictionary:
 
     def loadFromBinary(self, fileName):
         with open(fileName, 'rb') as dictFile:
-            fmt = '<IIIIIIIIII'
+            fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
             magic, version, dictType, lexSize, \
             leftSize, rightSize, dataSize, \
@@ -45,7 +52,7 @@ class Dictionary:
                 unpack(fmt, header)
             if version != 102:
                 raise RuntimeError('Incompatible dictionary version: {0}'.format(version))
-            charSetBuffer, = unpack('32s', dictFile.read(32))
+            charSetBuffer, = unpack(str('32s'), dictFile.read(32))
             self.charset = utils.extractString(charSetBuffer).lower()
             self.doubleArray = DoubleArray(dictFile.read(dataSize))
             #dictFile.seek(tokenPartSize, io.SEEK_CUR)
@@ -55,7 +62,7 @@ class Dictionary:
 
 
     def loadTokens(self, dictFile, tokenPartSize):
-        fmt = 'HHHhII'
+        fmt = str('HHHhII')
         tokenSize = calcsize(fmt)
         for i in range(tokenPartSize//tokenSize):
             data = dictFile.read(tokenSize)
@@ -67,19 +74,19 @@ class Dictionary:
                                            fields[3], fields[4], fields[5] ))
 
     def internalCommonPrefixSearch(self, text):
-        encodedText = bytes(text, self.getCharSet())
+        encodedText = bytearray(text, self.getCharSet())
         return self.doubleArray.commonPrefixSearch(encodedText)
 
     def commonPrefixSearch(self, text):
         tokens = []
-        encodedText = bytes(text, self.getCharSet())
+        encodedText = bytearray(text, self.getCharSet())
         tokenStartIds = self.doubleArray.commonPrefixSearch(encodedText)
         for tokenHandler, tokenLength in tokenStartIds:
             tokenNum = tokenHandler & 0xff
             tokenStartId = tokenHandler >> 8
             for i in range(tokenNum):
                 d = self.getToken(tokenStartId + i)
-                tokenText = str(encodedText[:tokenLength], self.getCharSet())
+                tokenText = text_type(bytes(encodedText[:tokenLength]), self.getCharSet())
                 t = Token(tokenText, d.leftAttribute,
                           d.rightAttribute, d.partOfSpeechId,
                           d.wordCost, d.featureId, d.compound)
@@ -92,7 +99,7 @@ class Dictionary:
     def getFeature(self, featureId):
         strEnd = self.featureBlob.find(b'\x00', featureId)
         if strEnd >= 0:
-            feature = str(self.featureBlob[featureId:strEnd], self.getCharSet())
+            feature = text_type(self.featureBlob[featureId:strEnd], self.getCharSet())
             return feature
         else:
             return None

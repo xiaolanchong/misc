@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
+import utils
 
 isWin = True
 
@@ -55,7 +57,7 @@ class MecabRunner(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = str(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = utils.text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         return exprFromMecab.split(self.lineDelimiter)[:-1]
 

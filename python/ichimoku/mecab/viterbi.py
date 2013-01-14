@@ -25,7 +25,7 @@ class Viterbi:
                     endNodes[pos + len(node.token.text)].append(node)
         eosNode = self.tokenizer.getEOSNode()
         self.connect(endNodes[-1], eosNode)
-        return Viterbi.createBackwardPath(eosNode)
+        return self.createBackwardPath(eosNode)
 
     def connect(self, beginNodes, endNode):
         bestNode = None
@@ -45,7 +45,7 @@ class Viterbi:
         if bestNode:
             Node.connect(bestNode, endNode, bestNodeConnection, bestCost)
 
-    def createBackwardPath(endNode):
+    def createBackwardPath(self, endNode):
         beginNode = endNode
         path = []
         while(endNode):

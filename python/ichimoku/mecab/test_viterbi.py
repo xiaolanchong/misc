@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 import unittest
 from viterbi import Viterbi
 from node import Node
@@ -43,7 +45,7 @@ class ViterbiTest(unittest.TestCase):
         self.compareOneSentence(self.defaultText)
 
     def testNoneToken(self):
-        expr = '船客の大部分はまだ眠っていた。'
+        expr = '船客の大部分はまだ眠っていた。' # FAILS !!!
         self.compareOneSentence(expr)
 
     def testUnknownNode(self):
