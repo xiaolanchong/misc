@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
 import sys, os, platform, re, subprocess
-from textproc.wordclass import PartOfSpeech, SubType
+import mecab.utils as utils
+#from textproc.wordclass import PartOfSpeech, SubType
 
 isWin = True
 mecabArgs = ['--node-format=%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ',
@@ -34,7 +36,7 @@ class SentenceParser(object):
         self.mecab = None
 
     def setup(self):
-        base = 'support\\'
+        base = '..\\support\\'
         self.mecabCmd = mungeForPlatform(
             [base + "mecab"] + mecabArgs + [
                 '-d', base, '-r', base + "mecabrc"])
@@ -59,7 +61,7 @@ class SentenceParser(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = str(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = utils.text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         out = []
         for node in exprFromMecab.split(" "):

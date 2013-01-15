@@ -8,7 +8,7 @@ from struct import unpack, calcsize
 from doublearray import DoubleArray
 from dicttoken import Token
 from utils import text_type, extractString
-from zipfile import ZipFile
+import compress
 
 class Dictionary:
     def __init__(self, fileName):
@@ -16,7 +16,7 @@ class Dictionary:
         self.tokenBlob = []
         self.featureBlob = None
         self.doubleArray = None
-        self.loadFromZip(fileName)
+        self.loadFromBinary(fileName)
 
     def getToken(self, tokenId):
         fmt = str('HHHhII')
@@ -28,24 +28,23 @@ class Dictionary:
         return Token('', fields[0], fields[1], fields[2],
                          fields[3], fields[4], fields[5] )
 
-##    def loadFeatures(self, data):
-##        idx = 0
-##        while(idx <= len(data)):
-##            strEnd = data.find(b'\x00')
-##            if strEnd >= 0:
-##                feature = str(data[idx:strEnd], self.getCharSet())
-##                self.__features.append(feature)
-##                idx = strEnd + 1
-##            else:
-##                return
+    def loadFeatures(self, data):
+        """
+        Loads all features from the dictionary.
+        Note: it's a time consuming function, only for service functions
+        """
+        idx = 0
+        while(idx <= len(data)):
+            strEnd = data.find(b'\x00')
+            if strEnd >= 0:
+                feature = str(data[idx:strEnd], self.getCharSet())
+                self.__features.append(feature)
+                idx = strEnd + 1
+            else:
+                return
 
-    def loadFromZip(self, fileName):
-        with ZipFile(fileName, 'r') as myzip:
-            self.loadFromBinary(myzip, fileName)
-
-    def loadFromBinary(self, myzip, fileName):
-        internalName = os.path.basename(fileName)[:-3] + 'dic'
-        with myzip.open(internalName, 'r') as dictFile:
+    def loadFromBinary(self, fileName):
+        with compress.load(fileName) as dictFile:
             fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
             magic, version, dictType, lexSize, \

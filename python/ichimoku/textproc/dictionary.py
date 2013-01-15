@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-import os.path
+#from .mecab import compress
 
 class Dictionary:
 
-    def __init__(self):
-        thisDir = os.path.dirname(__file__)
-        self.__conn = sqlite3.connect(os.path.join(thisDir, '..', 'data', 'dict.sqlite'))
+    def __init__(self, fileName):
+        #thisDir = os.path.dirname(__file__)
+        self.__conn = sqlite3.connect(fileName)
 
     def getReadingAndDefinition(self, word):
         c = self.__conn.cursor()

@@ -43,3 +43,14 @@ class Writer:
             res.append(nodeInfo)
             prevNodeCost = node.totalCost
         return res
+
+    def getMorphDictionaryForm(self):
+        for node in path:
+            if tokenizer.isBOSNode(node) or \
+               tokenizer.isEOSNode(node):
+                continue
+            text = node.token.text
+            featureStr = tokenizer.getFeature(node.token.featureId, node.isKnown)
+            featureStr = featureStr.split(',')
+            dictForm = featureStr[6] if len(featureStr) >= 7 else ''
+            return (text, dictForm)

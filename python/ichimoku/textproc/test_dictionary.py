@@ -2,11 +2,13 @@
 
 from __future__ import unicode_literals
 import unittest
+import os.path
 import dictionary
 
 class DictionaryTest(unittest.TestCase):
     def testSingleWord(self):
-        dict = dictionary.Dictionary()
+        path = os.path.join('..', 'data', 'dict.sqlite')
+        dict = dictionary.Dictionary(path)
         reading, definition = dict.getReadingAndDefinition("大好き")
         self.assertEqual(reading, "だいすき")
         self.assertEqual(definition, "(adj-na) loveable/very likeable/like very much/(P)")
