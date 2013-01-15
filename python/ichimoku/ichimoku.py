@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import textparser
-from sentenceparser import SentenceParser
-from dictionary import Dictionary
-from glossary import Glossary
+from textproc.textparser import TextParser
+from textproc.sentenceparser import SentenceParser
+from textproc.dictionary import Dictionary
+from textproc.glossary import Glossary
 
 def parseSentence(parser, dictionary, text):
     def isWordInDictionary(word):
@@ -23,7 +23,7 @@ def main():
         exit(0)
     with open(sys.argv[1], encoding="utf-8") as file:
         contents = file.read()
-        p = textparser.TextParser(contents)
+        p = TextParser(contents)
         sentenceParser = SentenceParser()
         glossary = Glossary()
         dictionary = Dictionary()
@@ -31,7 +31,7 @@ def main():
             allWords = parseSentence(sentenceParser, dictionary, sentence)
             addToGlossary(glossary, allWords, sentence, dictionary)
             #print(sentence, allWords)
-        with open('out.txt', 'w', encoding='utf-8') as outFile:
+        with open('testdata/ichimoku_out.txt', 'w', encoding='utf-8') as outFile:
             for word, reading, definition, sentence in glossary.getFoundWords():
                 outFile.write('{0:<10}  {1:<10}  {2:<10}  {3}\n'.format(word, reading, definition,sentence))
 

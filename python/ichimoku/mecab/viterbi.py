@@ -6,9 +6,9 @@ from connector import Connector
 from node import Node
 
 class Viterbi:
-    def __init__(self):
-        self.tokenizer = Tokenizer('test/sys.dic', 'test/unk.dic', 'test/char.bin')
-        self.connector = Connector('test/matrix.bin')
+    def __init__(self, sysDictPath, unkDictPath, charPropPath, matrixPath):
+        self.tokenizer = Tokenizer(sysDictPath, unkDictPath, charPropPath)
+        self.connector = Connector(matrixPath)
 
     def getTokenizer(self):
         return self.tokenizer

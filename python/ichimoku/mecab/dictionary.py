@@ -3,15 +3,12 @@
 from __future__ import unicode_literals
 import io
 import sys
+import os.path
 from struct import unpack, calcsize
 from doublearray import DoubleArray
 from dicttoken import Token
-import utils
-
-if sys.version < '3':
-     text_type = unicode
-else:
-   text_type = str
+from utils import text_type, extractString
+from zipfile import ZipFile
 
 class Dictionary:
     def __init__(self, fileName):
@@ -19,7 +16,7 @@ class Dictionary:
         self.tokenBlob = []
         self.featureBlob = None
         self.doubleArray = None
-        self.loadFromBinary(fileName)
+        self.loadFromZip(fileName)
 
     def getToken(self, tokenId):
         fmt = str('HHHhII')
@@ -42,8 +39,13 @@ class Dictionary:
 ##            else:
 ##                return
 
-    def loadFromBinary(self, fileName):
-        with open(fileName, 'rb') as dictFile:
+    def loadFromZip(self, fileName):
+        with ZipFile(fileName, 'r') as myzip:
+            self.loadFromBinary(myzip, fileName)
+
+    def loadFromBinary(self, myzip, fileName):
+        internalName = os.path.basename(fileName)[:-3] + 'dic'
+        with myzip.open(internalName, 'r') as dictFile:
             fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
             magic, version, dictType, lexSize, \
@@ -53,7 +55,7 @@ class Dictionary:
             if version != 102:
                 raise RuntimeError('Incompatible dictionary version: {0}'.format(version))
             charSetBuffer, = unpack(str('32s'), dictFile.read(32))
-            self.charset = utils.extractString(charSetBuffer).lower()
+            self.charset = extractString(charSetBuffer).lower()
             self.doubleArray = DoubleArray(dictFile.read(dataSize))
             #dictFile.seek(tokenPartSize, io.SEEK_CUR)
             self.tokenBlob = dictFile.read(tokenPartSize)

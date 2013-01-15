@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import unittest
+import os.path
 from viterbi import Viterbi
 from node import Node
 from dicttoken import Token
@@ -16,25 +17,28 @@ class MockConnector:
 class ViterbiTest(unittest.TestCase):
     def setUp(self):
         self.defaultText = '船が検疫所に着いたのは、朝の四時頃にちがいない。'
+        sys = os.path.join('..', 'data', 'sys.zip')
+        unk = os.path.join('..', 'data', 'unk.zip')
+        chz = os.path.join('..', 'data', 'char.bin')
+        mtx = os.path.join('..', 'data', 'matrix.bin')
+        self.viterbi = Viterbi(sys, unk, chz, mtx)
 
     #@unittest.skip("temp skipping")
     def testConnectNodeMutualCost(self):
-        v = Viterbi()
-        v.connector = MockConnector()
+        self.viterbi.connector = MockConnector()
         bestNode = Node(Token('b', 12, 10, 0, 0, 5, 0))
         beginNodes = [Node(Token('a', 10, 15, 0, 0, 5, 0)),
                       bestNode,
                       Node(Token('c', 11, 11, 0, 0, 5, 0))]
         endNode = Node(Token('7', 10, 10, 0, 0, 5, 0))
-        v.connect(beginNodes, endNode)
+        self.viterbi.connect(beginNodes, endNode)
         self.assertEquals(endNode.leftNode, bestNode)
 
     #@unittest.skip("temp skipping")
     def testAnalyze(self):
-        v = Viterbi()
-        nodes = v.getBestPath(self.defaultText)
+        nodes = self.viterbi.getBestPath(self.defaultText)
         writer = Writer()
-        res = writer.getNodeText(v.getTokenizer(), nodes)
+        res = writer.getNodeText(self.viterbi.getTokenizer(), nodes)
         self.assertEqual(['<BOS>', '船', 'が', '検疫', '所', 'に',
                           '着い', 'た', 'の', 'は', '、', '朝', 'の',
                           '四', '時', '頃', 'に', 'ちがい',
@@ -53,10 +57,9 @@ class ViterbiTest(unittest.TestCase):
         self.compareOneSentence(expr)
 
     def compareOneSentence(self, expr):
-        v = Viterbi()
-        nodes = v.getBestPath(expr)
+        nodes = self.viterbi.getBestPath(expr)
         writer = Writer()
-        pyResult = writer.getMecabOutput(v.getTokenizer(), nodes)
+        pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
         runner = MecabOutputGetter()
         mecabResult = runner.run(expr)
        # print(pyResult)
@@ -71,14 +74,13 @@ class ViterbiTest(unittest.TestCase):
 
     @unittest.skip("temp skipping")
     def testEntireFile(self):
-        v = Viterbi()
         writer = Writer()
         runner = MecabOutputGetter()
         with open(r'test/MaigraitInNewYork_ch1.txt', 'r', encoding='utf-8') as inFile:
             for line in inFile.readlines():
                 text = line.strip()
-                nodes = v.getBestPath(text)
-                pyResult = writer.getMecabOutput(v.getTokenizer(), nodes)
+                nodes = self.viterbi.getBestPath(text)
+                pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
 
                 mecabResult = runner.run(text)
                 self.assertEqual(len(mecabResult), len(pyResult),  text + ' | ' + str(pyResult) + str(mecabResult))  #text)

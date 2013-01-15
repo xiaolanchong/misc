@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import unittest
 import textparser
 
 class ParserTest(unittest.TestCase):
-    #@unittest.skip("demonstrating skipping")
+    #@unittest.skip("temp skipping")
     def testNarration(self):
         textToParse = \
         """
@@ -22,7 +23,7 @@ class ParserTest(unittest.TestCase):
             ]
         self.assertListEqual(result, list(p.getSentences()))
 
-   # @unittest.skip("demonstrating skipping")
+   # @unittest.skip("tep skipping")
     def testDirectSpeach(self):
         textToParse = \
         "「怒るって何をだね？" \

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+import os.path
 import unittest
 import charproperty
 
 class CharInfoTest(unittest.TestCase):
     def testCharCategories(self):
-        prop = charproperty.CharProperty(r'test/char.bin')
+        prop = charproperty.CharProperty(os.path.join('..', 'data', 'char.bin'))
         self.assertEqual(['DEFAULT', 'SPACE', 'KANJI', 'SYMBOL',
                           'NUMERIC', 'ALPHA', 'HIRAGANA', 'KATAKANA',
                           'KANJINUMERIC', 'GREEK', 'CYRILLIC'], prop.getCategories())

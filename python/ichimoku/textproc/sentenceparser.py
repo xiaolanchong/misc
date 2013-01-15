@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import sys, os, platform, re, subprocess
-from wordclass import PartOfSpeech, SubType
+from textproc.wordclass import PartOfSpeech, SubType
 
 isWin = True
-mecabArgs = ['--node-format=%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ', '--eos-format=\n', #[%f[7]]
-            '--unk-format=[%m] ']#, '-a']
+mecabArgs = ['--node-format=%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ',
+             '--eos-format=\n',
+             '--unk-format=[%m] ']
 
 if sys.platform == "win32":
     si = subprocess.STARTUPINFO()

@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
-import utils
+from utils import text_type, isPy2
 
 isWin = True
 
@@ -32,10 +32,12 @@ class MecabRunner(object):
                           '--unk-format=' + unknownNodeFormat + self.lineDelimiter]
 
     def setup(self):
-        base = '..\\support\\'
+        currentDir = os.path.dirname(__file__)
+        base = os.path.abspath(os.path.join(currentDir, '..', 'support'))
+        mecabExe = os.path.join(base, 'mecab')
+        mecabRc = os.path.join(base, 'mecabrc')
         self.mecabCmd = mungeForPlatform(
-            [base + "mecab"] + self.mecabArgs + [
-                '-d', base, '-r', base + "mecabrc"])
+            [mecabExe] + self.mecabArgs + ['-d', base, '-r', mecabRc])
         os.environ['DYLD_LIBRARY_PATH'] = base
         os.environ['LD_LIBRARY_PATH'] = base
         if not isWin:
@@ -57,7 +59,7 @@ class MecabRunner(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = utils.text_type(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         return exprFromMecab.split(self.lineDelimiter)[:-1]
 
@@ -90,4 +92,5 @@ if __name__ == '__main__':
     #res = runner.run('船が検疫所に着いたのは、朝の四時頃にちがいない。')
     res = runner.run('すべてに滲《し》み込み')
     for line in res:
-        print(' '.join(line))
+        if not isPy2():
+            print(' '.join(line))

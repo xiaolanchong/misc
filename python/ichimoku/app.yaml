@@ -1,0 +1,27 @@
+application: sugoi-ideas
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: .*
+  script: sugoi-ideas.app
+
+libraries:
+- name: webapp2
+  version: "2.5.1"
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?support/.*    # skip mecab binaries
+- ^(.*/)?testdata/.*    # skip test data
+- ^(.*/)?test_.*\.py$    # skip tests

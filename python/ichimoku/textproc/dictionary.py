@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
+import os.path
 
 class Dictionary:
 
     def __init__(self):
-        self.__conn = sqlite3.connect('dict.sqlite')
+        thisDir = os.path.dirname(__file__)
+        self.__conn = sqlite3.connect(os.path.join(thisDir, '..', 'data', 'dict.sqlite'))
 
     def getReadingAndDefinition(self, word):
         c = self.__conn.cursor()

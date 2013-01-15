@@ -2,12 +2,13 @@
 
 from __future__ import unicode_literals
 import unittest
+import os.path
 from dictionary import Dictionary
 from dicttoken import Token
 
 class DictionaryTest(unittest.TestCase):
     def setUp(self):
-        self.dict = Dictionary(r'test\sys.dic')
+        self.dict = Dictionary(os.path.join('..', 'data', 'sys.zip'))
 
     def testInternalCommonPrefix(self):
         res = self.dict.internalCommonPrefixSearch('船')
