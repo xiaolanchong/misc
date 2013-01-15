@@ -2,10 +2,11 @@
 
 import sys, os, platform, re, subprocess
 from wordclass import PartOfSpeech, SubType
+from mecab.utils import text_type
+from mecab.runmecab import MecabRunner
 
 isWin = True
-mecabArgs = ['--node-format=%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ', '--eos-format=\n', #[%f[7]]
-            '--unk-format=[%m] ']#, '-a']
+
 
 if sys.platform == "win32":
     si = subprocess.STARTUPINFO()
@@ -27,7 +28,7 @@ def mungeForPlatform(popen):
         popen[0] += ".lin"
     return popen
 
-class SentenceParser(object):
+class SentenceParserZzz(object):
 
     def __init__(self):
         self.mecab = None
@@ -58,29 +59,39 @@ class SentenceParser(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = str(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         out = []
-        for node in exprFromMecab.split(" "):
-            if not node:
-                break
-            m =  re.match("(.+),(.+),(.+),(.*),(?:.*),(?:.*),(?:.*),(?:.*)", node);
-            if m is None:
-                m = re.match("\[(.+)\]", node)
-                if m:
-                    #raise RuntimeError('unknown node: ' + node)
-                    word = m.groups(0)[0]
-                    out.append((word, word, False, False))
 
+class SentenceParser(object):
+    def __init__(self):
+        nodeFormat = '%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] '
+        eosFormat = '\n'
+        unkFormat = '[%m] '
+        self.runner = MecabRunner(nodeFormat, eosFormat, unkFormat)
+
+    def tokenize(self, expr, dumpNodes=False):
+        exprFromMecab = self.runner.run(expr)
+        out = []
+        for line in exprFromMecab:
+            for node in line.split(" "):
+                if not node:
+                    break
+                m =  re.match("(.+),(.+),(.+),(.*),(?:.*),(?:.*),(?:.*),(?:.*)", node);
+                if m is None:
+                    m = re.match("\[(.+)\]", node)
+                    if m:
+                        #raise RuntimeError('unknown node: ' + node)
+                        word = m.groups(0)[0]
+                        out.append((word, word, False, False))
+                    else:
+                        raise RuntimeError(node)
                 else:
-                    raise RuntimeError(node)
-            else:
-                (originWord, dictionaryForm, symbolicPartOfSpeech, subType) = m.groups()
-                isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
-                if dumpNodes:
-                    print(node)
-                out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
-
+                    (originWord, dictionaryForm, symbolicPartOfSpeech, subType) = m.groups()
+                    isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
+                    if dumpNodes and False:
+                        print(node)
+                    out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
         return out
 
     def splitIntoWords(self, expr, dictionary, dumpNodes=False):

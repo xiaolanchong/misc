@@ -3,7 +3,10 @@
 from __future__ import unicode_literals
 import sys
 
-if sys.version < '3':
+def isPy2():
+    return sys.version < '3'
+
+if isPy2():
     text_type = unicode
     binary_type = str
 else:

@@ -5,7 +5,7 @@ import sqlite3
 class Dictionary:
 
     def __init__(self):
-        self.__conn = sqlite3.connect('dict.sqlite')
+        self.__conn = sqlite3.connect(r'data/dict.sqlite')
 
     def getReadingAndDefinition(self, word):
         c = self.__conn.cursor()
