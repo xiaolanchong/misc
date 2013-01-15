@@ -5,7 +5,7 @@ import unittest
 import textparser
 
 class ParserTest(unittest.TestCase):
-    #@unittest.skip("demonstrating skipping")
+    #@unittest.skip("temp skipping")
     def testNarration(self):
         textToParse = \
         """
@@ -23,7 +23,7 @@ class ParserTest(unittest.TestCase):
             ]
         self.assertListEqual(result, list(p.getSentences()))
 
-   # @unittest.skip("demonstrating skipping")
+   # @unittest.skip("tep skipping")
     def testDirectSpeach(self):
         textToParse = \
         "「怒るって何をだね？" \
@@ -58,3 +58,4 @@ class ParserTest(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(ParserTest)
     unittest.TextTestRunner(verbosity=2).run(suite)
+

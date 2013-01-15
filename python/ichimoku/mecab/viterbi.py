@@ -6,11 +6,9 @@ from connector import Connector
 from node import Node
 
 class Viterbi:
-    def __init__(self):
-        dataDir = 'data/'
-        self.tokenizer = Tokenizer(dataDir + 'sys.dic', dataDir + 'unk.dic',
-                                   dataDir + 'char.bin')
-        self.connector = Connector(dataDir + 'matrix.bin')
+    def __init__(self, sysDictPath, unkDictPath, charPropPath, matrixPath):
+        self.tokenizer = Tokenizer(sysDictPath, unkDictPath, charPropPath)
+        self.connector = Connector(matrixPath)
 
     def getTokenizer(self):
         return self.tokenizer
@@ -55,4 +53,5 @@ class Viterbi:
             endNode = endNode.leftNode
         path.reverse()
         return path
+
 

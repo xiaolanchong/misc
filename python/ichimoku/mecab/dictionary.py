@@ -3,10 +3,12 @@
 from __future__ import unicode_literals
 import io
 import sys
+import os.path
 from struct import unpack, calcsize
 from doublearray import DoubleArray
 from dicttoken import Token
 from utils import text_type, extractString
+import compress
 
 class Dictionary:
     def __init__(self, fileName):
@@ -26,19 +28,23 @@ class Dictionary:
         return Token('', fields[0], fields[1], fields[2],
                          fields[3], fields[4], fields[5] )
 
-##    def loadFeatures(self, data):
-##        idx = 0
-##        while(idx <= len(data)):
-##            strEnd = data.find(b'\x00')
-##            if strEnd >= 0:
-##                feature = str(data[idx:strEnd], self.getCharSet())
-##                self.__features.append(feature)
-##                idx = strEnd + 1
-##            else:
-##                return
+    def loadFeatures(self, data):
+        """
+        Loads all features from the dictionary.
+        Note: it's a time consuming function, only for service functions
+        """
+        idx = 0
+        while(idx <= len(data)):
+            strEnd = data.find(b'\x00')
+            if strEnd >= 0:
+                feature = str(data[idx:strEnd], self.getCharSet())
+                self.__features.append(feature)
+                idx = strEnd + 1
+            else:
+                return
 
     def loadFromBinary(self, fileName):
-        with open(fileName, 'rb') as dictFile:
+        with compress.load(fileName) as dictFile:
             fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
             magic, version, dictType, lexSize, \

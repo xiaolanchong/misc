@@ -37,3 +37,4 @@ if __name__ == '__main__':
     res = re.sub('(?<=[\u3005\u4E00-\u9FFF])《[\u3040-\u309F\u30A0-\u30FF]+》', '', sentence, 0, re.M|re.UNICODE)
     #res = re.sub('[\u4E00-\u9FFF]《', '', sentence, 0, re.M)
     print(res)
+

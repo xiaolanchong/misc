@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
-from mecab.utils import text_type, isPy2
+from utils import text_type, isPy2
 
 isWin = True
 
@@ -33,10 +33,11 @@ class MecabRunner(object):
 
     def setup(self):
         currentDir = os.path.dirname(__file__)
-        base = os.path.abspath(currentDir + '\\..\\support') + '\\'
+        base = os.path.abspath(os.path.join(currentDir, '..', 'support'))
+        mecabExe = os.path.join(base, 'mecab')
+        mecabRc = os.path.join(base, 'mecabrc')
         self.mecabCmd = mungeForPlatform(
-            [base + "mecab"] + self.mecabArgs + [
-                '-d', base, '-r', base + "mecabrc"])
+            [mecabExe] + self.mecabArgs + ['-d', base, '-r', mecabRc])
         os.environ['DYLD_LIBRARY_PATH'] = base
         os.environ['LD_LIBRARY_PATH'] = base
         if not isWin:

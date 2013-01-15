@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+import os.path
 from connector import Connector
 
 class ConnectorTest(unittest.TestCase):
     def testSimple(self):
-        con = Connector(r'data/matrix.bin')
+        con = Connector(os.path.join('..', 'data', 'matrix.bin'))
         self.assertEqual(-5447, con.getCost(1283, 1298))
         with self.assertRaises(RuntimeError):
             con.getCost(-1, 101)
