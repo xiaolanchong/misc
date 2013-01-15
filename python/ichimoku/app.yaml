@@ -23,5 +23,6 @@ skip_files:
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
 - ^(.*/)?support/.*    # skip mecab binaries
+- ^(.*/)?tool/.*    # skip tool apps
 - ^(.*/)?testdata/.*    # skip test data
 - ^(.*/)?test_.*\.py$    # skip tests
