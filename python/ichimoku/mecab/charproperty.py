@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from struct import unpack
-import utils
+import mecab.utils as utils
 
 class CharInfo:
     def __init__(self, type, defaultType, length, group, invoke):

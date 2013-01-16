@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from dictionary import Dictionary
-from charproperty import CharProperty
-from dicttoken import Token
-from node import Node
+from mecab.dictionary import Dictionary
+from mecab.charproperty import CharProperty
+from mecab.dicttoken import Token
+from mecab.node import Node
 
 class Tokenizer:
     def __init__(self, sysDictFileName, unkDictFileName, charPropFileName):

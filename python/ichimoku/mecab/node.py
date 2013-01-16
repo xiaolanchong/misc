@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dicttoken import Token
+from mecab.dicttoken import Token
 
 class Node:
     def __init__(self, token):

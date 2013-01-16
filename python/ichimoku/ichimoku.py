@@ -11,9 +11,10 @@ def main():
 
     with open(sys.argv[1], 'r', encoding="utf-8") as file:
         contents = file.read()
-        textProc = TextProcessor(contents)
-        with open(os.path.join('testdata', 'ichimoku_out.txt'), 'w', encoding='utf-8') as outFile:
-            for word, reading, definition, sentence in textProc.do():
+        parent = os.path.dirname(__file__)
+        textProc = TextProcessor(os.path.join('data', 'dict.sqlite'), None)
+        with open(os.path.join('testdata', 'ichimoku_zz.txt'), 'w', encoding='utf-8') as outFile:
+            for word, reading, definition, sentence in textProc.do(contents):
                 outFile.write('{0:<10}  {1:<10}  {2:<10}  {3}\n'.format(word, reading, definition,sentence))
 
 

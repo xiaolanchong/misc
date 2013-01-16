@@ -20,6 +20,10 @@ class SentenceParserTest(unittest.TestCase):
         res = self.parser.splitIntoWords('船が検疫所に', lambda x: True)
         self.assertEquals(['船', 'が', '検疫所', 'に'], res)
 
+    def testUnknownToken(self):
+        res = self.parser.splitIntoWords('メグレは機関の止った瞬間', lambda x: True)
+        self.assertEquals(['メグレ', 'は', '機関', 'の', '止るた', '瞬間'], res)
+
     def testTwoNounSuffixJoin(self):
         res = self.parser.splitIntoWords('朝の四時頃に', lambda x: True)
         self.assertEquals(['朝', 'の', '四時頃', 'に'], res)
@@ -41,6 +45,12 @@ class SentenceParserTest(unittest.TestCase):
     def testMecabFailure(self):
         res = self.parser.splitIntoWords('すべてに滲み込み', lambda x: False)
         self.assertEquals(['すべて', 'に', '滲みる', '込み'], res)
+
+    def testPyPort(self):
+        parser = SentenceParser('..')
+        res = self.parser.splitIntoWords('所に着いたのは', lambda x: False)
+        self.assertEquals(['所', 'に', '着く', 'の', 'は'], res)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(SentenceParserTest)

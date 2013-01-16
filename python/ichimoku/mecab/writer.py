@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-from node import Node
-from dicttoken import Token
+from mecab.node import Node
+from mecab.dicttoken import Token
 
 class Writer:
     def __init__(self):
@@ -44,7 +44,8 @@ class Writer:
             prevNodeCost = node.totalCost
         return res
 
-    def getMorphDictionaryForm(self):
+    def getMorphAndFeature(self, tokenizer, path):
+        out =[]
         for node in path:
             if tokenizer.isBOSNode(node) or \
                tokenizer.isEOSNode(node):
@@ -52,5 +53,6 @@ class Writer:
             text = node.token.text
             featureStr = tokenizer.getFeature(node.token.featureId, node.isKnown)
             featureStr = featureStr.split(',')
-            dictForm = featureStr[6] if len(featureStr) >= 7 else ''
-            return (text, dictForm)
+            padding = ['' for i in range(0 if len(featureStr) >= 7 else 7 - len(featureStr))]
+            out.append([text] + featureStr + padding)
+        return out

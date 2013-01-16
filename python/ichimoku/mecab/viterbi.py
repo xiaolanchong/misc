@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from tokenizer import Tokenizer
-from connector import Connector
-from node import Node
+from mecab.tokenizer import Tokenizer
+from mecab.connector import Connector
+from mecab.node import Node
 
 class Viterbi:
     def __init__(self, sysDictPath, unkDictPath, charPropPath, matrixPath):
