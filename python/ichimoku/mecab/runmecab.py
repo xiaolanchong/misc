@@ -6,14 +6,15 @@ from . import utils # text_type, isPy2
 
 isWin = True
 
-if sys.platform == "win32":
-    si = subprocess.STARTUPINFO()
-    try:
-        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-    except:
-        si.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
-else:
-    si = None
+def getStartupInfo():
+    if sys.platform == "win32":
+        si = subprocess.STARTUPINFO()
+        try:
+            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        except:
+            si.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
+    else:
+        si = None
 
 def mungeForPlatform(popen):
     if isWin:
@@ -50,7 +51,7 @@ class MecabRunner(object):
                 self.mecab = subprocess.Popen(
                     self.mecabCmd, bufsize=-1, stdin=subprocess.PIPE,
                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                    startupinfo=si)
+                    startupinfo=getStartupInfo())
             except OSError:
                 raise Exception("Please install mecab")
 

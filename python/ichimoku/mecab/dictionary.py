@@ -80,6 +80,7 @@ class Dictionary:
 
     def commonPrefixSearch(self, text):
         tokens = []
+        #print (self.getCharSet())
         encodedText = bytearray(text, self.getCharSet())
         tokenStartIds = self.doubleArray.commonPrefixSearch(encodedText)
         for tokenHandler, tokenLength in tokenStartIds:

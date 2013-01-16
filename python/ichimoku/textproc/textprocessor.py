@@ -26,5 +26,5 @@ class TextProcessor:
         for sentence in p.getSentences():
             allWords = self.parseSentence(self.sentenceParser, sentence)
             self.addToGlossary(glossary, allWords, sentence)
-            for word, reading, definition, sentence in glossary.getFoundWords():
-                yield word, reading, definition, sentence
+        for word, reading, definition, sentence in glossary.getFoundWords():
+            yield word, reading, definition, sentence
