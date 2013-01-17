@@ -12,8 +12,13 @@ libraries:
 - name: webapp2
   version: "2.5.1"
   
-builtins:
-- remote_api: on
+- url: /remoteapi.*
+  script: google.appengine.ext.remote_api.handler.app
+  login: admin
+  
+libraries:
+- name: django
+  version: "1.4"
 
 skip_files:
 - ^(.*/)?app\.yaml
