@@ -28,7 +28,7 @@ def main():
         if isPy2():
             contents = unicode(contents, 'utf-8')
         parent = os.path.dirname(__file__)
-        textProc = TextProcessor(os.path.join('data', 'dict.sqlite'), parent)
+        textProc = TextProcessor(os.path.join('data', 'jdict.zip'), parent)
         with openOutputFile(os.path.join('testdata', 'ichimoku_zz_py.txt')) as outFile:
             for word, reading, definition, sentence in textProc.do(contents):
                 line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)

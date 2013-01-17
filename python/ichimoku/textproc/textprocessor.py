@@ -1,12 +1,14 @@
 
 from .textparser import TextParser
 from .sentenceparser import SentenceParser
-from .dictionary import Dictionary
+# no sqlite at GAE
+#from .sqlitedict import SqliteDictionary
 from .glossary import Glossary
+from .dartsdict import DartsDictionary
 
 class TextProcessor:
     def __init__(self, dbFileName, parentDir=None):
-        self.dictionary = Dictionary(dbFileName)
+        self.dictionary = DartsDictionary(dbFileName)
         self.sentenceParser = SentenceParser(parentDir)
 
     def parseSentence(self, parser, text):

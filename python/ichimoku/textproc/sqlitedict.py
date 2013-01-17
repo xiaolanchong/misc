@@ -3,7 +3,7 @@
 import sqlite3
 #from .mecab import compress
 
-class Dictionary:
+class SqliteDictionary:
 
     def __init__(self, fileName):
         #thisDir = os.path.dirname(__file__)

@@ -26,7 +26,7 @@ class MyApp(webapp2.WSGIApplication):
     #mtx = os.path.join('data', 'matrix.bin')
     #self.viterbi = Viterbi(sys, unk, chz, mtx)
     #self.writer = Writer()
-    self.textProc = TextProcessor(os.path.join('data', 'dict.sqlite'), 'data')
+    self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), 'data')
 
   def getMecabOutput(self, text):
     nodes = self.textProc.do(text)

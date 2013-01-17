@@ -32,7 +32,16 @@ class SentenceParser(object):
     def tokenizePyPort(self, expr, dumpNodes):
         path = self.viterbi.getBestPath(expr)
         res = self.writer.getMorphAndFeature(self.viterbi.getTokenizer(), path)
-        return [(tokenData[7], tokenData[0], tokenData[1], tokenData[2]) for tokenData in res]
+        out = []
+        for tokenData in res:
+            # [(tokenData[7], tokenData[0], tokenData[1], tokenData[2]) for tokenData in res]
+            (originWord, dictionaryForm, symbolicPartOfSpeech, subType) =\
+                tokenData[7], tokenData[0], tokenData[1], tokenData[2]
+            isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
+            if dumpNodes:
+                print(node)
+            out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
+        return out
 
     def tokenizeNative(self, expr, dumpNodes):
         exprFromMecab = self.mecab.run(expr)

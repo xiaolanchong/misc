@@ -29,3 +29,5 @@ skip_files:
 - ^(.*/)?tool/.*    # skip tool apps
 - ^(.*/)?testdata/.*    # skip test data
 - ^(.*/)?test_.*\.py$    # skip tests
+- ^(.*/)?jdict\.bin$    # skip JDIC binary
+- ^(.*/)?dict\.text$    # skip JDIC CSV
