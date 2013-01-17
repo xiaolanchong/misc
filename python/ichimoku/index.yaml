@@ -1,0 +1,6 @@
+
+indexes:
+- kind: JDictionary
+  properties:
+  - name: kanji
+  - name: kana
