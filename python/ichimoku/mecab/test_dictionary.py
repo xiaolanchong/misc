@@ -27,6 +27,11 @@ class DictionaryTest(unittest.TestCase):
                      Token('か', 1001, 1001, 33, 12742, 18988624, 0) ]
         self.assertEqual(kaTokens, res)
 
+    def testExactMatch(self):
+        res = self.dict.exactMatchSearch('かかわら')
+        kaTokens = [ Token('かかわら', 780, 780, 31, 5413, 16382529, 0) ]
+        self.assertEqual(kaTokens, res)
+
     def testFeature(self):
         res = self.dict.getFeature(14505916)
         self.assertEqual('助詞,副助詞／並立助詞／終助詞,*,*,*,*,か,カ,カ', res)

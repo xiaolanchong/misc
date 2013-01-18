@@ -30,8 +30,8 @@ class Dictionary:
 
     def loadFeatures(self, data):
         """
-        Loads all features from the dictionary.
-        Note: it's a time consuming function, only for service functions
+            Loads all features from the dictionary.
+            Note: it's a time consuming function, only for service purposes
         """
         idx = 0
         while(idx <= len(data)):
@@ -44,6 +44,9 @@ class Dictionary:
                 return
 
     def loadFromBinary(self, fileName):
+        """
+            Loads the dictionary from the blob
+        """
         with compress.load(fileName) as dictFile:
             fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
@@ -56,9 +59,7 @@ class Dictionary:
             charSetBuffer, = unpack(str('32s'), dictFile.read(32))
             self.charset = extractString(charSetBuffer).lower()
             self.doubleArray = DoubleArray(dictFile.read(dataSize))
-            #dictFile.seek(tokenPartSize, io.SEEK_CUR)
             self.tokenBlob = dictFile.read(tokenPartSize)
-            #self.loadFeatures(dictFile.read(featurePartSize))
             self.featureBlob = dictFile.read(featurePartSize)
 
 
@@ -79,10 +80,18 @@ class Dictionary:
         return self.doubleArray.commonPrefixSearch(encodedText)
 
     def commonPrefixSearch(self, text):
+        """
+        Looks up all words matching a part of the text starting from
+        the beginning.
+        E.g. 'abcd' produces 'a', 'ab' 'abc' given the latters are
+        actual words
+        """
+        return self.internalSearch(text, self.doubleArray.commonPrefixSearch)
+
+    def internalSearch(self, text, functionToMatch):
         tokens = []
-        #print (self.getCharSet())
         encodedText = bytearray(text, self.getCharSet())
-        tokenStartIds = self.doubleArray.commonPrefixSearch(encodedText)
+        tokenStartIds = functionToMatch(encodedText)
         for tokenHandler, tokenLength in tokenStartIds:
             tokenNum = tokenHandler & 0xff
             tokenStartId = tokenHandler >> 8
@@ -95,10 +104,24 @@ class Dictionary:
                 tokens.append(t)
         return tokens
 
+    def exactMatchSearch(self, text):
+        """
+            Looks up all words matching the text starting from
+            the beginning.
+            E.g. 'abcd' produces 'abcd'  given the latter is an existing word.
+        """
+        return self.internalSearch(text, self.doubleArray.exactMatchSearch)
+
     def getCharSet(self):
+        """
+            Gets the dictionary charset: euc-jp, utf-8, etc.
+        """
         return self.charset
 
     def getFeature(self, featureId):
+        """
+            Gets the dictionary entry for the word
+        """
         strEnd = self.featureBlob.find(b'\x00', featureId)
         if strEnd >= 0:
             feature = text_type(self.featureBlob[featureId:strEnd], self.getCharSet())

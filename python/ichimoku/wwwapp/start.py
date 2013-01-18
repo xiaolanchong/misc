@@ -1,19 +1,16 @@
 import os
 import sys
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'webapp.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'wwwapp.settings'
 ROOT_PATH = os.path.dirname(__file__)
 sys.path.append(ROOT_PATH)
 
 #print (os.environ['SERVER_SOFTWARE'])
-try:
-    from django.conf import settings
-    TEMPLATE_DIRS = ("templates",)
-    settings.configure(TEMPLATE_DIRS=TEMPLATE_DIRS, DEBUG=False,
+from django.conf import settings
+TEMPLATE_DIRS = ("wwwapp/templates",)
+settings.configure(TEMPLATE_DIRS=TEMPLATE_DIRS, DEBUG=False,
                    TEMPLATE_DEBUG=False)
-except ImportError:
-    pass
-	
+
 from django.conf import settings
 
 settings._target = None
