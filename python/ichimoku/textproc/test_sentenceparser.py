@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 import unittest
+from mecab.writer import WordInfo
 from sentenceparser import SentenceParser
 
 class SentenceParserTest(unittest.TestCase):
@@ -48,9 +49,20 @@ class SentenceParserTest(unittest.TestCase):
 
     def testPyPort(self):
         parser = SentenceParser('..')
-        res = self.parser.splitIntoWords('所に着いたのは', lambda x: False)
-        self.assertEquals(['所', 'に', '着く', 'の', 'は'], res)
+        res = parser.splitIntoWords('所に着いたのは', lambda x: False)
+        self.assertEquals(['所', 'に', '着い', 'の', 'は'], res)
 
+    def testTokenize2(self):
+        parser = SentenceParser('..')
+        res = parser.tokenize2('所に着いたのは', lambda x: False)
+        expected = [ WordInfo('所', '所', 38, 'トコロ'),
+                     WordInfo('に', 'に', 13, 'ニ'),
+                     WordInfo('着い', '着く', 31, 'ツイ'),
+                     WordInfo('た', 'た', 25, 'タ'),
+                     WordInfo('の', 'の', 63, 'ノ'),
+                     WordInfo('は', 'は', 16, 'ハ')
+                   ]
+        self.assertEquals(expected, res)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(SentenceParserTest)

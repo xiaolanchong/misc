@@ -8,6 +8,7 @@ class DoubleArray:
         self.data = data
 
     def exactMatchSearch(self, sequence):
+        assert(len(sequence))
         node_pos = 0
         base, dummy = self.getItem(node_pos)
         res = []

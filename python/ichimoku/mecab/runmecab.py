@@ -2,12 +2,12 @@
 
 from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
-from . import utils # text_type, isPy2
+from mecab.utils import text_type, isPy2
 
-isWin = True
+isWin = sys.platform == "win32"
 
 def getStartupInfo():
-    if sys.platform == "win32":
+    if isWin:
         si = subprocess.STARTUPINFO()
         try:
             si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
@@ -60,7 +60,7 @@ class MecabRunner(object):
         expr += '\n'
         self.mecab.stdin.write(expr.encode("euc-jp", "ignore"))
         self.mecab.stdin.flush()
-        exprFromMecab = utils.text_type(self.mecab.stdout.readline(), "euc-jp")
+        exprFromMecab = text_type(self.mecab.stdout.readline(), "euc-jp")
         exprFromMecab = exprFromMecab.rstrip('\r\n')
         return exprFromMecab.split(self.lineDelimiter)[:-1]
 
@@ -88,10 +88,20 @@ class MecabOutputGetter(MecabRunner):
         else:
             raise RuntimeError('Incorrect mecab output: ' + expr)
 
-if __name__ == '__main__':
+def getPartOfSpeech():
+    runner = MecabRunner('%m,%h')
+    res = runner.run('船が検疫所に着いたのは')
+    for line in res:
+        if not isPy2():
+            print(''.join(line))
+
+def dumpNodeInfo():
     runner = MecabOutputGetter()
     #res = runner.run('船が検疫所に着いたのは、朝の四時頃にちがいない。')
     res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():
             print(' '.join(line))
+
+if __name__ == '__main__':
+    getPartOfSpeech()

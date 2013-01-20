@@ -43,6 +43,10 @@ class SentenceParser(object):
             out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
         return out
 
+    def tokenize2(self, expr):
+        path = self.viterbi.getBestPath(expr)
+        return self.writer.getWordInfo(self.viterbi.getTokenizer(), path)
+
     def tokenizeNative(self, expr, dumpNodes):
         exprFromMecab = self.mecab.run(expr)
         out = []

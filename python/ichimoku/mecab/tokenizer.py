@@ -39,9 +39,6 @@ class Tokenizer:
                 node.isKnown = False
             return nodes
 
-            #return [Node.createUnknownNode(text[0])]
-
-
     def getBOSNode(self):
         t = Token('', 0, 0, 0, 0, self.BOS_FEATURE, 0)
         return Node(t)
@@ -52,5 +49,6 @@ class Tokenizer:
 
     def isEOSNode(self, node):
         return node.token.featureId == self.EOS_FEATURE
+
     def isBOSNode(self, node):
         return node.token.featureId == self.BOS_FEATURE

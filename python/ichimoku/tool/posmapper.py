@@ -7,40 +7,26 @@ import os.path
 
 sys.path.append(os.path.abspath('..'))
 from mecab.dictionary import Dictionary
+from textproc.jdictprocessor import JDictProcessor
 
 allPartsOfSpeech = \
 """
-abbr, abbr, adj-f, adj-i, adj-ku, adj-na, adj-nari, adj-no,
+adj-f, adj-i, adj-ku, adj-na, adj-nari, adj-no,
 adj-pn, adj-shiku, adj-t, adv, adv-to, aux, aux-adj, aux-v,
 conj, ctr, int, n, n-adv, n-pref, n-suf, n-t, num, on-mim,
 pn, pref, prt, suf, v1, v2a-s, v2h-s, v2r-s, v2y-s, v4b, v4h,
 v4k, v4r, v5aru, v5b, v5g, v5k, v5k-s, v5m, v5n, v5r, v5r-i,
 v5s, v5t, v5u, v5u-s, vi, vk, vn, vr, vs, vs-c, vs-i, vs-s, vt, vz
 """
-allPartsOfSpeech = set([ a.strip() for a in allPartsOfSpeech.split(',')])
+allPartsOfSpeech = [ a.strip() for a in allPartsOfSpeech.split(',')]
+#print(allPartsOfSpeech)
 
-def getEntryAttributes(entry, r):
-    posSet = set()
-    m = r.match(entry)
-    if len(entry) and m:
-        posTags = m.groups()[0].split(',')
-        for pos in posTags:
-            posSet.add(pos)
-    else:
-        raise RuntimeError('Invalid format: ' + entry)
-    return posSet
+def getEntryAttributes(entry):
+    proc = JDictProcessor()
+    return proc.getWordAttributes(entry)
 
 def isPartOfSpeech(dictionary, word, posId):
-    try:
-        res = dictionary.exactMatchSearch(word)
-    except UnicodeEncodeError as e:
-        print(word, e)
-    if len(res) == 0:
-        return None
-    for token in res:
-        if token.partOfSpeechId == posId:
-            return True
-    return False
+    return posId in set(getPartOfSpeech(dictionary, word))
 
 def getPartOfSpeech(dictionary, word):
     try:
@@ -53,11 +39,26 @@ def getPartOfSpeech(dictionary, word):
     else:
         return set([token.partOfSpeechId for token in res])
 
+def equalWords(entry1, entry2):
+    entry1 = entry1.split('|||')[2]
+    entry2 = entry2.split('|||')[2]
+    #completely equal ?
+    if entry1 == entry2:
+        return True
+    # one is contained into the other?
+    if entry1.find(entry2) != -1 or entry2.find(entry1) != -1:
+        return True
+    # the same parts of speech
+    pos1 = getEntryAttributes(entry1)
+    pos2 = getEntryAttributes(entry2)
+    if pos1.intersection(allPartsOfSpeech) == pos2.intersection(allPartsOfSpeech):
+        return True
+    return False
+
 def getRecords():
     dictionary = Dictionary(os.path.join(os.path.abspath('..'), 'data', 'sys.zip'))
     with open('../data/dict.txt', 'r', encoding='utf-8') as f:
      #   posSet = set()
-        r = re.compile('^.*?\(\s*(.+?)\s*\)', re.S)
         overallDict = {}
         prevLine = ''
         for line in f.readlines():
@@ -77,57 +78,104 @@ def getRecords():
                 zzz = overallDict.get(tokens[1], [])
                 zzz.append(line)
                 overallDict[tokens[1]] = zzz
-        wordNumber = {}
-        with open('dict_dump.txt', 'w', encoding='utf-8') as of:
-            for k, v in overallDict.items():
-                if len(v) == 2:
-                    for line in v:
-                        of.write(line + '\n')
-      #      wordNumber[v] = 1 + wordNumber.get(v, 0)
-      #  print(wordNumber)
+        #dumpBinaryHomonyms(overallDict)
+        #dumpTernaryHomonyms(overallDict)
+        dumpNOrderHomonyms(overallDict, 4)
+        dumpNOrderHomonyms(overallDict, 5)
+        dumpNOrderHomonyms(overallDict, 6)
+
+def dumpHomonymNumber(overallDict):
+    wordNumber = {}
+    for k, v in overallDict.items():
+        wordNumber[len(v)] = 1 + wordNumber.get(len(v), 0)
+    print(wordNumber)
+
+def dumpBinaryHomonyms(overallDict):
+    with open('dict_2homonyms.txt', 'w', encoding='utf-8') as of:
+        for k, v in overallDict.items():
+            if len(v) == 2 and not equalWords(v[0], v[1]):
+                for line in v:
+                    of.write(line + '\n')
+
+def dumpNOrderHomonyms(overallDict, grade):
+    with open('dict_{0}homonyms.txt'.format(grade), 'w', encoding='utf-8') as of:
+        for k, v in overallDict.items():
+            if len(v) == grade: # and not equalWords(v[0], v[1]):
+                for line in v:
+                    of.write(line + '\n')
 
 
-def main():
-    getRecords()
 
-def ok():
+def getAttributeVector(attrSet):
+    return [ 1 if a in attrSet else 0 for a in allPartsOfSpeech]
+
+def tryAddWord(tokens, dictionary, wordsProcessed, attributesWithPos):
+    posSet = set()
+    if len(tokens[0]):
+        if tokens[0] not in wordsProcessed:
+            wordsProcessed.add(tokens[0])
+            posSet = getPartOfSpeech(dictionary, tokens[0])
+        else:
+            return
+    elif len(posSet) == 0 and len(tokens[1]): # and isPartOfSpeech(dictionary, tokens[1], posId):
+        if tokens[1] not in wordsProcessed:
+            wordsProcessed.add(tokens[1])
+            posSet = getPartOfSpeech(dictionary, tokens[1])
+        else:
+            return
+    if len(posSet) != 1:
+        m = re.match('(.+?)\s*/\(.+', tokens[2], re.S)
+        if m:
+            posSet = [1] #getPartOfSpeech(dictionary, m.groups()[0])
+    else:
+        attributes = getEntryAttributes(tokens[2])
+        attributesWithPos.append([posSet.pop()] + getAttributeVector(attributes))
+
+def getAttributesOfKnownWords():
     dictionary = Dictionary(os.path.join(os.path.abspath('..'), 'data', 'sys.zip'))
     with open('../data/dict.txt', 'r', encoding='utf-8') as f:
-     #   posSet = set()
-        r = re.compile('^.*?\(\s*(.+?)\s*\)', re.S)
-        posId = 31
-        overallDict = {}
-        totalWord = 0
-        singlePosWord = 0
-        for line in f.readlines():
+       wordsProcessed = set()
+       attributesWithPos = []
+       for line in f.readlines():
             tokens = line.split('|||')
-            entry = tokens[2]
-           # posSet = getEntryAttributes(entry, r)
-            posSet = []
-           # tokens[0] = '明白'
-            if len(tokens[0]):
-                #for attribute in posSet:
-                #    overallDict[attribute] = 1 + overallDict.get(attribute, 0)
-                posSet = getPartOfSpeech(dictionary, tokens[0])
-            elif len(posSet) == 0 and len(tokens[1]): # and isPartOfSpeech(dictionary, tokens[1], posId):
-                #for attribute in posSet:
-                #    overallDict[attribute] = 1 + overallDict.get(attribute, 0)
-                posSet = getPartOfSpeech(dictionary, tokens[1])
-            if len(posSet) == 0:
-                m = re.match('(.+?)\s*/\(.+', tokens[2], re.S)
-                if m:
-                    posSet = [1] #getPartOfSpeech(dictionary, m.groups()[0])
+            tryAddWord(tokens, dictionary, wordsProcessed, attributesWithPos)
+       print(len(attributesWithPos))
+       with open('../data/posToAttributes.txt', 'w') as outFile:
+          z = ', '.join(allPartsOfSpeech)
+          outFile.write('; ' + z + '\n')
+          for line in attributesWithPos:
+            z = ','.join(map(lambda x: str(x), line))
+            outFile.write(z + '\n')
 
-            totalWord += 1
-            overallDict[len(posSet)] = 1 + overallDict.get(len(posSet), 0)
-            if len(posSet) > 1:
-               # pass
-                print(line, posSet)
-                #break
-        #print(singlePosWord / totalWord)
-        for key in overallDict:
-            print(key, overallDict[key] / totalWord)
-        #    if key in allPartsOfSpeech:
-        #        print(key, '\t', overallDict[key])
+def getWordPoS(word):
+    #dictionary = Dictionary(os.path.join(os.path.abspath('..'), 'data', 'sys.zip'))
+    with open('../data/dict.txt', 'r', encoding='utf-8') as f:
+       wordsProcessed = set()
+       attributesWithPos = []
+       for line in f.readlines():
+            tokens = line.split('|||')
+            attributes = set()
+         #   if tokens[0] == word:
+         #       attributes = getEntryAttributes(tokens[2])
+            if tokens[1] == word and len(tokens[0]) == 0:
+                attributes = getEntryAttributes(tokens[2])
+            if len(attributes) != 0:
+                print(attributes, tokens[2].strip())
+
+def getParticlePoS():
+    parentDir = r'c:\Program Files (x86)\Anki\mecab\dic\ipadic'
+    particleName = 'Auxil.csv'
+    with open(os.path.join(parentDir, particleName), 'r', encoding='shift_jis') as f:
+        for line in f.readlines():
+            tokens = line.split(',')
+            print(tokens[0])
+            getWordPoS(tokens[0])
+
+def main():
+    #getRecords()
+    #getAttributesOfKnownWords()
+    #getWordPoS('た')
+    getParticlePoS()
+
 main()
 

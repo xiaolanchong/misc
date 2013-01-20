@@ -20,8 +20,14 @@ class DartsDictionary:
             self.entryOffsetBlob = dictFile.read(entryOffsetBlobSize)
             self.entryBlob = dictFile.read(entryBlobSize)
 
-    def getReadingAndDefinition(self, word):
-        offsets = self.lookupDict.commonPrefixSearch(bytearray(word, 'utf-8'))
+    def getFirstReadingAndDefinition(self, word):
+        entries = self.getAllReadingAndDefinition(word)
+        return entries[0] if len(entries) else (None, None)
+
+    def getAllReadingAndDefinition(self, word):
+        assert(len(word))
+        entries = []
+        offsets = self.lookupDict.exactMatchSearch(bytearray(word, 'utf-8'))
         for tokenHandler, tokenLength in offsets:
             entryNum = tokenHandler & 0xff
             entryOffsetStartPos = tokenHandler >> 8
@@ -32,8 +38,11 @@ class DartsDictionary:
                 kanji = text_type(kanji, 'utf-8')
                 kana = text_type(kana, 'utf-8')
                 text = text_type(text, 'utf-8')
-                return (kana, text)
-        return (None, None)
+                entries.append((kana, text))
+        return entries
+
+    def getBestReadingAndDefinition(self, word, pos):
+        entries = self.getAllReadingAndDefinition(word)
 
     def getEntryOffset(self, entryOffsetIdx):
         fmt = 'I'
