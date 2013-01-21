@@ -12,19 +12,15 @@
         <div><input type="submit" value="Annotate"></div>
     </form>
 	{% if tableData %}
-	<table id="table-6">
-		<thead>
+	<table id="wordtable">
 			<tr> <th>Word</th><th>Reading</th><th>Meaning</th><th>Sentence</th></tr>
-		</thead>
-		<tbody>
 		{% for row in tableData %}
-		<tr class="red">
+		<tr class="{% cycle 'odd' 'even' %}">
 			{% for cell in row %}
 			<td>{{ cell }}</td>
 			{% endfor %}
 		<tr>
 		{% endfor %}
-		</tbody>
 	</table>
 	{% endif %}
 </body>

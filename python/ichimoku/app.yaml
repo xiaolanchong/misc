@@ -6,7 +6,7 @@ threadsafe: yes
 
 handlers:
 - url: /styles
-  static_dir: ./wwwapp/styles
+  static_dir: wwwapp/styles
   
 - url: .*
   script: sugoi-ideas.app
@@ -36,3 +36,4 @@ skip_files:
 - ^(.*/)?test_.*\.py$    # skip tests
 - ^(.*/)?jdict\.bin$    # skip JDIC binary
 - ^(.*/)?dict\.text$    # skip JDIC CSV
+- ^(.*/)logs\..*        # skip logs

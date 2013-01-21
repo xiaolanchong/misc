@@ -23,8 +23,8 @@ class DartsDictionaryTest(unittest.TestCase):
 
     def testNoSuchWord(self):
         reading, entry = self.dictionary.getFirstReadingAndDefinition('メグレ')
-        self.assertIsNone(reading)
-        self.assertIsNone(entry)
+        self.assertEqual(None, reading)
+        self.assertEqual(None, entry)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(DartsDictionaryTest)

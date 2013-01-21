@@ -73,8 +73,9 @@ class ViterbiTest(unittest.TestCase):
     def out(text, mecabOutput, pyOutput):
         z = text + ' | ' + str(pyResult) + str(mecabResult)
 
-    @unittest.skip("temp skipping")
-    def testEntireFile(self):
+   # @unittest.skip("temp skipping")
+    #def testEntireFile(self):
+    def doSmth(self):
         writer = Writer()
         runner = MecabOutputGetter()
         with open(r'test/MaigraitInNewYork_ch1.txt', 'r', encoding='utf-8') as inFile:

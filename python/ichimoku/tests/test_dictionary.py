@@ -6,7 +6,7 @@ import os.path
 import sys
 sys.path.append(os.path.abspath('..'))
 from mecab.dictionary import Dictionary
-from mecab.dicttoken import Token
+from mecab.token import Token
 
 class DictionaryTest(unittest.TestCase):
     def setUp(self):

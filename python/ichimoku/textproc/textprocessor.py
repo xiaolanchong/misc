@@ -13,8 +13,10 @@ from .jdictprocessor import JDictProcessor
 
 class TextProcessor:
     def __init__(self, dbFileName, parentDir=None):
-        self.dictionary = DartsDictionary(dbFileName)
-        self.parser = SentenceParser(parentDir)
+      self.dictionary = DartsDictionary(dbFileName)
+      self.parser = SentenceParser(parentDir)
+      #self.dbFileName = dbFileName
+     # self.parentDir = parentDir
 
     def parseSentence(self, text):
         def isWordInDictionary(word):
@@ -22,9 +24,13 @@ class TextProcessor:
         allWords = self.parser.splitIntoWords(text, isWordInDictionary)
         return allWords
 
+    #@profile
     def parseSentenceWithBestChoice(self, text):
+        #parser = SentenceParser(self.parentDir)
         allWordInfo = self.parser.tokenize2(text)
+        #parser = None
         jdictProcessor = JDictProcessor()
+        #dictionary = DartsDictionary(self.dbFileName)
         allWords = []
         for wordInfo in allWordInfo:
             if len(wordInfo.dictionaryForm):

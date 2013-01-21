@@ -12,6 +12,9 @@ class UtilsTest(unittest.TestCase):
         res = utils.extractString(b'sample\x00\x00\x00')
         self.assertEqual('sample', res)
 
+    def testPy(self):
+        res = utils.isPy2x6()
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(UtilsTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

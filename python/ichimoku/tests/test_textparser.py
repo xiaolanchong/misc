@@ -24,7 +24,7 @@ class ParserTest(unittest.TestCase):
             "メグレは船室にもどった",
             "それから酒を飲んだ"
             ]
-        self.assertListEqual(result, list(p.getSentences()))
+        self.assertEqual(result, list(p.getSentences()))
 
    # @unittest.skip("tep skipping")
     def testDirectSpeach(self):
@@ -37,7 +37,7 @@ class ParserTest(unittest.TestCase):
             "怒るって何をだね",
             "よくご存じでしょう"
             ]
-        self.assertListEqual(result, list(p.getSentences()))
+        self.assertEqual(result, list(p.getSentences()))
 
     def testSpacesBeforeSpeachMark(self):
        textToParse = \
@@ -50,13 +50,13 @@ class ParserTest(unittest.TestCase):
             "ジョン・モーラは背は普通以下の、小柄なそうだった",
             "私に何かご用ですか"
             ]
-       self.assertListEqual(result, list(p.getSentences()))
+       self.assertEqual(result, list(p.getSentences()))
 
     def testRemoveFurigana(self):
         p = textparser.TextParser('錨《いかり》の騒々しい物音', True)
-        self.assertListEqual(['錨の騒々しい物音'], p.getSentences())
+        self.assertEqual(['錨の騒々しい物音'], p.getSentences())
         p = textparser.TextParser('錨の騒々《そうぞう》しい物音', True)
-        self.assertListEqual(['錨の騒々しい物音'], p.getSentences())
+        self.assertEqual(['錨の騒々しい物音'], p.getSentences())
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(ParserTest)

@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 import re
 import unicodedata
+from mecab.utils import isPy2x6
 
 class TextParser:
     def __init__(self, text, noFurigana = True):
@@ -13,7 +14,6 @@ class TextParser:
     def __markSentences(self, text):
         inDirectSpeach = False
         sentences = []
-        #for group in re.findall("\s*(「|≪)|(?:(\S+?)(?:。|？|……|！|」|≫))|(」|≫)",
         for group in re.findall("\s*(「|≪)|(?:(\S+?)(?:。|？|……|！|」|≫|\Z)|(」|≫))",
                                 text, re.MULTILINE):
             if group[0]:
@@ -25,7 +25,10 @@ class TextParser:
         return sentences
 
     def removeFurigana(self, sentence):
-        res = re.sub('(?<=[\u3005\u4E00-\u9FFF])《[\u3040-\u309F\u30A0-\u30FF]+》', '', sentence, 0, re.M|re.UNICODE)
+        if not isPy2x6():
+            res = re.sub('(?<=[\u3005\u4E00-\u9FFF])《[\u3040-\u309F\u30A0-\u30FF]+》', '', sentence, 0, re.M|re.UNICODE)
+        else:
+            res = re.sub('(?<=[\u3005\u4E00-\u9FFF])《[\u3040-\u309F\u30A0-\u30FF]+》', '', sentence, re.M|re.UNICODE)
         return res
 
 

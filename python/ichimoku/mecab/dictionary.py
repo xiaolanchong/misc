@@ -7,7 +7,7 @@ import os.path
 from struct import unpack, calcsize
 from mecab.doublearray import DoubleArray
 from mecab.token import Token
-from mecab.utils import text_type, extractString
+from mecab.utils import text_type, extractString, isPy2x6
 import mecab.compress as compress
 
 class Dictionary:
@@ -16,7 +16,14 @@ class Dictionary:
         self.tokenBlob = []
         self.featureBlob = None
         self.doubleArray = None
-        self.loadFromBinary(fileName)
+        #self.loadFromBinary(fileName)
+        if isPy2x6():
+            #dictFile = compress.load(fileName)
+            dictFile = open(fileName, mode='rb')
+            self.loadFromBinary(dictFile)
+        else:
+            with compress.load(fileName) as dictFile:
+                self.loadFromBinary(dictFile)
 
     def getToken(self, tokenId):
         fmt = str('HHHhII')
@@ -43,11 +50,11 @@ class Dictionary:
             else:
                 return
 
-    def loadFromBinary(self, fileName):
-        """
-            Loads the dictionary from the blob
-        """
-        with compress.load(fileName) as dictFile:
+    def loadFromBinary(self, dictFile):
+            """
+                Loads the dictionary from the blob
+            """
+     #   with compress.load(fileName) as dictFile:
             fmt = str('<IIIIIIIIII')
             header = dictFile.read(calcsize(fmt))
             magic, version, dictType, lexSize, \
