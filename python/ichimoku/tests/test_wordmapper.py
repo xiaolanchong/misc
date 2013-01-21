@@ -3,7 +3,9 @@
 from __future__ import unicode_literals
 import unittest
 import os.path
-from wordmapper import WordMapper
+import sys
+sys.path.append(os.path.abspath('..'))
+from textproc.wordmapper import WordMapper
 from mecab import partofspeech as PoS
 
 class WordMapperTest(unittest.TestCase):
@@ -40,6 +42,36 @@ class WordMapperTest(unittest.TestCase):
         self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'prt'}], PoS.PRT_CASE))
         self.assertEqual(1, self.mapper.selectBestWord([{'suf'}, {'conj', 'int'}], PoS.PRT_CASE))
         self.assertEqual(2, self.mapper.selectBestWord([['n'], {'suf', 'n'}, {'adv', 'prt'}], PoS.PRT_CASE))
+
+    def testConjunction(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'adv', 'conj', 'uk'}], PoS.CONJ))
+
+    def testVerb(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'vi', 'v5r', 'uk'}], PoS.VERB))
+
+    def testNoun(self):
+        self.assertEqual(0, self.mapper.selectBestWord([{'n'}, {'vi', 'v5r', 'uk'}], PoS.NOUN))
+
+    def testPrenounAdj(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'adj-pn', 'uk'}], PoS.ADJ_PRENOUN))
+
+    def testAdverb(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'adv', 'uk', 'on-mim'}], PoS.ADVERB))
+
+    def testInterjection(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'n'}, {'int', 'uk', 'on-mim'}], PoS.INT))
+
+    def testPrefix(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'v5s'}, {'n', 'vs'}], PoS.PREFIX_ADJ))
+
+    def testVerbSuffix(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'v5s'}, {'suf', 'v5r'}], PoS.VERB_SUFFIX))
+
+    def testVerbNonIndependent(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'vs'}, {'v5r', 'aux'}], PoS.VERB_NONIND))
+
+    def testNounSuffix(self):
+        self.assertEqual(1, self.mapper.selectBestWord([{'v5s'}, {'suf', 'n'}], PoS.NOUN_SUFFIX))
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(WordMapperTest)

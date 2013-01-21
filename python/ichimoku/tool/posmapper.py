@@ -149,27 +149,54 @@ def getAttributesOfKnownWords():
 
 def getWordPoS(word):
     #dictionary = Dictionary(os.path.join(os.path.abspath('..'), 'data', 'sys.zip'))
+    res = ''
     with open('../data/dict.txt', 'r', encoding='utf-8') as f:
        wordsProcessed = set()
        attributesWithPos = []
+       printed = False
        for line in f.readlines():
             tokens = line.split('|||')
             attributes = set()
-         #   if tokens[0] == word:
-         #       attributes = getEntryAttributes(tokens[2])
+            if tokens[0] == word:
+                attributes = getEntryAttributes(tokens[2])
             if tokens[1] == word and len(tokens[0]) == 0:
                 attributes = getEntryAttributes(tokens[2])
             if len(attributes) != 0:
-                print(attributes, tokens[2].strip())
+                res += str(attributes) + ' ' + str(tokens[2].strip()) + '\n'
+    return res
+
+advContent = \
+"""
+"""
 
 def getParticlePoS():
     parentDir = r'c:\Program Files (x86)\Anki\mecab\dic\ipadic'
-    particleName = 'Auxil.csv'
-    with open(os.path.join(parentDir, particleName), 'r', encoding='shift_jis') as f:
-        for line in f.readlines():
+    #parentDir = r'c:\project\github\python\ichimoku\testdata'
+    particleName = 'adj.csv'
+    out = ''
+    with open(os.path.join(parentDir, particleName), 'r', encoding='shift_jis') as f: #encoding='shift_jis') as f:
+        for line in f.readlines()[1000]:
             tokens = line.split(',')
-            print(tokens[0])
-            getWordPoS(tokens[0])
+            res = getWordPoS(tokens[0])
+            if len(res):
+                out += str(tokens[0]) + '\n'
+                out += res
+##    start = 0
+##    while(True):
+##        p = advContent.find('\n', start)
+##        if p >= 0:
+##            line = advContent[start:p]
+##            start = p + 1
+##            if len(line) == 0:
+##                continue
+##            tokens = line.split(',')
+##            res = getWordPoS(tokens[0])
+##            if len(res):
+##                out += str(tokens[0]) + '\n'
+##                out += res
+##        else:
+##            break
+    open('../testdata/pos_out_adj.txt', 'w', encoding='utf-8').write(out)
 
 def main():
     #getRecords()

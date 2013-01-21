@@ -2,7 +2,9 @@
 
 import unittest
 import os.path
-from connector import Connector
+import sys
+sys.path.append(os.path.abspath('..'))
+from mecab.connector import Connector
 
 class ConnectorTest(unittest.TestCase):
     def testSimple(self):

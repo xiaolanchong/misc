@@ -15,15 +15,15 @@ class Viterbi:
 
     def getBestPath(self, text):
         endNodes = [[] for i in range(len(text) + 1)]
-        bosNode = self.tokenizer.getBOSNode()
+        bosNode = self.tokenizer.getBOSNode(0)
         endNodes[0] = [bosNode]
-        for pos in range(len(text)):
-            if len(endNodes[pos]) > 0:
-                nodes = self.tokenizer.lookUp(text[pos:])
+        for posInText in range(len(text)):
+            if len(endNodes[posInText]) > 0:
+                nodes = self.tokenizer.lookUp(text[posInText:], posInText)
                 for node in nodes:
-                    self.connect(endNodes[pos], node)
-                    endNodes[pos + len(node.token.text)].append(node)
-        eosNode = self.tokenizer.getEOSNode()
+                    self.connect(endNodes[posInText], node)
+                    endNodes[posInText + len(node.token.text)].append(node)
+        eosNode = self.tokenizer.getEOSNode(len(text))
         self.connect(endNodes[-1], eosNode)
         return self.createBackwardPath(eosNode)
 

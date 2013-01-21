@@ -2,7 +2,10 @@
 
 from __future__ import unicode_literals
 import unittest
-from jdictprocessor import JDictProcessor
+import sys
+import os.path
+sys.path.append(os.path.abspath('..'))
+from textproc.jdictprocessor import JDictProcessor
 import mecab.partofspeech as PoS
 
 class JDictProcessorTest(unittest.TestCase):

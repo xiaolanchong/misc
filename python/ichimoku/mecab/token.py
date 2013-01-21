@@ -25,7 +25,7 @@ class Token:
         return not self.__eq__(other)
 
     def __repr__(self):
-        return 'text:{0}, la:{1}, ra:{2}, pos:{3}, cost:{4}, feature:{5}, compound:{6}'.format(
+        return '{0}, la:{1}, ra:{2}, PoS:{3}, cost:{4}, feature:{5}, compound:{6}'.format(
                     self.text, self.leftAttribute, self.rightAttribute,
                     self.partOfSpeechId, self.wordCost, self.featureId,
                     self.compound)

@@ -2,8 +2,11 @@
 
 from __future__ import unicode_literals
 import unittest
+import sys
+import os.path
+sys.path.append(os.path.abspath('..'))
 from mecab.writer import WordInfo
-from sentenceparser import SentenceParser
+from textproc.sentenceparser import SentenceParser
 
 class SentenceParserTest(unittest.TestCase):
     def setUp(self):
@@ -22,8 +25,8 @@ class SentenceParserTest(unittest.TestCase):
         self.assertEquals(['船', 'が', '検疫所', 'に'], res)
 
     def testUnknownToken(self):
-        res = self.parser.splitIntoWords('メグレは機関の止った瞬間', lambda x: True)
-        self.assertEquals(['メグレ', 'は', '機関', 'の', '止るた', '瞬間'], res)
+        res = self.parser.splitIntoWords('メグレは機関の止った瞬間', lambda x: False)
+        self.assertEquals(['メグレ', 'は', '機関', 'の', '止る', '瞬間'], res)  #止る た'
 
     def testTwoNounSuffixJoin(self):
         res = self.parser.splitIntoWords('朝の四時頃に', lambda x: True)
@@ -40,7 +43,7 @@ class SentenceParserTest(unittest.TestCase):
 
     def testTeIruForm(self):
         #dictionary
-        res = self.parser.splitIntoWords('雨が降っていた', lambda x: False, True)
+        res = self.parser.splitIntoWords('雨が降っていた', lambda x: False, False)
         self.assertEquals(['雨', 'が', '降る', 'いる'], res)
 
     def testMecabFailure(self):
@@ -54,7 +57,7 @@ class SentenceParserTest(unittest.TestCase):
 
     def testTokenize2(self):
         parser = SentenceParser('..')
-        res = parser.tokenize2('所に着いたのは', lambda x: False)
+        res = parser.tokenize2('所に着いたのは')
         expected = [ WordInfo('所', '所', 38, 'トコロ'),
                      WordInfo('に', 'に', 13, 'ニ'),
                      WordInfo('着い', '着く', 31, 'ツイ'),

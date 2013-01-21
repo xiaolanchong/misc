@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-
 import unittest
 import os.path
-from viterbi import Viterbi
-from node import Node
-from dicttoken import Token
-from runmecab import MecabOutputGetter
-from writer import Writer
+import sys
+sys.path.append(os.path.abspath('..'))
+from mecab.viterbi import Viterbi
+from mecab.node import Node
+from mecab.token import Token
+from mecab.runmecab import MecabOutputGetter
+from mecab.writer import Writer
 
 class MockConnector:
     def getCost(self, leftAttribute, rightAttribute):
@@ -26,11 +27,11 @@ class ViterbiTest(unittest.TestCase):
     #@unittest.skip("temp skipping")
     def testConnectNodeMutualCost(self):
         self.viterbi.connector = MockConnector()
-        bestNode = Node(Token('b', 12, 10, 0, 0, 5, 0))
-        beginNodes = [Node(Token('a', 10, 15, 0, 0, 5, 0)),
+        bestNode = Node(Token('b', 12, 10, 0, 0, 5, 0), 0)
+        beginNodes = [Node(Token('a', 10, 15, 0, 0, 5, 0), 0),
                       bestNode,
-                      Node(Token('c', 11, 11, 0, 0, 5, 0))]
-        endNode = Node(Token('7', 10, 10, 0, 0, 5, 0))
+                      Node(Token('c', 11, 11, 0, 0, 5, 0), 0)]
+        endNode = Node(Token('7', 10, 10, 0, 0, 5, 0), 0)
         self.viterbi.connect(beginNodes, endNode)
         self.assertEquals(endNode.leftNode, bestNode)
 

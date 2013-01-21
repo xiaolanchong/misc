@@ -2,21 +2,23 @@
 
 from __future__ import unicode_literals
 from mecab.node import Node
-from mecab.dicttoken import Token
+from mecab.token import Token
 
 class WordInfo:
-    def __init__(self, word, dictionaryForm, partOfSpeech, kana):
+    def __init__(self, word, startPos, dictionaryForm, partOfSpeech, kana):
         self.word = word
+        self.startPos = startPos
         self.dictionaryForm = dictionaryForm
         self.partOfSpeech = partOfSpeech
         self.kana = kana
 
     def __repr__(self):
-        return '({0}, {1}, {2}, {3})'.format(self.word, self.dictionaryForm,
-                                            self.partOfSpeech, self.kana)
+        return '({0}, {1}, {2}, {3}, {4})'.format(self.word, self.startPos,
+                    self.dictionaryForm, self.partOfSpeech, self.kana)
 
     def __eq__(self, other):
         return  self.word == other.word and \
+                self.startPos == other.startPos and \
                 self.dictionaryForm == other.dictionaryForm and \
                 self.partOfSpeech == other.partOfSpeech and \
                 self.kana == other.kana
@@ -87,7 +89,7 @@ class Writer:
             featureStr = tokenizer.getFeature(node.token.featureId, node.isKnown)
             featureStr = featureStr.split(',')
            # print(featureStr[7], featureStr[8], featureStr[9] if len(featureStr) >= 10 else '')
-            out.append(WordInfo(text, self.getItemOrEmptyStr(featureStr, 6),
+            out.append(WordInfo(text, node.startPos,  self.getItemOrEmptyStr(featureStr, 6),
                                 node.token.partOfSpeechId, self.getItemOrEmptyStr(featureStr, 7)))
         return out
 

@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
-
-from textproc.textparser import TextParser
-from textproc.sentenceparser import SentenceParser
+from __future__ import unicode_literals
+import logging
+import codecs
+from mecab.utils import text_type, isPy2
+from .textparser import TextParser
+from .sentenceparser import SentenceParser
 # no sqlite at GAE
 #from .sqlitedict import SqliteDictionary
-from textproc.glossary import Glossary
-from textproc.dartsdict import DartsDictionary
-from textproc.jdictprocessor import JDictProcessor
+from .glossary import Glossary
+from .dartsdict import DartsDictionary
+from .jdictprocessor import JDictProcessor
 
 class TextProcessor:
     def __init__(self, dbFileName, parentDir=None):
         self.dictionary = DartsDictionary(dbFileName)
-        self.sentenceParser = SentenceParser(parentDir)
+        self.parser = SentenceParser(parentDir)
 
-    def parseSentence(self, parser, text):
+    def parseSentence(self, text):
         def isWordInDictionary(word):
             return self.dictionary.getReadingAndDefinition(word)[0] is not None
-        allWords = parser.splitIntoWords(text, isWordInDictionary)
+        allWords = self.parser.splitIntoWords(text, isWordInDictionary)
         return allWords
 
-    def parseSentenceWithBestChoice(self, parser, text):
-        allWordInfo = parser.tokenize2(text)
+    def parseSentenceWithBestChoice(self, text):
+        allWordInfo = self.parser.tokenize2(text)
         jdictProcessor = JDictProcessor()
         allWords = []
         for wordInfo in allWordInfo:
@@ -29,7 +32,17 @@ class TextProcessor:
                 reading, definition = jdictProcessor.getBestAlternative(alternatives, wordInfo.partOfSpeech)
                 allWords.append((wordInfo.dictionaryForm, reading, definition))
             else:
-                RuntimeError(str(wordInfo) + ' in ' + text)
+                #raise RuntimeError(text_type(wordInfo) + ' in ' + text)
+            #    if isPy2():
+            #        word = codecs.encode(wordInfo.word, 'utf-8')
+            #        text = codecs.encode(wordInfo.word, 'utf-8')
+            #    else:
+            #        word = wordInfo.word
+                contextStart = max(0, wordInfo.startPos - 10)
+                contextEnd = wordInfo.startPos + len(wordInfo.word) + 10
+                textToLog = text[contextStart:contextEnd]
+                logging.error("'%s' not found in dictionary. Text: '%s'",
+                                wordInfo.word,  textToLog)
         return allWords
 
     def addToGlossary(self, glossary, allWords, sentence):
@@ -41,8 +54,8 @@ class TextProcessor:
         p = TextParser(text)
         glossary = Glossary()
         for sentence in p.getSentences():
-            #allWords = self.parseSentence(self.sentenceParser, sentence)
-            allWords = self.parseSentenceWithBestChoice(self.sentenceParser, sentence)
+            #allWords = self.parseSentence(sentence)
+            allWords = self.parseSentenceWithBestChoice(sentence)
             for word, reading, definition in allWords:
                 yield word, reading, definition, sentence
        #     self.addToGlossary(glossary, allWords, sentence)

@@ -3,7 +3,9 @@
 from __future__ import unicode_literals
 import unittest
 import os.path
-import sqlitedict
+import sys
+sys.path.append(os.path.abspath('..'))
+from textproc import sqlitedict
 
 class DictionaryTest(unittest.TestCase):
     def testSingleWord(self):

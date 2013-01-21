@@ -95,6 +95,9 @@ def maxIndex(l):
 class WordMapper:
   #  NOUN =
     def __init__(self):
+        """
+            Attributes reflecting the part of speech ipadic's value
+        """
         self.posAttributes = \
         """
         adj-f, adj-i, adj-ku, adj-na, adj-nari, adj-no,
@@ -108,11 +111,32 @@ class WordMapper:
         assert(len(self.posAttributes) == attributeNumber)
 
     def selectBestWord(self, wordsAttributes, pos):
+        probabilities = []
         if PoS.isParticle(pos):
             probabilities =[self.getParticleProbability(a) for a in wordsAttributes]
-            return maxIndex(probabilities)
         elif pos == PoS.VERB_AUX:
             probabilities =[self.getVerbAuxProbability(a) for a in wordsAttributes]
+        elif pos == PoS.CONJ:
+            probabilities =[self.getConjunctionProbability(a) for a in wordsAttributes]
+        elif pos == PoS.VERB:
+            probabilities =[self.getVerbProbability(self.mergeVerbAttributes(a)) for a in wordsAttributes]
+        elif pos == PoS.NOUN:
+            probabilities =[self.getNounProbability(a) for a in wordsAttributes]
+        elif pos == PoS.ADJ_PRENOUN:
+            probabilities =[self.getPrenounAdjectival(a) for a in wordsAttributes]
+        elif pos == PoS.ADVERB or pos == PoS.ADVERB_CON:
+            probabilities =[self.getAdverbProbability(a) for a in wordsAttributes]
+        elif pos == PoS.INT:
+            probabilities =[self.getInterjectionProbability(a) for a in wordsAttributes]
+        elif PoS.isPrefix(pos):
+            probabilities =[self.getPrefixProbability(a) for a in wordsAttributes]
+        elif pos == PoS.VERB_SUFFIX:
+            probabilities =[self.getVerbSuffixProbability(self.mergeVerbAttributes(a)) for a in wordsAttributes]
+        elif pos == PoS.VERB_NONIND:
+            probabilities =[self.getVerbNonIndependentProbability(self.mergeVerbAttributes(a)) for a in wordsAttributes]
+        elif PoS.isNounSuffix(pos):
+            probabilities =[self.getNounSuffixProbability(a) for a in wordsAttributes]
+        if len(probabilities):
             return maxIndex(probabilities)
         else:
             for i in range(len(wordsAttributes)):
@@ -160,14 +184,15 @@ class WordMapper:
 
     def getOccupiedProbability(self, attributes, classMap):
         total = sum(classMap.values())
-        product = 1
+        product = 0
         for a in attributes:
             product += classMap.get(a, 0) / float(total)
         return product if len(attributes) else 0
 
     def getVerbAuxProbability(self, attributes):
         """
-            Gets the posterior probability of the verb auxilary
+            Gets the posterior probability of the verb auxilary.
+            The population has been got by matching ipadict/Auxil.csv (pos=aux-v) and JDic's attributes.
         """
         classProbability = \
         {
@@ -180,6 +205,129 @@ class WordMapper:
         'prt' : 15
         }
         return self.getOccupiedProbability(attributes, classProbability)
+
+    def getConjunctionProbability(self, attributes):
+        """
+            Gets the posterior probability of the verb auxilary.
+            The population has been got by matching ipadict/Auxil.csv (pos=aux-v) and JDic's attributes.
+        """
+        classProbability = \
+        {
+            'adv' : 2,
+            'int' : 5,
+            'conj' : 54,
+            'prt' : 5,
+            'n' : 5,
+            'exp' : 20,
+            'aux' : 5,
+            'adj-no' : 1,
+            'pref' : 3,
+            'n-adv' : 2,
+            'n-suf' : 1,
+            'vs' : 1
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getVerbProbability(self, attributes):
+        classProbability = \
+        {
+            'v' : 113,
+            'n' : 21,
+            'vs' : 7,
+            'adj-pn' : 1,
+            'aux-v' : 3,
+            'n-suf' : 3,
+            'adj-no' : 1,
+            'adj-f' : 1,
+            'vs-s' : 4
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getNounProbability(self, attributes):
+        classProbability = \
+        {
+            'n' : 651, 'n-adv' : 3, 'n-t' : 3,
+            'vs' : 28, 'adj-no' : 69, 'adj-na' : 39,
+            'n-suf' : 12, 'suf' : 5, 'exp' : 5,
+            'adj-t' : 5, 'pref' : 3, 'adv-to' : 4,
+            'int' : 1, 'adv' : 4
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getPrenounAdjectival(self, attributes):
+        classProbability = \
+        {
+            'adj-f' : 6, 'adj-pn' : 32, 'adv' : 3, 'n' : 2
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getAdverbProbability(self, attributes):
+        classProbability = \
+        {
+            'adv' : 493, 'n' : 175, 'vs' : 145,
+            'adj-na' : 75, 'adv-to' : 144, 'on-mim' : 198,
+            'exp' : 22, 'adj-no' : 47, 'n-t' : 17,
+            'n-adv' : 29, 'adj-t' : 7, 'conj' : 6,
+            'adj-f' : 8, 'n-suf' : 2, 'int' : 17,
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getInterjectionProbability(self, attributes):
+        classProbability = \
+        {
+        'int' : 73,  'pref' : 3, 'vs' : 3,
+         'n' : 9, 'exp' : 7, 'adj-na' : 4,
+        'adv' : 9,  'aux' : 2, 'n' : 5, 'conj' : 12,
+        'prt' : 3, 'aux-v' : 2, 'adv-to' : 2,
+        'on-mim' : 1
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getPrefixProbability(self, attributes):
+        classProbability =\
+        {
+        'adj-no' : 77, 'adj-na' : 36, 'n' : 288,
+        'pref' : 164, 'ctr' : 14, 'n-adv' : 17,
+        'n-pref' : 41, 'n-suf' : 52, 'suf' : 58,
+        'adv' : 18, 'int' : 3, 'adj-t' : 2,
+        'adv-to' : 2, 'vs' : 2, 'pn' : 22
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getVerbSuffixProbability(self, attributes):
+        classProbability = \
+        {
+        'int' : 1, 'suf' : 3, 'prt' : 3,
+        'aux-v' : 6, 'exp' : 1, 'v' : 9
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getVerbNonIndependentProbability(self, attributes):
+        classProbability = \
+        {
+            'v' : 11, 'suf' : 5, 'aux-v' : 5, 'aux' : 2
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getNounSuffixProbability(self, attributes):
+        classProbability = \
+        {
+        'ctr' : 287, 'n' : 1651, 'n-suf' : 473,
+        'adj-no' : 101, 'pn' : 22, 'adj-na' : 52,
+        'pref' : 92, 'vs' : 16, 'suf' : 379,
+        'n-pref' : 51, 'n-t' : 29, 'n-adv' : 46,
+        'adv' : 17, 'conj' : 6
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def mergeVerbAttributes(self, attributes):
+        mergedAttributes = set()
+        for a in attributes:
+            if a[0] == 'v' and a != 'vs':
+                mergedAttributes.add('v')
+            else:
+                mergedAttributes.add(a)
+        return mergedAttributes
 
     def isVerb(self, attributes):
         for a in attributes:

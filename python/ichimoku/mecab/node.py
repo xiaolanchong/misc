@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from mecab.dicttoken import Token
+from mecab.token import Token
 
 class Node:
-    def __init__(self, token):
+    def __init__(self, token, startPos):
         self.leftNode = None
         self.rightNode = None
         self.totalCost = 0
+        self.startPos = startPos
         self.token = token
         self.connectionCost = 0
         self.isKnown = True

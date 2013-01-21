@@ -2,7 +2,10 @@
 
 from __future__ import unicode_literals
 import unittest
-import utils
+import os.path
+import sys
+sys.path.append(os.path.abspath('..'))
+from mecab import utils
 
 class UtilsTest(unittest.TestCase):
     def testExtractString(self):

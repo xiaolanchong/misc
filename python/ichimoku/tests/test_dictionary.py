@@ -3,8 +3,10 @@
 from __future__ import unicode_literals
 import unittest
 import os.path
-from dictionary import Dictionary
-from dicttoken import Token
+import sys
+sys.path.append(os.path.abspath('..'))
+from mecab.dictionary import Dictionary
+from mecab.dicttoken import Token
 
 class DictionaryTest(unittest.TestCase):
     def setUp(self):

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
 import sys, os, platform, re, subprocess
-import mecab.utils
-import mecab.runmecab as runmecab
+from mecab import utils
+from mecab import runmecab
 from mecab.viterbi import Viterbi
 from mecab.writer import Writer
 #from textproc.wordclass import PartOfSpeech, SubType
@@ -38,7 +37,7 @@ class SentenceParser(object):
             (originWord, dictionaryForm, symbolicPartOfSpeech, subType) =\
                 tokenData[7], tokenData[0], tokenData[1], tokenData[2]
             isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
-            if dumpNodes:
+            if dumpNodes and False:
                 print(node)
             out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
         return out
@@ -66,7 +65,7 @@ class SentenceParser(object):
                 else:
                     (originWord, dictionaryForm, symbolicPartOfSpeech, subType) = m.groups()
                     isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
-                    if dumpNodes:
+                    if dumpNodes and False:
                        print(node)
                     out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
 

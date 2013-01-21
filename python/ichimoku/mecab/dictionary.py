@@ -6,7 +6,7 @@ import sys
 import os.path
 from struct import unpack, calcsize
 from mecab.doublearray import DoubleArray
-from mecab.dicttoken import Token
+from mecab.token import Token
 from mecab.utils import text_type, extractString
 import mecab.compress as compress
 
