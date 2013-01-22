@@ -1,0 +1,5 @@
+backends:
+- name: sugoi-ideas
+  class: B2
+  options: dynamic 
+  start: sugoi-ideas.app

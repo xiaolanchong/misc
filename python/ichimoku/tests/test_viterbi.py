@@ -74,10 +74,10 @@ class ViterbiTest(unittest.TestCase):
         z = text + ' | ' + str(pyResult) + str(mecabResult)
 
    # @unittest.skip("temp skipping")
-    #def testEntireFile(self):
-    def doSmth(self):
+    def testEntireFile(self):
         writer = Writer()
         runner = MecabOutputGetter()
+        return
         with open(r'test/MaigraitInNewYork_ch1.txt', 'r', encoding='utf-8') as inFile:
             for line in inFile.readlines():
                 text = line.strip()

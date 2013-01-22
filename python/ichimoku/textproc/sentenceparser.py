@@ -14,9 +14,10 @@ class SentenceParser(object):
             self.mecab = runmecab.MecabRunner(
              '%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ', '\n', '[%m] ')
         else:
+            # TODO: move to the loading engine
             self.mecab = None
-            sys = os.path.join(rootDir, 'data', 'sys.dic')
-            unk = os.path.join(rootDir, 'data', 'unk.dic')
+            sys = os.path.join(rootDir, 'data', 'sys.zip')
+            unk = os.path.join(rootDir, 'data', 'unk.zip')
             chz = os.path.join(rootDir, 'data', 'char.bin')
             mtx = os.path.join(rootDir, 'data', 'matrix.bin')
             self.viterbi = Viterbi(sys, unk, chz, mtx)

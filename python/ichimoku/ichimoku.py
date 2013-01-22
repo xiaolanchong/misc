@@ -71,5 +71,5 @@ def dryBurn():
 
 
 if __name__ == '__main__':
-   # main()
-   dryBurn()
+   main()
+   #dryBurn()
