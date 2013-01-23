@@ -16,7 +16,9 @@ class MainPage(webapp2.RequestHandler):
     self.response.out.write(renderStartPage(None))
 
   def post(self):
-    userText = self.request.get('content')
+    logging.info('Received user text: %s', self.request.body)
+    #data = simplejson.loads(self.request.body)
+    userText = self.request.get('text')
     try:
         headers = { 'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
                     'Content-Type' : 'application/json' }
@@ -24,6 +26,8 @@ class MainPage(webapp2.RequestHandler):
                   'word' : 1,
                   'definition' : 1,
                   'sentence' : 1 }
+        logging.info('Received user text %d bytes', len(userText))
+        logging.debug('Received user text: %s', userText)
         #data = urllib.urlencode(simplejson.dumps(values))
         data = simplejson.dumps(values)
         #req = urllib2.Request(get_url(backend='sugoi-ideas',instance=0), data, headers) #'http://localhost:9100'
@@ -31,13 +35,15 @@ class MainPage(webapp2.RequestHandler):
         #res = response.read()
         #taggedData = simplejson.loads(res)
         url = get_url(backend='sugoi-ideas',instance=0) + '/backend'
-        logging.info('send %d', len(data))
+        logging.info('send %d byte text', len(data))
         result = urlfetch.fetch(url=url,
                         payload=data,
                         method=urlfetch.POST,
                         headers={'Content-Type': 'application/json'})
-        contents = simplejson.loads(result.content)
-        self.response.out.write(renderStartPage(contents))
+        logging.info('received %d byte text', len(result.content))
+       # data = simplejson.loads(result.content)
+        self.response.out.write(result.content)
+        #self.response.out.write(renderStartPage(data))
     except Exception as ex:
         logging.error(str(ex))
         self.response.status = 502

@@ -2,26 +2,54 @@
 
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Ichidoku - Japanese text parser.</title>
+	<title>Ichimoku - Japanese text parser.</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	<script src="jscript/jquery-1.9.0.min.js"></script>
+	<script language="javascript">
+		$(document).ready(function(){
+			$("#submitBtn").click(function () {
+				var text = $("#submitTextBox").val();
+				$.ajax({
+					type: 'post',
+					url: '/',
+					data: { "text" : text, "words" : 1 },
+					dataType: "json",
+					beforeSend:function(){
+						//launchpreloader();
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						//alert("fail!!");
+					},
+					success: function(result, textStatus, jqXHR){
+						 //$("#submitStatus").html("<div>" + result + "</div>");
+						 var table = $('<tbody></tbody>');
+						for(i=0; i<result.length; ++i){
+						    var row = $('<tr></tr>');
+							for(j=0; j<result[i].length; ++j) {
+								console.log(result[i][j]);
+								var cell = "<td>" + result[i][j] + "</td>";
+								row.append(cell);
+							}
+							table.append(row);
+						}
+					}
+				});	
+			});
+		});
+	</script>
 </head>
 <body>
-	<h2>Enter a text in the box below</h2>
-	<form action="/" method="post">
-        <div><textarea name="content" rows="10" cols="80"></textarea></div>
-        <div><input type="submit" value="Annotate"></div>
-    </form>
-	{% if tableData %}
+	<h2>Enter a text to annotate</h2>
+	<!-- <form action="/" method="post"> -->
+        <div><textarea name="content" rows="10" cols="80" id="submitTextBox"></textarea></div>
+        <div><input type="button" value="Annotate" id="submitBtn"></div>
+	<div id="submitStatus"></div>
 	<table id="wordtable">
+		<thead>
 			<tr> <th>Word</th><th>Reading</th><th>Meaning</th><th>Sentence</th></tr>
-		{% for row in tableData %}
-		<tr class="{% cycle 'odd' 'even' %}">
-			{% for cell in row %}
-			<td>{{ cell }}</td>
-			{% endfor %}
-		<tr>
-		{% endfor %}
+		<thead>
+		<tbody>
+		</tbody>
 	</table>
-	{% endif %}
 </body>
 </html>

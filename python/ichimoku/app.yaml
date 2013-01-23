@@ -8,6 +8,9 @@ handlers:
 - url: /styles
   static_dir: wwwapp/styles
   
+- url: /jscript
+  static_dir: wwwapp/jscript
+  
 - url: .*
   script: frontend.app
 
