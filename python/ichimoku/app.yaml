@@ -9,7 +9,7 @@ handlers:
   static_dir: wwwapp/styles
   
 - url: .*
-  script: sugoi-ideas.app
+  script: frontend.app
 
 libraries:
 - name: webapp2
