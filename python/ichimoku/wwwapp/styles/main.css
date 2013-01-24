@@ -1,3 +1,7 @@
+textarea {
+overflow: auto;
+}
+
 #wordtable {
 	border: 2px solid #CCCCCC;
 	border-collapse: collapse;

@@ -6,7 +6,7 @@ import os.path
 #import urllib2
 from google.appengine.api import urlfetch
 import logging
-from google.appengine.api.backends import get_url
+from google.appengine.api.backends import get_url, InvalidBackendError
 from django.utils import simplejson
 from textproc.textprocessor import TextProcessor
 from wwwapp.start import renderStartPage
@@ -34,7 +34,7 @@ class MainPage(webapp2.RequestHandler):
         #response = urllib2.urlopen(req)
         #res = response.read()
         #taggedData = simplejson.loads(res)
-        url = get_url(backend='sugoi-ideas',instance=0) + '/backend'
+        url = get_url(backend='sugoi-ideas') + '/backend'
         logging.info('send %d byte text', len(data))
         result = urlfetch.fetch(url=url,
                         payload=data,
@@ -63,8 +63,8 @@ class BackendPage(webapp2.RequestHandler):
     userText = requestData.get('text')
     logging.info(userText)
     #contents = [['word01'],['definition01'] ]#app.getMecabOutput(userText)
-    self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
-    contents = self.textProc.do(userText)
+    #self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
+    contents = app.textProc.do(userText)
     contents = list(contents)
    # contents = getMecabOutput(userText)
     self.response.out.write(simplejson.dumps(contents))
@@ -72,6 +72,11 @@ class BackendPage(webapp2.RequestHandler):
 class MyApp(webapp2.WSGIApplication):
   def __init__(self):
     webapp2.WSGIApplication.__init__(self, [('/', MainPage), ('/backend', BackendPage)], debug=True)
-    logging.info('started FrontEnd')
+    try:
+        get_url()
+        logging.info('Started backend')
+        self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
+    except InvalidBackendError:
+        logging.info('Started frontend')
 
 app = MyApp()

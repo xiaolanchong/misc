@@ -8,11 +8,14 @@
 	<script language="javascript">
 		$(document).ready(function(){
 			$("#submitBtn").click(function () {
+				$("#wordtable > thead > tr").remove();
+				$("#wordtable > tbody > tr").remove();
 				var text = $("#submitTextBox").val();
 				$.ajax({
 					type: 'post',
 					url: '/',
-					data: { "text" : text, "words" : 1 },
+					data: { "text" : text, "word" : 1, "reading" : 1,
+						    "definition" : 1, "sentence" : 1 },
 					dataType: "json",
 					beforeSend:function(){
 						//launchpreloader();
@@ -21,17 +24,20 @@
 						//alert("fail!!");
 					},
 					success: function(result, textStatus, jqXHR){
-						 //$("#submitStatus").html("<div>" + result + "</div>");
-						 var table = $('<tbody></tbody>');
-						for(i=0; i<result.length; ++i){
-						    var row = $('<tr></tr>');
-							for(j=0; j<result[i].length; ++j) {
-								console.log(result[i][j]);
-								var cell = "<td>" + result[i][j] + "</td>";
+						headRow = $('<tr></tr>').append("<th>Word</th>")
+												.append("<th>Reading</th>")
+												.append("<th>Meaning</th>")
+												.append("<th>Definition</th>");
+						$('#wordtable > thead:last').append(headRow);
+						var table = $('#wordtable > tbody:last');
+						result.forEach( function (element, row) {
+						    var row = $('<tr></tr>').addClass(row % 2 ? "odd" : "even");
+							element.forEach( function (cellText, column) {
+								var cell = "<td>" + cellText + "</td>";
 								row.append(cell);
-							}
+							});
 							table.append(row);
-						}
+						});
 					}
 				});	
 			});
@@ -41,12 +47,12 @@
 <body>
 	<h2>Enter a text to annotate</h2>
 	<!-- <form action="/" method="post"> -->
-        <div><textarea name="content" rows="10" cols="80" id="submitTextBox"></textarea></div>
+        <div><textarea name="content" rows="10" cols="80" id="submitTextBox">ある日の暮方の事である</textarea></div>
         <div><input type="button" value="Annotate" id="submitBtn"></div>
 	<div id="submitStatus"></div>
 	<table id="wordtable">
 		<thead>
-			<tr> <th>Word</th><th>Reading</th><th>Meaning</th><th>Sentence</th></tr>
+			<!-- <tr> <th>Word</th><th>Reading</th><th>Meaning</th><th>Sentence</th></tr> -->
 		<thead>
 		<tbody>
 		</tbody>
