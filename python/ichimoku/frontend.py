@@ -2,10 +2,8 @@
 
 import webapp2
 import os.path
-#import urllib
-#import urllib2
-from google.appengine.api import urlfetch
 import logging
+from google.appengine.api import urlfetch
 from google.appengine.api.backends import get_url, InvalidBackendError
 from django.utils import simplejson
 from textproc.textprocessor import TextProcessor
@@ -28,55 +26,47 @@ class MainPage(webapp2.RequestHandler):
                   'sentence' : 1 }
         logging.info('Received user text %d bytes', len(userText))
         logging.debug('Received user text: %s', userText)
-        #data = urllib.urlencode(simplejson.dumps(values))
         data = simplejson.dumps(values)
-        #req = urllib2.Request(get_url(backend='sugoi-ideas',instance=0), data, headers) #'http://localhost:9100'
-        #response = urllib2.urlopen(req)
-        #res = response.read()
-        #taggedData = simplejson.loads(res)
         url = get_url(backend='sugoi-ideas') + '/backend'
-        logging.info('send %d byte text', len(data))
+        logging.info('send %d bytes text', len(data))
         result = urlfetch.fetch(url=url,
                         payload=data,
                         method=urlfetch.POST,
-                        headers={'Content-Type': 'application/json'})
+                        headers={'Content-Type': 'application/json'},
+                        deadline=8)
         logging.info('received %d byte text', len(result.content))
-       # data = simplejson.loads(result.content)
         self.response.out.write(result.content)
-        #self.response.out.write(renderStartPage(data))
     except Exception as ex:
         logging.error(str(ex))
         self.response.status = 502
-        self.response.status_message = 'Bad Gateway'
+        self.response.status_message = 'Time elapsed while processing the request'
 
 class BackendPage(webapp2.RequestHandler):
   def get(self):
-   # self.response.status = 403
-   # self.response.status_message = "403 Forbidden. The server doesn't accept 'get' requests"
-   pass
+   self.response.status = 403
+   self.response.status_message = "403 Forbidden. The server doesn't accept 'get' requests"
 
   def post(self):
-    logging.info('################# get POST')
+    logging.info('Receive POST with %d bytes body', self.request.body)
     requestData = simplejson.loads(self.request.body)
     logging.info(self.request.body)
     logging.info(requestData)
     userText = requestData.get('text')
     logging.info(userText)
-    #contents = [['word01'],['definition01'] ]#app.getMecabOutput(userText)
-    #self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
     contents = app.textProc.do(userText)
     contents = list(contents)
-   # contents = getMecabOutput(userText)
     self.response.out.write(simplejson.dumps(contents))
 
 class MyApp(webapp2.WSGIApplication):
   def __init__(self):
-    webapp2.WSGIApplication.__init__(self, [('/', MainPage), ('/backend', BackendPage)], debug=True)
+    webapp2.WSGIApplication.__init__(self, [('/', MainPage),
+                                            ('/backend', BackendPage)],
+                                            debug=True)
     try:
         get_url()
-        logging.info('Started backend')
+        logging.info('Starting backend')
         self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
     except InvalidBackendError:
-        logging.info('Started frontend')
+        logging.info('Starting frontend')
 
 app = MyApp()
