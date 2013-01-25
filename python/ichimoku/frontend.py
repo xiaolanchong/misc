@@ -14,7 +14,7 @@ class MainPage(webapp2.RequestHandler):
     self.response.out.write(renderStartPage(None))
 
   def post(self):
-    logging.info('Received user text: %s', self.request.body)
+    logging.info('Received POST: %s', len(self.request.body))
     #data = simplejson.loads(self.request.body)
     userText = self.request.get('text')
     try:
@@ -25,7 +25,7 @@ class MainPage(webapp2.RequestHandler):
                   'definition' : 1,
                   'sentence' : 1 }
         logging.info('Received user text %d bytes', len(userText))
-        logging.debug('Received user text: %s', userText)
+        #logging.debug('Received user text: %s', userText)
         data = simplejson.dumps(values)
         url = get_url(backend='sugoi-ideas') + '/backend'
         logging.info('send %d bytes text', len(data))
@@ -47,12 +47,12 @@ class BackendPage(webapp2.RequestHandler):
    self.response.status_message = "403 Forbidden. The server doesn't accept 'get' requests"
 
   def post(self):
-    logging.info('Receive POST with %d bytes body', self.request.body)
+    logging.info('Receive POST with %d bytes body', len(self.request.body))
     requestData = simplejson.loads(self.request.body)
-    logging.info(self.request.body)
-    logging.info(requestData)
+    #logging.info(self.request.body)
+    #logging.info(requestData)
     userText = requestData.get('text')
-    logging.info(userText)
+    #logging.info(userText)
     contents = app.textProc.do(userText)
     contents = list(contents)
     self.response.out.write(simplejson.dumps(contents))
