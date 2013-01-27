@@ -78,10 +78,52 @@ var ChunkMerger = (function(callback) {
     return ChunkMerger;
 })();
 
+function addCard(chunks) {
+	$.ajax({
+		type: 'post',
+		url: '/addcard',
+		data: { "word" : chunks[0], "reading" : chunks[1],
+				"definition" : chunks[2], "example" : chunks[3] },
+		dataType: "json",
+		beforeSend:function(){
+			//launchpreloader();
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			//alert("fail!!");
+		},
+		success: function(result, textStatus, jqXHR){
+			//populateTable(result);
+			//merger.addChunk(index, result);
+		}
+	});
+}
+
+function deleteCard(id) {
+	$.ajax({
+		type: 'post',
+		url: '/deletecard',
+		data: { "id" : id },
+		dataType: "json",
+		beforeSend:function(){
+			//launchpreloader();
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			//alert("fail!!");
+		},
+		success: function(result, textStatus, jqXHR){
+			//populateTable(result);
+			//merger.addChunk(index, result);
+		}
+	});
+    $(this).closest("tr").remove(); // remove row
+    return false;
+}
+
 function populateTable(data) {
 	if($('#wordtable > thead > tr').length == 0)
 	{
-		headRow = $('<tr></tr>').append("<th>Word</th>")
+		headRow = $('<tr></tr>').append("<th></th>")
+		                        .append("<th>Word</th>")
 								.append("<th>Reading</th>")
 								.append("<th>Definition</th>")
 								.append("<th>Example</th>");
@@ -90,11 +132,37 @@ function populateTable(data) {
 	var table = $('#wordtable > tbody:last');
 	data.forEach( function (element, row) {
 		var row = $('<tr></tr>').addClass(row % 2 ? "odd" : "even");
+		var link=$("<a href=\"#\"><img src=\"img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
+		link.click(function(){
+							var addedImg = "img/Ok-icon.png";
+							if($("img", this).attr("src") == addedImg) {
+								return false;
+							}
+							var allChunks = new Array();
+							$("td", row).each(function(index, tdElem){
+									allChunks.push($(tdElem).text());
+								});
+							allChunks.shift();
+							addCard(allChunks);
+							//$(this).parent().children().eq(0).remove();
+							$("img", this).attr("src", addedImg);
+							return false;
+						});
+		var td = $("<td></td>").append(link)
+		row.append(td)
 		element.forEach( function (cellText, column) {
-			var cell = "<td>" + cellText + "</td>";
+			var cell = $("<td></td>").addClass(column < 2 ? "word" : "").text(cellText);
 			row.append(cell);
 		});
 		table.append(row);
 	});
 }
 
+function submitFileContents(data) {
+    $("#element_to_pop_up").append(
+	'<form id="exportform" action="/export" method="post" target="_blank">' + 
+		'<input type="hidden" id="exportdata" name="exportdata" />' + 
+	'</form>');
+    $("#exportdata").val(data);
+    $("#exportform").submit().remove();
+}

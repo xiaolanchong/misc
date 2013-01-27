@@ -11,6 +11,9 @@ handlers:
 - url: /jscript
   static_dir: wwwapp/jscript
   
+- url: /img
+  static_dir: wwwapp/img
+  
 - url: .*
   script: frontend.app
 

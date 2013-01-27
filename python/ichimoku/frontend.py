@@ -3,15 +3,18 @@
 import webapp2
 import os.path
 import logging
+
 from google.appengine.api import urlfetch
 from google.appengine.api.backends import get_url, InvalidBackendError
 from django.utils import simplejson
 from textproc.textprocessor import TextProcessor
-from wwwapp.start import renderStartPage
+from wwwapp.start import renderStartPage, renderDeckPage, renderAboutPage
+import models
 
 class MainPage(webapp2.RequestHandler):
   def get(self):
-    self.response.out.write(renderStartPage(None))
+    user = models.getDefaultUser()
+    self.response.out.write(renderStartPage(user.name))
 
   def post(self):
     logging.info('Received POST: %s', len(self.request.body))
@@ -41,6 +44,45 @@ class MainPage(webapp2.RequestHandler):
         self.response.status = 502
         self.response.status_message = 'Time elapsed while processing the request'
 
+class AddCardPage(webapp2.RequestHandler):
+  def post(self):
+    logging.info('Received AddCard: %d', len(self.request.body))
+    word = self.request.get('word')
+    reading = self.request.get('reading')
+    definition = self.request.get('definition')
+    example = self.request.get('example')
+    logging.info('add cardzz: %d', len(definition))
+    logging.info('add card: %d, %d, %d, %d', len(word), len(reading), len(definition), len(example))
+    models.addCard(word, reading, definition, example)
+    self.response.out.write('')
+
+class DeleteCardPage(webapp2.RequestHandler):
+  def post(self):
+    logging.info('Received DeleteCard: %d', len(self.request.body))
+    id = self.request.get('id')
+    models.deleteCard(id)
+    self.response.out.write('')
+
+class DeckPage(webapp2.RequestHandler):
+  def get(self):
+    logging.info('Received DeckPage: %d', len(self.request.body))
+    user = models.getDefaultUser()
+    self.response.out.write(renderDeckPage(user.name, models.getCards()))
+
+class AboutPage(webapp2.RequestHandler):
+  def get(self):
+    logging.info('Received AboutPage: %d', len(self.request.body))
+    user = models.getDefaultUser()
+    self.response.out.write(renderAboutPage(user.name))
+
+class ExportDeckPage(webapp2.RequestHandler):
+  def post(self):
+    logging.info('Received Export CVS: %d', len(self.request.body))
+    data = self.request.get('exportdata')
+    self.response.headers['Content-Type'] = 'application/force-download'
+    self.response.headers['Content-disposition'] = 'attachment; filename=deck.csv'
+    self.response.out.write(data)
+
 class BackendPage(webapp2.RequestHandler):
   def get(self):
    self.response.status = 403
@@ -60,6 +102,11 @@ class BackendPage(webapp2.RequestHandler):
 class MyApp(webapp2.WSGIApplication):
   def __init__(self):
     webapp2.WSGIApplication.__init__(self, [('/', MainPage),
+                                            ('/mydeck', DeckPage),
+                                            ('/about', AboutPage),
+                                            ('/addcard', AddCardPage),
+                                            ('/deletecard', DeleteCardPage),
+                                            ('/export', ExportDeckPage),
                                             ('/backend', BackendPage)],
                                             debug=True)
     try:

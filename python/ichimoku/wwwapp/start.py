@@ -13,8 +13,22 @@ def configAsModule():
                        TEMPLATE_DEBUG=False)
     settings._target = None
 
-def renderStartPage(tableData):
-	rendered = render_to_string('index.html', { 'tableData': tableData })
+def renderStartPage(userName):
+	rendered = render_to_string('index.html',
+        { 'userName': userName
+        })
+	return rendered
+
+def renderDeckPage(userName, cards):
+	rendered = render_to_string('deck.html',
+        { 'userName': userName, 'cards' : cards
+        })
+	return rendered
+
+def renderAboutPage(userName):
+	rendered = render_to_string('about.html',
+        { 'userName': userName
+        })
 	return rendered
 
 def main():

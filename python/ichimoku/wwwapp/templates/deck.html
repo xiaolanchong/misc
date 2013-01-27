@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block jscript %}
+<script src="jscript/jquery.bpopup-0.8.0.min.js"></script>
+<script language="javascript">
+	$(document).ready(function(){
+		$("#openExportWnd").click(function () {
+			$("#element_to_pop_up").bPopup({
+				fadeSpeed : "fast"
+			});
+		});
+		$("#exportBtn").click(function () {
+			var csvContent = "";
+			$('#wordtable > tbody > tr').filter(':has(:checkbox:checked)').each(function(){
+				//console.log(csvContent);
+				var line = "";
+				$('td', this).slice(2).each(function() {
+					if(line.length) {
+						line += ";";
+					}
+					quotedText = $(this).text().replace(/\"/g, "\"\"");
+					quotedText = quotedText.replace(/\r|\n/g, " ");
+					line += "\"" + quotedText + "\"";
+				});
+				csvContent += line;
+				csvContent += "\n";
+			});
+			$("#element_to_pop_up").bPopup().close();
+			//console.log(csvContent);
+			submitFileContents(csvContent);
+		});		
+	});
+</script>
+{% endblock %}
+{% block body %}
+{% include "header.html" %}
+{% include "header_band.html" with linkDeck=0 %}
+<h2>My Deck</h2>
+<button id="openExportWnd">Export</button>
+<div id="element_to_pop_up">
+	<a class="bClose">x<a/>
+	<fieldset>
+		<input type="checkbox" name="exportReading" checked>Reading<br>
+		<input type="checkbox" name="exportDefinition" checked>Definition<br>
+		<input type="checkbox" name="exportSentence" checked>Sentence
+	</fieldset>
+	<table>
+		<tr>
+			<td>Optional tag:</td>
+			<td><input type="text" name="optionalTag"></td>
+		</tr>
+		<tr>
+			<td>Filename:</td>
+			<td><input type="text" name="filename" value="deck.csv"></td>
+		</tr>
+	</table>
+	<button id="exportBtn">Export</button>
+</div>
+<table id="wordtable">
+	<thead>
+		<tr>
+			<th>Delete</th>
+			<th>Export</th>
+			<th>Word</th>
+			<th>Reading</th>
+			<th>Definition</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for card in cards %}
+			<tr class="{% cycle 'odd' 'even' %}">
+				<td><a href="#"><img src="img/Close-2-icon.png" onclick="return deleteCard('{{card.key}}');" title="remove the word from the deck"/></a></td>
+				<td><input type="checkbox" checked></td>
+				<td class="word">{{ card.word }}</td>
+				<td class="word">{{ card.reading }}</td>
+				<td>{{ card.definition }}</td>
+				<td>{{ card.example }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

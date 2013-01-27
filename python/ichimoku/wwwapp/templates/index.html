@@ -1,58 +1,55 @@
-<html>
-<head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Ichimoku - Japanese text parser.</title>
-	<link rel="stylesheet" type="text/css" href="styles/main.css">
-	<script src="jscript/jquery-1.9.0.min.js"></script>
-	<script src="jscript/utils.js"></script>	
-	<script language="javascript">
-		 
-		$(document).ready(function(){
-			$("#submitBtn").click(function () {
-				$("#wordtable > thead > tr").remove();
-				$("#wordtable > tbody > tr").remove();
-				var text = $("#submitTextBox").val();
-				var chunks = splitIntoChunks(text);
-				var merger = new ChunkMerger( 
-							function(chunk){
-								populateTable(chunk);
-							}
-						);
-				chunks.forEach( function(chunk, index){
-					$.ajax({
-						type: 'post',
-						url: '/',
-						data: { "text" : chunk, "word" : 1, "reading" : 1,
-								"definition" : 1, "sentence" : 1 },
-						dataType: "json",
-						beforeSend:function(){
-							//launchpreloader();
-						},
-						error: function(jqXHR, textStatus, errorThrown){
-							//alert("fail!!");
-						},
-						success: function(result, textStatus, jqXHR){
-							//populateTable(result);
-							merger.addChunk(index, result);
+{% extends "base.html" %}
+
+{% block jscript %}
+<script language="javascript">
+	$(document).ready(function(){
+		$("#submitBtn").click(function () {
+			$("#wordtable > thead > tr").remove();
+			$("#wordtable > tbody > tr").remove();
+			var text = $("#submitTextBox").val();
+			var chunks = splitIntoChunks(text);
+			var merger = new ChunkMerger( 
+						function(chunk){
+							populateTable(chunk);
 						}
-					});
+					);
+			chunks.forEach( function(chunk, index){
+				$.ajax({
+					type: 'post',
+					url: '/',
+					data: { "text" : chunk, "word" : 1, "reading" : 1,
+							"definition" : 1, "sentence" : 1 },
+					dataType: "json",
+					beforeSend:function(){
+						//launchpreloader();
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						//alert("fail!!");
+					},
+					success: function(result, textStatus, jqXHR){
+						//populateTable(result);
+						merger.addChunk(index, result);
+					}
 				});
 			});
 		});
-	</script>
-</head>
-<body>
-	<h2>Enter a text to annotate</h2>
-	<!-- <form action="/" method="post"> -->
-        <div><textarea name="content" rows="10" cols="80" id="submitTextBox">ある日の暮方の事である</textarea></div>
-        <div><input type="button" value="Annotate" id="submitBtn"></div>
-	<div id="submitStatus"></div>
-	<table id="wordtable">
-		<thead>
-			<!-- <tr> <th>Word</th><th>Reading</th><th>Meaning</th><th>Sentence</th></tr> -->
-		<thead>
-		<tbody>
-		</tbody>
-	</table>
-</body>
-</html>
+	});
+</script>
+{% endblock %}
+{% block body %}
+{% include "header.html" %}
+{% include "header_band.html" with linkAnnotate=0 %}
+<h4 style="color:gray;">Enter a text to annotate</h4>
+<div><textarea name="content" rows="5" cols="80" id="submitTextBox">ある日の暮方の事である</textarea></div>
+<table style="padding:5px;"><tr>
+	<td style="margin-right: 20px;"><input type="button" value="Annotate" id="submitBtn"></td>
+	<td style="margin-right: 20px;"><input type="checkbox"/>Reading<input type="checkbox"/>Definition</td>
+</tr></table>
+<div id="submitStatus"></div>
+<table id="wordtable">
+	<thead>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+{% endblock %}

@@ -1,5 +1,47 @@
+html
+{
+height: 100%;
+}
+
+body
+{
+height: 100%;
+font-family:Verdana,Arial,sans-serif;
+}
+
+.right{
+position:relative;
+margin:0;
+padding:0;
+float:right;
+}
+.left{
+position:relative;
+margin:0;
+padding:0;
+float:left;
+margin-left: 5px;
+}
+
 textarea {
 overflow: auto;
+}
+
+#element_to_pop_up { 
+    background-color:#fff;
+    border-radius:15px;
+    color:#000;
+    display:none; 
+    padding:20px;
+    min-width:400px;
+    min-height: 180px;
+}
+
+.bClose{
+    cursor:pointer;
+    position:absolute;
+    right:10px;
+    top:5px;
 }
 
 #wordtable {
@@ -10,21 +52,16 @@ overflow: auto;
 }
 #wordtable td, #wordtable th {
 	border: 1px solid #CCC;
-	padding: 10px;
+	padding: 5px;
 }
 
-#wordtable th:nth-of-type(2) {
-	text-align: left;
-}
-
-#wordtable td:nth-of-type(1), #wordtable th:nth-of-type(1) {
-	width: 75px;
+#wordtable td.word {
 	text-align: center;
 }
 
 #wordtable th {
 	font-weight: bold;
-	font-size: 16px;
+	/*font-size: 16px;*/
 	background-color: #DDE9FF;
 }
 
