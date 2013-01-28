@@ -95,6 +95,9 @@ def isPrefix(pos):
 def isNounSuffix(pos):
     return pos >= NOUN_SUFFIX_VSURU and pos <= NOUN_SUFFIX_ADV
 
+def isNoun(pos):
+    return pos >= NOUN_VSURU and pos <= NOUN_ADVERB
+
 def isNotWord(pos):
     """
         Not to skip OTHER!

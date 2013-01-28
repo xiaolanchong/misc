@@ -6,11 +6,14 @@ import sys
 import os.path
 sys.path.append(os.path.abspath('..'))
 from textproc.jdictprocessor import JDictProcessor
+from textproc.dartsdict import DartsDictionary
 import mecab.partofspeech as PoS
+from mecab.writer import WordInfo
 
 class JDictProcessorTest(unittest.TestCase):
     def setUp(self):
-        self.processor = JDictProcessor()
+        dictionary = DartsDictionary(os.path.join('..', 'data', 'jdict.zip'))
+        self.processor = JDictProcessor(dictionary)
 
     def testDifferentReadingsSameWord(self):
         """
@@ -51,6 +54,28 @@ class JDictProcessorTest(unittest.TestCase):
         ]
         res = self.processor.getBestAlternative(definitions, PoS.VERB)
         self.assertEqual(definitions[0], res)
+
+    def testMergeNoun(self):
+        a = WordInfo( '検疫', 0, '検疫', PoS.NOUN_VSURU, 'xx')
+        b = WordInfo( '所', 2, '所', PoS.NOUN_SUFFIX, 'xx')
+        newWord = self.processor.mergeWord(a, b)
+        expected = WordInfo('検疫所', 0, '検疫所' , PoS.NOUN, 'けんえきじょ')
+        self.assertEqual(newWord, expected)
+
+    def testMergeNoun3Kanji(self):
+        a = WordInfo( '数', 0, '数', PoS.NOUN_VSURU, 'xx')
+        b = WordInfo( '時間', 1, '時間', PoS.NOUN_SUFFIX, 'xx')
+        newWord = self.processor.mergeWord(a, b)
+        expected = WordInfo('数時間', 0, '数時間' , PoS.NOUN, 'すうじかん')
+        self.assertEqual(newWord, expected)
+
+    def testMergeNoun4Kanji(self):
+        a = WordInfo( '予算', 0, '予算', PoS.NOUN, 'xx')
+        b = WordInfo( '補正', 2, '補正', PoS.NOUN, 'xx')
+        newWord = self.processor.mergeWord(a, b)
+       # expected = WordInfo('補正予算', 0, '補正予算' , PoS.NOUN, 'すうじかん')
+        self.assertIsNone(newWord)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(JDictProcessorTest)
