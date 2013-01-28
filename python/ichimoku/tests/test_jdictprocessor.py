@@ -12,9 +12,6 @@ class JDictProcessorTest(unittest.TestCase):
     def setUp(self):
         self.processor = JDictProcessor()
 
-    def testA(self):
-        pass
-
     def testDifferentReadingsSameWord(self):
         """
         新所帯|||あらじょたい|||(n) new household/new home

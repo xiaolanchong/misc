@@ -6,17 +6,18 @@ import codecs
 from mecab.utils import text_type, isPy2
 from .textparser import TextParser
 from .sentenceparser import SentenceParser
-# no sqlite at GAE
-#from .sqlitedict import SqliteDictionary
 from .glossary import Glossary
 from .dartsdict import DartsDictionary
 from .jdictprocessor import JDictProcessor
 
 class Settings:
+    """
+    Output settings of the processor
+    """
     def __init__(self):
-        self.ignoreSymbols = True
-        self.readingForKanjiOnly = True
-        self.sentenceOnlyForFirst = False
+        self.ignoreSymbols = True # do not output 、 ？ etc.
+        self.readingForKanjiOnly = True # do not provide reading if the word has no kanji
+        self.sentenceOnlyForFirst = False # give the sentence only for the 1st word in it
 
     @classmethod
     def Minimal(cls):
@@ -35,27 +36,38 @@ class TextProcessor:
     def __init__(self, dbFileName, parentDir=None):
       self.dictionary = DartsDictionary(dbFileName)
       self.parser = SentenceParser(parentDir)
-      #self.dbFileName = dbFileName
-     # self.parentDir = parentDir
+
     @classmethod
     def hasKanji(cls, word):
         m = re.search("[\u4E00-\u9FFF]", word, re.S|re.UNICODE)
         return m is not None
 
     def parseSentence(self, text):
+        """
+        Parses and looks up the 1st entry in JDIC
+        """
         def isWordInDictionary(word):
             return self.dictionary.getReadingAndDefinition(word)[0] is not None
         allWords = self.parser.splitIntoWords(text, isWordInDictionary)
         return allWords
 
     def getContext(self, text, wordInfo):
+        """
+        Gets 10 symbol before and after the given one
+        text: text to the substring extract from
+        wordInfo: the mean of the range
+        """
         contextStart = max(0, wordInfo.startPos - 10)
         contextEnd = min(wordInfo.startPos + len(wordInfo.word) + 10, len(text))
         textToLog = text[contextStart:contextEnd]
         return textToLog
 
-
     def parseSentenceWithBestChoice(self, text, settings):
+        """
+        Parses and selects the best match to JDICT dictionary
+        text: string to parse
+        settings: Settings object to set the parsing up
+        """
         allWordInfo = self.parser.tokenize2(text)
         jdictProcessor = JDictProcessor()
         allWords = []
@@ -85,10 +97,6 @@ class TextProcessor:
         p = TextParser(text)
         glossary = Glossary()
         for sentence in p.getSentences():
-            #allWords = self.parseSentence(sentence)
             allWords = self.parseSentenceWithBestChoice(sentence, settings)
             for word, reading, definition in allWords:
                 yield word, reading, definition, sentence
-       #     self.addToGlossary(glossary, allWords, sentence)
-       # for word, reading, definition, sentence in glossary.getFoundWords():
-       #     yield word, reading, definition, sentence

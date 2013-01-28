@@ -79,8 +79,6 @@ class MecabOutputGetter(MecabRunner):
     def getParam(self, expr):
         if len(expr) == 0:
             return
-      #  if re.match('\[(.+?)\]', expr, re.S):
-      #      return
         m = re.match('\=?(.+?),(.*?),\[pos\],(\d+),\[cost\],(-?\d+),(-?\d+),(-?\d+),(-?\d+),(-?\d+),\[l2\].*', expr, re.S)
         if m:
             morphema, dictForm, pos, wordCost, linkCost, totalCost, leftAttr, rightAttr = m.groups()
@@ -97,7 +95,7 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    res = runner.run('ジーン・モーラの姿は見えなかった。')
+    res = runner.run('聞いた者も何人かあったが')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():

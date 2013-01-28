@@ -93,7 +93,6 @@ def maxIndex(l):
     return None
 
 class WordMapper:
-  #  NOUN =
     def __init__(self):
         """
             Attributes reflecting the part of speech ipadic's value

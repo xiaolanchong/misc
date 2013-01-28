@@ -4,13 +4,13 @@ from mecab.token import Token
 
 class Node:
     def __init__(self, token, startPos):
-        self.leftNode = None
-        self.rightNode = None
-        self.totalCost = 0
-        self.startPos = startPos
-        self.token = token
-        self.connectionCost = 0
-        self.isKnown = True
+        self.leftNode = None    # reference to the node before
+        self.rightNode = None   # reference to the node after
+        self.totalCost = 0      # cost of the entire path till the node
+        self.startPos = startPos    # starting position of the token in the sentence
+        self.token = token      # token from the dictionary
+        self.connectionCost = 0 # cost after the connection
+        self.isKnown = True     # known token?
 
     def createUnknownNode(text):
         t = Token(text, 0, 0, 0, 0, 0, 0)

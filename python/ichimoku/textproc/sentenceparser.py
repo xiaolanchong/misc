@@ -6,7 +6,6 @@ from mecab import utils
 from mecab import runmecab
 from mecab.viterbi import Viterbi
 from mecab.writer import Writer
-#from textproc.wordclass import PartOfSpeech, SubType
 
 class SentenceParser(object):
 
@@ -101,14 +100,7 @@ class SentenceParser(object):
 
     def getSuffixInfo(self, partOfSpeech, subType):
         result = { '名詞' : (subType == '接尾', False) ,
-##                   'å‹•è©ž' : (PartOfSpeech.VERB, False),
-##                   'å½¢å®¹è©ž' : (PartOfSpeech.ADJECTIVE, False),
-##                   'å‰¯è©ž' : (PartOfSpeech.ADVERB, False),
-##                   'åŠ©è©ž' : (PartOfSpeech.PARTICLE, False),
-##                   'æ„Ÿå‹•è©ž' : (PartOfSpeech.INTERJECTION, False),
-##                   'è¨˜å·' : (PartOfSpeech.SYMBOL, False),
                    '助動詞' : (True, True),
                    '助詞' : (subType == '接続助詞', subType == '接続助詞')
-##                   '' : (PartOfSpeech.CONJUNCTION, False)
                   }
         return result.get(partOfSpeech, (False, False))
