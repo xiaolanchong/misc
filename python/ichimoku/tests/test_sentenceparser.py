@@ -37,12 +37,10 @@ class SentenceParserTest(unittest.TestCase):
         self.assertEquals(['朝', 'ちがいない'], res)
 
     def testTaForm(self):
-        #dictionary
         res = self.parser.splitIntoWords('所に着いたのは', lambda x: False)
         self.assertEquals(['所', 'に', '着く', 'の', 'は'], res)
 
     def testTeIruForm(self):
-        #dictionary
         res = self.parser.splitIntoWords('雨が降っていた', lambda x: False, False)
         self.assertEquals(['雨', 'が', '降る', 'いる'], res)
 
@@ -58,14 +56,29 @@ class SentenceParserTest(unittest.TestCase):
     def testTokenize2(self):
         parser = SentenceParser('..')
         res = parser.tokenize2('所に着いたのは')
-        expected = [ WordInfo('所', '所', 38, 'トコロ'),
-                     WordInfo('に', 'に', 13, 'ニ'),
-                     WordInfo('着い', '着く', 31, 'ツイ'),
-                     WordInfo('た', 'た', 25, 'タ'),
-                     WordInfo('の', 'の', 63, 'ノ'),
-                     WordInfo('は', 'は', 16, 'ハ')
+        expected = [ WordInfo('所', 0, '所', 38, 'トコロ'),
+                     WordInfo('に', 1, 'に', 13, 'ニ'),
+                     WordInfo('着い', 2, '着く', 31, 'ツイ'),
+                     WordInfo('た', 4, 'た', 25, 'タ'),
+                     WordInfo('の', 5, 'の', 63, 'ノ'),
+                     WordInfo('は', 6, 'は', 16, 'ハ')
                    ]
         self.assertEquals(expected, res)
+
+    def testUnknownWord(self):
+        parser = SentenceParser('..')
+        res = parser.tokenize2('デッキに昇って行った')
+        expected = [ WordInfo('デッキ', 0, '', 38, ''),
+                     WordInfo('に', 3, 'に', 13, 'ニ')
+                   ]
+        self.assertEquals(expected, res[0:2])
+
+    def testComma(self):
+        parser = SentenceParser('..')
+        res = parser.tokenize2('や、船客')
+        self.assertEqual(3, len(res))
+       # for i in range(6):
+       #     self.assertEqual('マール・ブランデー', res[i].token.text)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(SentenceParserTest)

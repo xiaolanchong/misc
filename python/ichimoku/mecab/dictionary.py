@@ -16,7 +16,6 @@ class Dictionary:
         self.tokenBlob = []
         self.featureBlob = None
         self.doubleArray = None
-        #self.loadFromBinary(fileName)
         if isPy2x6():
             #dictFile = compress.load(fileName)
             dictFile = open(fileName, mode='rb')
@@ -51,23 +50,22 @@ class Dictionary:
                 return
 
     def loadFromBinary(self, dictFile):
-            """
-                Loads the dictionary from the blob
-            """
-     #   with compress.load(fileName) as dictFile:
-            fmt = str('<IIIIIIIIII')
-            header = dictFile.read(calcsize(fmt))
-            magic, version, dictType, lexSize, \
-            leftSize, rightSize, dataSize, \
-            tokenPartSize, featurePartSize, dummy = \
-                unpack(fmt, header)
-            if version != 102:
-                raise RuntimeError('Incompatible dictionary version: {0}'.format(version))
-            charSetBuffer, = unpack(str('32s'), dictFile.read(32))
-            self.charset = extractString(charSetBuffer).lower()
-            self.doubleArray = DoubleArray(dictFile.read(dataSize))
-            self.tokenBlob = dictFile.read(tokenPartSize)
-            self.featureBlob = dictFile.read(featurePartSize)
+        """
+            Loads the dictionary from the blob
+        """
+        fmt = str('<IIIIIIIIII')
+        header = dictFile.read(calcsize(fmt))
+        magic, version, dictType, lexSize, \
+        leftSize, rightSize, dataSize, \
+        tokenPartSize, featurePartSize, dummy = \
+            unpack(fmt, header)
+        if version != 102:
+            raise RuntimeError('Incompatible dictionary version: {0}'.format(version))
+        charSetBuffer, = unpack(str('32s'), dictFile.read(32))
+        self.charset = extractString(charSetBuffer).lower()
+        self.doubleArray = DoubleArray(dictFile.read(dataSize))
+        self.tokenBlob = dictFile.read(tokenPartSize)
+        self.featureBlob = dictFile.read(featurePartSize)
 
 
     def loadTokens(self, dictFile, tokenPartSize):

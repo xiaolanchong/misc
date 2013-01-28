@@ -97,11 +97,12 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    #res = runner.run('船が検疫所に着いたのは、朝の四時頃にちがいない。')
-    res = runner.run('すべてに滲《し》み込み')
+    res = runner.run('ジーン・モーラの姿は見えなかった。')
+   # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():
             print(' '.join(line))
 
 if __name__ == '__main__':
-    getPartOfSpeech()
+    #getPartOfSpeech()
+    dumpNodeInfo()

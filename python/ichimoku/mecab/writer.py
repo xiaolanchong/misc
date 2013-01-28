@@ -3,25 +3,29 @@
 from __future__ import unicode_literals
 from mecab.node import Node
 from mecab.token import Token
+from mecab.partofspeech import isNotWord
 
 class WordInfo:
-    def __init__(self, word, startPos, dictionaryForm, partOfSpeech, kana):
+    def __init__(self, word, startPos, dictionaryForm, partOfSpeech, kanaReading):
         self.word = word
         self.startPos = startPos
         self.dictionaryForm = dictionaryForm
         self.partOfSpeech = partOfSpeech
-        self.kana = kana
+        self.kanaReading = kanaReading
+
+    def isNotWord(self):
+        return isNotWord(self.partOfSpeech)
 
     def __repr__(self):
         return '({0}, {1}, {2}, {3}, {4})'.format(self.word, self.startPos,
-                    self.dictionaryForm, self.partOfSpeech, self.kana)
+                    self.dictionaryForm, self.partOfSpeech, self.kanaReading)
 
     def __eq__(self, other):
         return  self.word == other.word and \
                 self.startPos == other.startPos and \
                 self.dictionaryForm == other.dictionaryForm and \
                 self.partOfSpeech == other.partOfSpeech and \
-                self.kana == other.kana
+                self.kanaReading == other.kanaReading
 
     def __neq__(self, other):
         return not self.__eq__(other)
@@ -92,6 +96,8 @@ class Writer:
             out.append(WordInfo(text, node.startPos,  self.getItemOrEmptyStr(featureStr, 6),
                                 node.token.partOfSpeechId, self.getItemOrEmptyStr(featureStr, 7)))
         return out
+
+
 
     def getItemOrEmptyStr(self, arr, index):
         return arr[index] if len(arr) > index else ''

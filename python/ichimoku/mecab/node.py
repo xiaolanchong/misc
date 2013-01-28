@@ -25,4 +25,5 @@ class Node:
         right.connectionCost = connectionCost
 
     def __repr__(self):
-        return 'token: [{0}], totalCost: {1}'.format(self.token, self.totalCost)
+        return 'token: [{0}], startPos: {1}, totalCost: {2}'.format(
+                    self.token, self.startPos, self.totalCost)

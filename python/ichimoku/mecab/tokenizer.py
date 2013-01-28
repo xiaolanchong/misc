@@ -14,6 +14,7 @@ class Tokenizer:
         if self.sysDictionary.getCharSet() != 'euc-jp':
             raise RuntimeError('Unknown dictionary encoding: ' + self.sysDictionary.getCharSet())
         self.charProperties = CharProperty(charPropFileName, self.sysDictionary.getCharSet())
+        self.spaceCharInfo = self.charProperties.getCharInfo(' ')
 
     def getFeature(self, featureId, isKnown):
         if isKnown:
@@ -21,23 +22,52 @@ class Tokenizer:
         else:
             return '' #return self.unkDictionary.getFeature(featureId)
 
+    def seekToOtherCharType(self, text, charInfo):
+        for i in range(len(text)):
+            ch = self.charProperties.getCharInfo(text[i])
+            if not charInfo.isKindOf(ch):
+                return i, ch
+        return len(text), charInfo
+
+    def needSeizeMoreChars(self, text, startCharInfo):
+        if startCharInfo.invoke:
+            endToLookupPos, endToLookup = self.seekToOtherCharType(text, startCharInfo)
+            return endToLookupPos != 0
+        else:
+            return False
+
     def lookUp(self, text, posInSentence):
-        #TODO: skip spaces (CharInof(' '))
+        # skip leading spaces
+        startToLookup, startCharInfo = self.seekToOtherCharType(text, self.spaceCharInfo)
+        text = text[startToLookup:]
+        posInSentence += startToLookup
         tokens = self.sysDictionary.commonPrefixSearch(text)
         if tokens and len(tokens):
-            return [Node(token, posInSentence) for token in tokens]
+            if not startCharInfo.canBeGrouped():
+                return [Node(token, posInSentence) for token in tokens]
+            else:
+                wordFound = tokens[0].text
+                endToLookupPos, endToLookup = self.seekToOtherCharType(text[len(wordFound):], startCharInfo)
+                if endToLookupPos == 0:
+                    # can't extend the tokens
+                    return [Node(token, posInSentence) for token in tokens]
+                else:
+                    # extend the context and convert the found tokens to unknown ones
+                    return self.getUnknownTokens(startCharInfo, text[0 : len(wordFound) + endToLookupPos], posInSentence)
         else:
             #unknown token
-            #TODO: join the same class chars in the single token
-            charInfo = self.charProperties.getCharInfo(text[0])
-            ch = charInfo.defaultType
-            cat = self.charProperties.getCategories()[ch]
-            tokens = self.unkDictionary.commonPrefixSearch(cat)
-            nodes = [Node(token, posInSentence) for token in tokens]
-            for node in nodes:
-                node.token.text = text[0]
-                node.isKnown = False
-            return nodes
+            endToLookupPos, endToLookup = self.seekToOtherCharType(text, startCharInfo)
+            return self.getUnknownTokens(startCharInfo, text[0 : endToLookupPos], posInSentence)
+
+    def getUnknownTokens(self, startCharInfo, tokenText, posInSentence):
+        ch = startCharInfo.defaultType
+        cat = self.charProperties.getCategories()[ch]
+        tokens = self.unkDictionary.commonPrefixSearch(cat)
+        nodes = [Node(token, posInSentence) for token in tokens]
+        for node in nodes:
+            node.token.text = tokenText
+            node.isKnown = False
+        return nodes
 
     def getBOSNode(self, bosPos):
         t = Token('', 0, 0, 0, 0, self.BOS_FEATURE, 0)

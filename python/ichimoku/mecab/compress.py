@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from zipfile import ZipFile
-from utils import isPy2x6
+from mecab.utils import isPy2x6
 
 def load(fileName):
     """

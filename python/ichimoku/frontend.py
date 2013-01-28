@@ -7,7 +7,7 @@ import logging
 from google.appengine.api import urlfetch
 from google.appengine.api.backends import get_url, InvalidBackendError
 from django.utils import simplejson
-from textproc.textprocessor import TextProcessor
+from textproc.textprocessor import TextProcessor, Settings
 from wwwapp.start import renderStartPage, renderDeckPage, renderAboutPage
 import models
 
@@ -51,7 +51,6 @@ class AddCardPage(webapp2.RequestHandler):
     reading = self.request.get('reading')
     definition = self.request.get('definition')
     example = self.request.get('example')
-    logging.info('add cardzz: %d', len(definition))
     logging.info('add card: %d, %d, %d, %d', len(word), len(reading), len(definition), len(example))
     models.addCard(word, reading, definition, example)
     self.response.out.write('')
@@ -77,7 +76,7 @@ class AboutPage(webapp2.RequestHandler):
 
 class ExportDeckPage(webapp2.RequestHandler):
   def post(self):
-    logging.info('Received Export CVS: %d', len(self.request.body))
+    logging.info('Received Export: %d', len(self.request.body))
     data = self.request.get('exportdata')
     self.response.headers['Content-Type'] = 'application/force-download'
     self.response.headers['Content-disposition'] = 'attachment; filename=deck.csv'
@@ -95,7 +94,7 @@ class BackendPage(webapp2.RequestHandler):
     #logging.info(requestData)
     userText = requestData.get('text')
     #logging.info(userText)
-    contents = app.textProc.do(userText)
+    contents = app.textProc.do(userText, Settings.Minimal())
     contents = list(contents)
     self.response.out.write(simplejson.dumps(contents))
 

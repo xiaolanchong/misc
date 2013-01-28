@@ -4,17 +4,26 @@ import mecab.utils as utils
 
 class CharInfo:
     def __init__(self, type, defaultType, length, group, invoke):
-        self.type = type
+        self.type = type  # bit mask of the categories the char belongs to
         self.defaultType = defaultType
-        self.length = length
-        self.group = group
-        self.invoke= invoke
+        self.length = length # 1 to n length new words are added
+        self.group = group  # 1/0:   make a new word by grouping the same character category
+        self.invoke= invoke # always invoke unknown word processing, evan when the word can be found in the lexicon
 
     def isKindOf(self, charInfo):
-        return type & charInfo.type
+        return self.type & charInfo.type
 
     def isInCategory(self, categoryId):
         return self.type & (1 << categoryId)
+
+   # def getGroupLength(self):
+    #    return 1 if self.length else 0
+
+    def canBeGrouped(self):
+        return self.group and self.invoke and self.length
+
+    #def canBeJoined(self):
+    #    return self.invoke != 0
 
     def __repr__(self):
         return 'type:{0}, defaultType:{1}, length:{2}, group:{3}, invoke:{4}'.format(
