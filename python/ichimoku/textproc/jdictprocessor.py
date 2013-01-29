@@ -6,10 +6,7 @@ from .wordmapper import WordMapper
 from mecab.writer import WordInfo
 import mecab.partofspeech as PoS
 from mecab.utils import isPy2
-if isPy2():
-    import textproc.jcconv_2x as jcconv
-else:
-    import textproc.jcconv_3x as jcconv
+from . import jcconv_3x as jcconv
 
 class JDictProcessor:
     def __init__(self, lookupDictionary):

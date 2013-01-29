@@ -79,7 +79,7 @@ class JDictProcessorTest(unittest.TestCase):
     def testSelectNounOnReading(self):
         a = WordInfo('所' , 0, '所', PoS.NOUN_SUFFIX, 'ショ')
         allWords = self.processor.dictionary.getAllReadingAndDefinition('所')
-        newWord = self.processor.getBestAlternativeOnReading(allWords, a.kanaReading)
+        newWord = self.processor.filterOnReading(allWords, a.kanaReading)
         self.assertEqual(newWord, ('しょ', '(suf,ctr) counter for places'))
 
 
