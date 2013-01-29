@@ -12,7 +12,7 @@ class TextProcessorTest(unittest.TestCase):
     def setUp(self):
         zzz = os.path.dirname(__file__)
         zzz = os.path.dirname(zzz)
-        self.textProc = TextProcessor(os.path.join('..\\data', 'jdict.zip'), zzz)
+        self.textProc = TextProcessor(os.path.join('..', 'data', 'jdict.zip'), zzz)
 
     def testDumpAll(self):
         res = self.textProc.do('船が検疫所に着いたのは', Settings.All())
@@ -22,7 +22,7 @@ class TextProcessorTest(unittest.TestCase):
         ('船', 'ふね', '(n,n-suf,ctr) ship/boat/watercraft/vessel/steamship/tank/tub/vat/trough/counter for boat-shaped containers (e.g. of sashimi)/(P)', '船が検疫所に着いたのは'),
         ('が', 'が', '(prt,conj) indicates sentence subject (occasionally object)/indicates possessive (esp. in literary expressions)/but/however/still/and/(P)', '船が検疫所に着いたのは'),
         ('検疫', 'けんえき', '(n,vs) quarantine/medical inspection', '船が検疫所に着いたのは'),
-        ('所', 'ところ', "(n,suf,uk) place/spot/scene/site/address/district/area/locality/one's house/point/part/space/room/whereupon/as a result/(after present form of a verb) about to/on the verge of/(P)", '船が検疫所に着いたのは'),
+        ('所', 'しょ', "(suf,ctr) counter for places", '船が検疫所に着いたのは'),
         ('に', 'に', '(prt) indicates such things as location of person or thing, location of short-term action, etc./(P)', '船が検疫所に着いたのは'),
         ('着く', 'つく', '(v5k) to arrive at/to reach/to sit on/to sit at (e.g. the table)/(P)', '船が検疫所に着いたのは'),
         ('た', 'た', '(aux-v) indicate past completed or action/indicates light imperative', '船が検疫所に着いたのは'),
@@ -45,7 +45,7 @@ class TextProcessorTest(unittest.TestCase):
         ('船', 'ふね', '(n,n-suf,ctr) ship/boat/watercraft/vessel/steamship/tank/tub/vat/trough/counter for boat-shaped containers (e.g. of sashimi)/(P)', '船が、検疫所に着いたのは'),
         ('が', '', '(prt,conj) indicates sentence subject (occasionally object)/indicates possessive (esp. in literary expressions)/but/however/still/and/(P)', '船が、検疫所に着いたのは'),
         ('検疫', 'けんえき', '(n,vs) quarantine/medical inspection', '船が、検疫所に着いたのは'),
-        ('所', 'ところ', "(n,suf,uk) place/spot/scene/site/address/district/area/locality/one's house/point/part/space/room/whereupon/as a result/(after present form of a verb) about to/on the verge of/(P)", '船が、検疫所に着いたのは'),
+        ('所', 'しょ', "(suf,ctr) counter for places", '船が、検疫所に着いたのは'),
         ('に', '', '(prt) indicates such things as location of person or thing, location of short-term action, etc./(P)', '船が、検疫所に着いたのは'),
         ('着く', 'つく', '(v5k) to arrive at/to reach/to sit on/to sit at (e.g. the table)/(P)', '船が、検疫所に着いたのは'),
         ('た', '', '(aux-v) indicate past completed or action/indicates light imperative', '船が、検疫所に着いたのは'),
@@ -69,10 +69,16 @@ class TextProcessorTest(unittest.TestCase):
         self.assertEqual(snt, res)
 
     def testExtentionOfUnknownToken(self):
-        #res = self.textProc.do('ジーン・モーラの姿は見えなかった。')
         res = self.textProc.do('ジーン・モーラの姿は見えなかった。')
         res = list(res)
         self.assertEqual(7, len(list(res)))
+        self.assertEqual('ジーン・モーラ', res[0][0])
+
+    def testOnReading(self):
+        res = self.textProc.do('数時間が')
+        res = list(res)
+        self.assertEqual(3, len(list(res)))
+        self.assertEqual('すう', res[0][1])
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TextProcessorTest)

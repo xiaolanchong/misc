@@ -76,6 +76,12 @@ class JDictProcessorTest(unittest.TestCase):
        # expected = WordInfo('補正予算', 0, '補正予算' , PoS.NOUN, 'すうじかん')
         self.assertIsNone(newWord)
 
+    def testSelectNounOnReading(self):
+        a = WordInfo('所' , 0, '所', PoS.NOUN_SUFFIX, 'ショ')
+        allWords = self.processor.dictionary.getAllReadingAndDefinition('所')
+        newWord = self.processor.getBestAlternativeOnReading(allWords, a.kanaReading)
+        self.assertEqual(newWord, ('しょ', '(suf,ctr) counter for places'))
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(JDictProcessorTest)

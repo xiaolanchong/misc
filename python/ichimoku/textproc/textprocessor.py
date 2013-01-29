@@ -69,7 +69,7 @@ class TextProcessor:
         settings: Settings object to set the parsing up
         """
         allWordInfo = self.parser.tokenize2(text)
-        jdictProcessor = JDictProcessor()
+        jdictProcessor = JDictProcessor(self.dictionary)
         allWords = []
         for wordInfo in allWordInfo:
             if settings.ignoreSymbols and wordInfo.isNotWord():
@@ -78,6 +78,7 @@ class TextProcessor:
                 continue
             if len(wordInfo.dictionaryForm):
                 alternatives = self.dictionary.getAllReadingAndDefinition(wordInfo.dictionaryForm)
+                alternatives = jdictProcessor.filterOnReading(alternatives, wordInfo.kanaReading)
                 reading, definition = jdictProcessor.getBestAlternative(alternatives, wordInfo.partOfSpeech)
                 if settings.readingForKanjiOnly and not TextProcessor.hasKanji(wordInfo.dictionaryForm):
                     reading = ''

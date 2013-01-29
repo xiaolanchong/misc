@@ -6,10 +6,10 @@ from .wordmapper import WordMapper
 from mecab.writer import WordInfo
 import mecab.partofspeech as PoS
 from mecab.utils import isPy2
-if isPy2:
-    import jcconv_2x as jcconv
+if isPy2():
+    import textproc.jcconv_2x as jcconv
 else:
-    import jcconv_3x as jcconv
+    import textproc.jcconv_3x as jcconv
 
 class JDictProcessor:
     def __init__(self, lookupDictionary):
@@ -40,18 +40,17 @@ class JDictProcessor:
         else:
             return None
 
-    def getBestAlternativeOnReading(self, wordsAndDefinitions, mecabReading):
-        if len(wordsAndDefinitions) == 0:
-            return (None, None)
-        elif len(wordsAndDefinitions) == 1:
-            return wordsAndDefinitions[0]
-        allAttributes = [self.getWordAttributes(definition) for word, definition in wordsAndDefinitions]
-        mapper = WordMapper()
-        res = mapper.selectBestWord(allAttributes, pos)
-        if res is not None:
-            return wordsAndDefinitions[res]
-        else:
-            return None
+    def filterOnReading(self, readingsAndDefinitions, mecabReading):
+        if len(readingsAndDefinitions) == 0:
+            return [(None, None)]
+        elif len(readingsAndDefinitions) == 1:
+            return readingsAndDefinitions
+        hiraganaReading = jcconv.kata2hira(mecabReading)
+        filtered = []
+        for reading, definition in readingsAndDefinitions:
+            if hiraganaReading == reading:
+                filtered.append(( reading, definition))
+        return filtered if len(filtered) else readingsAndDefinitions
 
     def lookup(self, word):
         return self.dictionary.getFirstReadingAndDefinition(word)
