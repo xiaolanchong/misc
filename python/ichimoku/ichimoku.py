@@ -6,6 +6,7 @@ import os.path
 import logging
 import logging.handlers
 from textproc.textprocessor import TextProcessor
+from textproc.dataloader import getDataLoader
 from mecab.utils import isPy2, text_type
 
 def setupLogger():
@@ -40,9 +41,8 @@ def main():
         contents = file.read()
         if isPy2():
             contents = unicode(contents, 'utf-8')
-        parent = os.path.dirname(__file__)
-        textProc = TextProcessor(os.path.join('data', 'jdict.bin'), parent)
-        with openOutputFile(os.path.join('testdata', 'ichimoku_zz_py.txt')) as outFile:
+        textProc = TextProcessor(getDataLoader())
+        with openOutputFile(os.path.join('testdata/other', 'ichimoku_zz_py.txt')) as outFile:
             for word, reading, definition, sentence in textProc.do(contents):
                 line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
                 if isPy2():
@@ -57,12 +57,11 @@ def dryBurn():
     while True:
         try: x=a.next()
         except: break
-        print x[1], '<br>'
+        print (x[1], '<br>')
 
     setupLogger()
     contents = '船が検疫所に着いたのは'
-    parent = os.path.dirname(__file__)
-    textProc = TextProcessor(os.path.join('data', 'jdict.bin'), parent)
+    textProc = TextProcessor(getDataLoader())
     for word, reading, definition, sentence in textProc.do(contents):
         line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
         line = line.strip('\n')

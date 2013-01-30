@@ -6,27 +6,21 @@ from mecab.utils import binary_type, text_type, extractString, isPy2x6
 from mecab.compress import load as zipload
 
 class DartsDictionary:
-    def __init__(self, fileName):
-        if isPy2x6():
-            #dictFile = zipload(fileName)
-            dictFile = open(fileName, mode='rb')
-            self.readData(dictFile, fileName)
-        else:
-            with zipload(fileName) as dictFile:
-                self.readData(dictFile, fileName)
+    def __init__(self, dataReader):
+        self.readData(dataReader)
 
-    def readData(self, dictFile, fileName):
-            magicId = dictFile.read(4)
-            if magicId != b'JDC0':
-                raise RuntimeError(fileName + ' is not JDIC file')
-            charSetBuffer, = struct.unpack('32s', dictFile.read(32))
-            self.charset = extractString(charSetBuffer).lower()
-            fmt = 'III'
-            (dartsSize, entryOffsetBlobSize, entryBlobSize) = \
-                 struct.unpack('III', dictFile.read(struct.calcsize(fmt)))
-            self.lookupDict = DoubleArray(dictFile.read(dartsSize))
-            self.entryOffsetBlob = dictFile.read(entryOffsetBlobSize)
-            self.entryBlob = dictFile.read(entryBlobSize)
+    def readData(self, dictFile):
+        magicId = dictFile.read(4)
+        if magicId != b'JDC0':
+            raise RuntimeError('File is not JDIC file')
+        charSetBuffer, = struct.unpack('32s', dictFile.read(32))
+        self.charset = extractString(charSetBuffer).lower()
+        fmt = 'III'
+        (dartsSize, entryOffsetBlobSize, entryBlobSize) = \
+             struct.unpack('III', dictFile.read(struct.calcsize(fmt)))
+        self.lookupDict = DoubleArray(dictFile.read(dartsSize))
+        self.entryOffsetBlob = dictFile.read(entryOffsetBlobSize)
+        self.entryBlob = dictFile.read(entryBlobSize)
 
     def getFirstReadingAndDefinition(self, word):
         entries = self.getAllReadingAndDefinition(word)

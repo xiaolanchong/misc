@@ -7,14 +7,11 @@ import os.path
 sys.path.append(os.path.abspath('..'))
 from mecab.tokenizer import Tokenizer
 import mecab.partofspeech as PoS
+from textproc.dataloader import getDataLoader
 
 class TokenizerTest(unittest.TestCase):
     def setUp(self):
-        sys = os.path.join('..', 'data', 'sys.zip')
-        unk = os.path.join('..', 'data', 'unk.zip')
-        chz = os.path.join('..', 'data', 'char.bin')
-        mtx = os.path.join('..', 'data', 'matrix.bin')
-        self.tokenizer = Tokenizer(sys, unk, chz)
+        self.tokenizer = Tokenizer(getDataLoader())
 
     def testSkipingSpaces(self):
         nodes = self.tokenizer.lookUp(' ' * 3 + '少し', 4)

@@ -10,6 +10,7 @@ from mecab.node import Node
 from mecab.token import Token
 from mecab.runmecab import MecabOutputGetter
 from mecab.writer import Writer
+from textproc.dataloader import getDataLoader
 
 class MockConnector:
     def getCost(self, leftAttribute, rightAttribute):
@@ -18,11 +19,7 @@ class MockConnector:
 class ViterbiTest(unittest.TestCase):
     def setUp(self):
         self.defaultText = '船が検疫所に着いたのは、朝の四時頃にちがいない。'
-        sys = os.path.join('..', 'data', 'sys.zip')
-        unk = os.path.join('..', 'data', 'unk.zip')
-        chz = os.path.join('..', 'data', 'char.bin')
-        mtx = os.path.join('..', 'data', 'matrix.bin')
-        self.viterbi = Viterbi(sys, unk, chz, mtx)
+        self.viterbi = Viterbi(getDataLoader())
 
     #@unittest.skip("temp skipping")
     def testConnectNodeMutualCost(self):

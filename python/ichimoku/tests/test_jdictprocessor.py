@@ -7,12 +7,13 @@ import os.path
 sys.path.append(os.path.abspath('..'))
 from textproc.jdictprocessor import JDictProcessor
 from textproc.dartsdict import DartsDictionary
+from textproc.dataloader import getDataLoader
 import mecab.partofspeech as PoS
 from mecab.writer import WordInfo
 
 class JDictProcessorTest(unittest.TestCase):
     def setUp(self):
-        dictionary = DartsDictionary(os.path.join('..', 'data', 'jdict.zip'))
+        dictionary = DartsDictionary(getDataLoader().load('jdict'))
         self.processor = JDictProcessor(dictionary)
 
     def testDifferentReadingsSameWord(self):
@@ -73,15 +74,25 @@ class JDictProcessorTest(unittest.TestCase):
         a = WordInfo( '予算', 0, '予算', PoS.NOUN, 'xx')
         b = WordInfo( '補正', 2, '補正', PoS.NOUN, 'xx')
         newWord = self.processor.mergeWord(a, b)
-       # expected = WordInfo('補正予算', 0, '補正予算' , PoS.NOUN, 'すうじかん')
         self.assertIsNone(newWord)
 
     def testSelectNounOnReading(self):
         a = WordInfo('所' , 0, '所', PoS.NOUN_SUFFIX, 'ショ')
         allWords = self.processor.dictionary.getAllReadingAndDefinition('所')
-        newWord = self.processor.getBestAlternativeOnReading(allWords, a.kanaReading)
+        newWord = self.processor.filterOnReading(allWords, a.kanaReading)[0]
         self.assertEqual(newWord, ('しょ', '(suf,ctr) counter for places'))
 
+    def testMergeVerbs(self):
+        a = WordInfo('ちがい' , 0, 'ちがい', PoS.VERB, '')
+        b = WordInfo('ない' , 0, 'ない', PoS.VERB_AUX, '')
+        newWord = self.processor.mergeWord(a, b)
+        self.assertIsNotNone(newWord)
+
+    def testMergeVerbs2(self):
+        a = WordInfo('滲み' , 0, '滲みる', PoS.VERB, 'シミ')
+        b = WordInfo('込み' , 0, '込み', PoS.VERB_NONIND, 'コミ')
+        newWord = self.processor.mergeWord(a, b)
+        self.assertIsNotNone(newWord)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(JDictProcessorTest)

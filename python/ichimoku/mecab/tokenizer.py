@@ -6,14 +6,14 @@ from mecab.token import Token
 from mecab.node import Node
 
 class Tokenizer:
-    def __init__(self, sysDictFileName, unkDictFileName, charPropFileName):
+    def __init__(self, loader):
         self.BOS_FEATURE = -1
         self.EOS_FEATURE = -2
-        self.sysDictionary = Dictionary(sysDictFileName)
-        self.unkDictionary = Dictionary(unkDictFileName)
+        self.sysDictionary = Dictionary(loader, 'sys')
+        self.unkDictionary = Dictionary(loader, 'unk')
         if self.sysDictionary.getCharSet() != 'euc-jp':
             raise RuntimeError('Unknown dictionary encoding: ' + self.sysDictionary.getCharSet())
-        self.charProperties = CharProperty(charPropFileName, self.sysDictionary.getCharSet())
+        self.charProperties = CharProperty(loader, self.sysDictionary.getCharSet())
         self.spaceCharInfo = self.charProperties.getCharInfo(' ')
 
     def getFeature(self, featureId, isKnown):

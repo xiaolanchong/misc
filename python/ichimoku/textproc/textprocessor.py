@@ -33,9 +33,9 @@ class Settings:
         return s
 
 class TextProcessor:
-    def __init__(self, dbFileName, parentDir=None):
-      self.dictionary = DartsDictionary(dbFileName)
-      self.parser = SentenceParser(parentDir)
+    def __init__(self, dataLoader):
+      self.dictionary = DartsDictionary(dataLoader.load('jdict'))
+      self.parser = SentenceParser(dataLoader)
 
     @classmethod
     def hasKanji(cls, word):

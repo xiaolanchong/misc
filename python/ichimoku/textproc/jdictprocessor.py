@@ -56,9 +56,50 @@ class JDictProcessor:
         return self.dictionary.getFirstReadingAndDefinition(word)
 
     def mergeWord(self, a, b):
+        rules = [ self.mergeNoun, self.mergeVerb ]
+        for rule in rules:
+            c = rule(a, b)
+            if c:
+                return c
+        return None
+
+    def mergeVerb(self, a, b):
+        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
+            c = a.word + b.word
+            reading, definition = self.lookup(c)
+            if reading:
+                return WordInfo(c, a.startPos, c, PoS.VERB, reading)
+        return None
+
+##    def mergeVerbDeconjugate(self, a, b, dictionary):
+##        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
+##            tokens = dictionary.exactMatch(b)
+##            words = [for tokens in ]
+##            reading, definition = self.lookup(c)
+##            if reading:
+##                return WordInfo(c, a.startPos, c, PoS.VERB, reading)
+##        return None
+
+##    def mergeVerbWithReading(self, a, b):
+##        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
+##            c = a.word + b.word
+##            reading, definition = self.lookup(c)
+##            if reading:
+##                return WordInfo(c, a.startPos, c, PoS.NOUN, reading)
+##        return None
+
+    def mergeNoun(self, a, b):
         if PoS.isNoun(a.partOfSpeech) and PoS.isNoun(b.partOfSpeech):
+            c = a.word + b.word
+            reading, definition = self.lookup(c)
+            if reading:
+                return WordInfo(c, a.startPos, c, PoS.NOUN, reading)
+        return None
+
+    def mergeByRule(self, conditionA, conditionB, resultPoS, a, b):
+        if conditionA(a.partOfSpeech) and conditionB(b.partOfSpeech):
             mergedWord = a.word + b.word
             reading, definition = self.lookup(a.word + b.word)
             if reading:
-                return WordInfo(mergedWord, a.startPos, mergedWord, PoS.NOUN, reading)
+                return WordInfo(mergedWord, a.startPos, mergedWord, resultPoS, reading)
         return None

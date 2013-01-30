@@ -6,6 +6,8 @@ import unittest
 import sys
 sys.path.append(os.path.abspath('..'))
 from mecab.charproperty import CharProperty
+import datapath
+import loader
 
 class CharInfoTest(unittest.TestCase):
     def testCharCategories(self):

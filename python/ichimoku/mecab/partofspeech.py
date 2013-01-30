@@ -98,6 +98,9 @@ def isNounSuffix(pos):
 def isNoun(pos):
     return pos >= NOUN_VSURU and pos <= NOUN_ADVERB
 
+def isAfterVerb(pos):
+    return pos == VERB_AUX or pos == VERB_NONIND or pos == VERB_SUFFIX
+
 def isNotWord(pos):
     """
         Not to skip OTHER!

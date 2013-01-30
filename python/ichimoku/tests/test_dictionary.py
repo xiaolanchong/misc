@@ -7,10 +7,11 @@ import sys
 sys.path.append(os.path.abspath('..'))
 from mecab.dictionary import Dictionary
 from mecab.token import Token
+from textproc.dataloader import getDataLoader
 
 class DictionaryTest(unittest.TestCase):
     def setUp(self):
-        self.dict = Dictionary(os.path.join('..', 'data', 'sys.zip'))
+        self.dict = Dictionary(getDataLoader(), 'sys')
 
     def testInternalCommonPrefix(self):
         res = self.dict.internalCommonPrefixSearch('船')

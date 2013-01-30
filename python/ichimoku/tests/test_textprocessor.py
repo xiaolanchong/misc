@@ -6,13 +6,12 @@ import os.path
 import sys
 sys.path.append(os.path.abspath('..'))
 from textproc.textprocessor import TextProcessor, Settings
+from textproc.dataloader import getDataLoader
 from mecab.writer import WordInfo
 
 class TextProcessorTest(unittest.TestCase):
     def setUp(self):
-        zzz = os.path.dirname(__file__)
-        zzz = os.path.dirname(zzz)
-        self.textProc = TextProcessor(os.path.join('..', 'data', 'jdict.zip'), zzz)
+        self.textProc = TextProcessor(getDataLoader())
 
     def testDumpAll(self):
         res = self.textProc.do('船が検疫所に着いたのは', Settings.All())

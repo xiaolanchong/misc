@@ -7,22 +7,17 @@ import os.path
 from struct import unpack, calcsize
 from mecab.doublearray import DoubleArray
 from mecab.token import Token
-from mecab.utils import text_type, extractString, isPy2x6
+from mecab.utils import text_type, extractString
 import mecab.compress as compress
 
 class Dictionary:
-    def __init__(self, fileName):
+    def __init__(self, loader, dicName):
         self.charset = None
         self.tokenBlob = []
         self.featureBlob = None
         self.doubleArray = None
-        if isPy2x6():
-            #dictFile = compress.load(fileName)
-            dictFile = open(fileName, mode='rb')
-            self.loadFromBinary(dictFile)
-        else:
-            with compress.load(fileName) as dictFile:
-                self.loadFromBinary(dictFile)
+        with loader.load(dicName) as dataReader:
+            self.loadFromBinary(dataReader)
 
     def getToken(self, tokenId):
         fmt = str('HHHhII')

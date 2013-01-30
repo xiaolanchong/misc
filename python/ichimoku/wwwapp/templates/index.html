@@ -21,13 +21,10 @@
 							"definition" : 1, "sentence" : 1 },
 					dataType: "json",
 					beforeSend:function(){
-						//launchpreloader();
 					},
 					error: function(jqXHR, textStatus, errorThrown){
-						//alert("fail!!");
 					},
 					success: function(result, textStatus, jqXHR){
-						//populateTable(result);
 						merger.addChunk(index, result);
 					}
 				});

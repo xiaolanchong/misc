@@ -3,14 +3,14 @@
 from struct import unpack
 
 class Connector:
-    def __init__(self, matrixFileName):
+    def __init__(self, loader):
         self.lsize = 0
         self.rsize = 0
         self.matrix = None
-        with open(matrixFileName, 'rb') as matrixFile:
-            header = matrixFile.read(4)
+        with loader.load('matrix') as dataReader:
+            header = dataReader.read(4)
             self.lsize, self.rsize = unpack('HH', header)
-            self.matrix = matrixFile.read( self.lsize * self.rsize * 2)
+            self.matrix = dataReader.read( self.lsize * self.rsize * 2)
 
     def checkDimension(self, argName, value, size):
         if value < 0 or value >= size:

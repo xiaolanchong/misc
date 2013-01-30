@@ -6,10 +6,11 @@ import os.path
 import sys
 sys.path.append(os.path.abspath('..'))
 from textproc import dartsdict
+from textproc.dataloader import getDataLoader
 
 class DartsDictionaryTest(unittest.TestCase):
     def setUp(self):
-        self.dictionary = dartsdict.DartsDictionary('../data/jdict.zip')
+        self.dictionary = dartsdict.DartsDictionary(getDataLoader().load('jdict'))
 
     def testRecord(self):
         reading, entry = self.dictionary.getFirstReadingAndDefinition('開扉')

@@ -9,6 +9,7 @@ from google.appengine.api.backends import get_url, InvalidBackendError
 from django.utils import simplejson
 from textproc.textprocessor import TextProcessor, Settings
 from wwwapp.start import renderStartPage, renderDeckPage, renderAboutPage
+from textproc.dataloader import getDataLoader
 import models
 
 class MainPage(webapp2.RequestHandler):
@@ -111,7 +112,7 @@ class MyApp(webapp2.WSGIApplication):
     try:
         get_url()
         logging.info('Starting backend')
-        self.textProc = TextProcessor(os.path.join('data', 'jdict.zip'), '.')
+        self.textProc = TextProcessor(getDataLoader())
     except InvalidBackendError:
         logging.info('Starting frontend')
 

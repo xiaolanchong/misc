@@ -25,13 +25,14 @@ class CharInfo:
                  self.group, self.invoke)
 
 class CharProperty:
-    def __init__(self, file, encoding='euc-jp'):
+    def __init__(self, loader, encoding='euc-jp'):
         self.__map = []
         self.__categories = []
-        self.loadFromBinary(file, encoding)
+        with loader.load('char') as dataReader:
+            self.loadFromBinary(dataReader, encoding)
 
-    def loadFromBinary(self, fileName, encoding):
-        with open(fileName, 'rb') as inFile:
+    def loadFromBinary(self, inFile, encoding):
+     #   with open(fileName, 'rb') as inFile:
             uintSize = 4
             categoryBuffer = 32
             categoryNum, = unpack('<I', inFile.read(uintSize))

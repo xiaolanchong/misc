@@ -5,10 +5,11 @@ import os.path
 import sys
 sys.path.append(os.path.abspath('..'))
 from mecab.connector import Connector
+from textproc.dataloader import getDataLoader
 
 class ConnectorTest(unittest.TestCase):
     def testSimple(self):
-        con = Connector(os.path.join('..', 'data', 'matrix.bin'))
+        con = Connector(getDataLoader())
         self.assertEqual(-5447, con.getCost(1283, 1298))
         with self.assertRaises(RuntimeError):
             con.getCost(-1, 101)

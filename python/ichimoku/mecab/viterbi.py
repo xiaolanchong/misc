@@ -6,9 +6,9 @@ from mecab.connector import Connector
 from mecab.node import Node
 
 class Viterbi:
-    def __init__(self, sysDictPath, unkDictPath, charPropPath, matrixPath):
-        self.tokenizer = Tokenizer(sysDictPath, unkDictPath, charPropPath)
-        self.connector = Connector(matrixPath)
+    def __init__(self, loader):
+        self.tokenizer = Tokenizer(loader)
+        self.connector = Connector(loader)
 
     def getTokenizer(self):
         return self.tokenizer
