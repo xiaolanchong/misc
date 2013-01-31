@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 __all__ = ['hira2kata', 'kata2hira', 'half2hira', 'hira2half', 'kata2half',
            'half2kata', 'half2wide', 'wide2half', 'convert',

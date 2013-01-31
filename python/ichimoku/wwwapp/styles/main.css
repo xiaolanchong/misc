@@ -72,3 +72,5 @@ overflow: auto;
 #wordtable tr.odd {
 	background-color: #FBFDFF;
 }
+
+.col2 {  width: 100%;}

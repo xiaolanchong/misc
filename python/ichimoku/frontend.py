@@ -32,13 +32,14 @@ class MainPage(webapp2.RequestHandler):
         #logging.debug('Received user text: %s', userText)
         data = simplejson.dumps(values)
         url = get_url(backend='sugoi-ideas') + '/backend'
-        logging.info('send %d bytes text', len(data))
+        logging.info('send %d bytes text to %s', len(data), url)
         result = urlfetch.fetch(url=url,
                         payload=data,
                         method=urlfetch.POST,
                         headers={'Content-Type': 'application/json'},
                         deadline=8)
-        logging.info('received %d byte text', len(result.content))
+        logging.info('received %d byte text from BE', len(result.content))
+        logging.info('received text from BE: %s', result.content[1:100])
         self.response.out.write(result.content)
     except Exception as ex:
         logging.error(str(ex))
@@ -89,7 +90,7 @@ class BackendPage(webapp2.RequestHandler):
    self.response.status_message = "403 Forbidden. The server doesn't accept 'get' requests"
 
   def post(self):
-    logging.info('Receive POST with %d bytes body', len(self.request.body))
+    logging.info('[BE]Receive POST with %d bytes body', len(self.request.body))
     requestData = simplejson.loads(self.request.body)
     #logging.info(self.request.body)
     #logging.info(requestData)
@@ -97,6 +98,7 @@ class BackendPage(webapp2.RequestHandler):
     #logging.info(userText)
     contents = app.textProc.do(userText, Settings.Minimal())
     contents = list(contents)
+    logging.info("%d records sent", len(contents))
     self.response.out.write(simplejson.dumps(contents))
 
 class MyApp(webapp2.WSGIApplication):

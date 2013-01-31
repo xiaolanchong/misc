@@ -73,7 +73,7 @@ class TextProcessorTest(unittest.TestCase):
         self.assertEqual(7, len(list(res)))
         self.assertEqual('ジーン・モーラ', res[0][0])
 
-    def testOnReading(self):
+    def testONReading(self):
         res = self.textProc.do('数時間が')
         res = list(res)
         self.assertEqual(3, len(list(res)))
