@@ -34,11 +34,47 @@
 			});
 		});
 	});
+	$(function() {
+		$( "#dialog" ).dialog({
+           autoOpen: false,
+           modal: true,
+           height: 'auto',
+           width: 'auto',
+		  // resizable: false,
+		   buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } },
+		              { text: "Cancel", click: function() { $( this ).dialog( "close" ); } }]
+		});
+	});	
 </script>
 {% endblock %}
 {% block body %}
 {% include "header.html" %}
 {% include "header_band.html" with linkAnnotate=0 %}
+<div id="dialog" title="Word properties" style="font-size:small; display: none;">
+	<table width="100%" style="margin-left: auto;margin-right: auto;">
+		<tbody>
+			<tr>
+				<td colspan="2" style="text-align:center;padding-bottom:10px;"><span id="word" style="font-size:200%"/></td>
+			</tr>
+			<tr>
+				<td>Reading</td>
+				<td class="col2"><input type="text" id="reading" style="width:100%;"/></td>
+			</tr>
+			<tr>
+				<td>Definition</td>
+				<td class="col2"><textarea id="definition" style="width:100%;" >a</textarea></td>
+			</tr>
+			<tr>
+				<td>Example</td>
+				<td class="col2"><textarea id="example"  name="name" value="value" style="width:100%;" wrap="soft">a</textarea></td>
+			</tr>
+			<tr>
+				<td>Tags</td>
+				<td class="col2"><input type="text" id="tags" style="width:100%;"/></td>
+			</tr>			
+		</tbody>
+	</table>
+</div>
 <h4 style="color:gray;">Enter a text to annotate</h4>
 <div><textarea name="content" rows="5" cols="80" id="submitTextBox">ある日の暮方の事である</textarea></div>
 <table style="padding:5px;"><tr>

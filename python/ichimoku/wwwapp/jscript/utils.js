@@ -41,6 +41,7 @@ var ChunkMerger = (function(callback) {
 	//  index - index of the chunk in the overall array, starting from 0
 	//  text - contents of the chunk, may have any type
     ChunkMerger.prototype.addChunk = function(index, text) {
+	console.log('populate');
 		if(index < this._startIndex) {
 			console.error("Input index is out of the expected bound: " 
 						+ index.toString() + ", " + this._startIndex.toString());
@@ -119,6 +120,15 @@ function deleteCard(id) {
     return false;
 }
 
+function showWordParameters(allChunks) {
+	//console.log(allChunks[0]);
+	$("#word").text(allChunks[0]);
+	$("#reading").val(allChunks[1]);
+	$("#definition").val(allChunks[2]);
+	$("#example").val(allChunks[3]);
+	$( "#dialog" ).dialog( "open" );
+}
+
 function populateTable(data) {
 	if($('#wordtable > thead > tr').length == 0)
 	{
@@ -143,8 +153,9 @@ function populateTable(data) {
 									allChunks.push($(tdElem).text());
 								});
 							allChunks.shift();
-							addCard(allChunks);
-							//$(this).parent().children().eq(0).remove();
+							//addCard(allChunks);
+							showWordParameters(allChunks);
+							
 							$("img", this).attr("src", addedImg);
 							return false;
 						});
