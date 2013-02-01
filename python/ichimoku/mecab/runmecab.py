@@ -66,7 +66,7 @@ class MecabRunner(object):
 
 class MecabOutputGetter(MecabRunner):
     def __init__(self):
-        fmt = '%m,%f[6],[pos],%h,[cost],%pw,%pC,%pc,%phl,%phr,'\
+        fmt = '%m,%f[7],[pos],%h,[cost],%pw,%pC,%pc,%phl,%phr,'\
               '[l2]%pb,%P,%pP,%pA,%pB'
         MecabRunner.__init__(self, fmt, '\n', '=' + fmt)
 
@@ -95,7 +95,7 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    res = runner.run('ちがいない')
+    res = runner.run('付審判')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():
