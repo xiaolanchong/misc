@@ -96,10 +96,13 @@ class BackendPage(webapp2.RequestHandler):
     #logging.info(requestData)
     userText = requestData.get('text')
     #logging.info(userText)
-    contents = app.textProc.do(userText, Settings.Minimal())
-    contents = list(contents)
-    logging.info("%d records sent", len(contents))
-    self.response.out.write(simplejson.dumps(contents))
+    result = []
+    contents = app.textProc.do(userText, Settings.NoExcessiveReading(), True)
+    for word, startPos, reading, definition, sentence in contents:
+        result.append((word, reading, definition, sentence))
+    #contents = list(contents)
+    logging.info("%d records sent", len(result))
+    self.response.out.write(simplejson.dumps(result))
 
 class MyApp(webapp2.WSGIApplication):
   def __init__(self):

@@ -3,10 +3,11 @@
 from __future__ import unicode_literals
 import re
 from .wordmapper import WordMapper
-from mecab.writer import WordInfo
 import mecab.partofspeech as PoS
 from mecab.utils import isPy2
 from . import jcconv_3x as jcconv
+from .jwordcombiner import JWordCombiner
+from .intwordinfo import IntermediateWordInfo
 
 class JDictProcessor:
     def __init__(self, lookupDictionary):
@@ -52,21 +53,16 @@ class JDictProcessor:
     def lookup(self, word):
         return self.dictionary.getFirstReadingAndDefinition(word)
 
-    def mergeWord(self, a, b):
-        rules = [ self.mergeNoun, self.mergeVerb ]
-        for rule in rules:
-            c = rule(a, b)
-            if c:
-                return c
-        return None
-
-    def mergeVerb(self, a, b):
-        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
-            c = a.word + b.word
-            reading, definition = self.lookup(c)
-            if reading:
-                return WordInfo(c, a.startPos, c, PoS.VERB, reading)
-        return None
+    def mergeWords(self, words):
+        fixedRules = [
+                ( PoS.isNoun, PoS.isNoun, PoS.NOUN ),        # noun + noun -> noun
+                ( lambda a: a == PoS.VERB, PoS.isAfterVerb, PoS.VERB ), # verb + aux -> verb
+                ( lambda a: a == PoS.PREFIX_NOUN, PoS.isNoun, PoS.NOUN ), # prefix + noun -> num
+                ( lambda a: a == PoS.NOUN_NUMERIC, lambda a: a == PoS.NOUN_NUMERIC, PoS.NOUN_NUMERIC ),  # num + num -> num
+                ( lambda a: a == PoS.NOUN_ADJROOT, lambda a: a == PoS.VERB_AUX, PoS.ADJ ) # ちがいない
+                ]
+        combiner = JWordCombiner(self.lookup, fixedRules)
+        return combiner.process(words)
 
 ##    def mergeVerbDeconjugate(self, a, b, dictionary):
 ##        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
@@ -76,27 +72,3 @@ class JDictProcessor:
 ##            if reading:
 ##                return WordInfo(c, a.startPos, c, PoS.VERB, reading)
 ##        return None
-
-##    def mergeVerbWithReading(self, a, b):
-##        if a.partOfSpeech == PoS.VERB and PoS.isAfterVerb(b.partOfSpeech):
-##            c = a.word + b.word
-##            reading, definition = self.lookup(c)
-##            if reading:
-##                return WordInfo(c, a.startPos, c, PoS.NOUN, reading)
-##        return None
-
-    def mergeNoun(self, a, b):
-        if PoS.isNoun(a.partOfSpeech) and PoS.isNoun(b.partOfSpeech):
-            c = a.word + b.word
-            reading, definition = self.lookup(c)
-            if reading:
-                return WordInfo(c, a.startPos, c, PoS.NOUN, reading)
-        return None
-
-    def mergeByRule(self, conditionA, conditionB, resultPoS, a, b):
-        if conditionA(a.partOfSpeech) and conditionB(b.partOfSpeech):
-            mergedWord = a.word + b.word
-            reading, definition = self.lookup(a.word + b.word)
-            if reading:
-                return WordInfo(mergedWord, a.startPos, mergedWord, resultPoS, reading)
-        return None

@@ -95,7 +95,7 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    res = runner.run('滲み込み')
+    res = runner.run('ちがいない')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():

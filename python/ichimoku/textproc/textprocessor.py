@@ -9,23 +9,35 @@ from .sentenceparser import SentenceParser
 from .glossary import Glossary
 from .dartsdict import DartsDictionary
 from .jdictprocessor import JDictProcessor
+from .intwordinfo import IntermediateWordInfo
 
 class Settings:
     """
     Output settings of the processor
     """
     def __init__(self):
-        self.ignoreSymbols = True # do not output 、 ？ etc.
-        self.readingForKanjiOnly = True # do not provide reading if the word has no kanji
+        self.ignoreSymbols = False # do not output 、 ？ etc.
+        self.readingForKanjiOnly = False # do not provide reading if the word has no kanji
         self.sentenceOnlyForFirst = False # give the sentence only for the 1st word in it
 
     @classmethod
     def Minimal(cls):
         s = Settings()
+        s.sentenceOnlyForFirst = True
+        s.readingForKanjiOnly = True
+        s.ignoreSymbols = True
         return s
 
     @classmethod
-    def All(cls):
+    def NoExcessiveReading(cls):
+        s = Settings()
+        s.ignoreSymbols = True
+        s.sentenceOnlyForFirst = False
+        s.readingForKanjiOnly = True
+        return s
+
+    @classmethod
+    def Verbose(cls):
         s = Settings()
         s.ignoreSymbols = False
         s.readingForKanjiOnly = False
@@ -62,42 +74,66 @@ class TextProcessor:
         textToLog = text[contextStart:contextEnd]
         return textToLog
 
-    def parseSentenceWithBestChoice(self, text, settings):
+    def parseSentenceWithBestChoice(self, text, settings, mergeWords):
         """
         Parses and selects the best match to JDICT dictionary
         text: string to parse
         settings: Settings object to set the parsing up
         """
+        allWords = self.stepOne(text, settings)
+        jdictProcessor = JDictProcessor(self.dictionary)
+        if mergeWords:
+            allWords = jdictProcessor.mergeWords(allWords)
+        return self.stepTwo(allWords, settings)
+
+
+    def stepTwo(self, allWordInfo, settings):
+        #allWordInfo = self.parser.tokenize2(text)
+       # jdictProcessor = JDictProcessor(self.dictionary)
+        result = []
+        for wordInfo in allWordInfo:
+            if wordInfo.isSymbol:
+                if not settings.ignoreSymbols:
+                    result.append((wordInfo.word, wordInfo.startPos, '', ''))
+            elif not wordInfo.isKnownWord:
+                result.append((wordInfo.word, wordInfo.startPos, '', ''))
+            else:
+                if settings.readingForKanjiOnly and not TextProcessor.hasKanji(wordInfo.word):
+                    reading = ''
+                else:
+                    reading = wordInfo.reading
+                result.append((wordInfo.word, wordInfo.startPos, reading, wordInfo.definition))
+        return result
+
+    def stepOne(self, text, settings):
         allWordInfo = self.parser.tokenize2(text)
         jdictProcessor = JDictProcessor(self.dictionary)
-        allWords = []
+        result = []
         for wordInfo in allWordInfo:
-            if settings.ignoreSymbols and wordInfo.isNotWord():
+            if wordInfo.isNotWord():
+                result.append(IntermediateWordInfo.createNonWord(wordInfo.word, wordInfo.startPos, wordInfo.partOfSpeech))
                 logging.info("'%s' is an unknown token. Text: '%s'",
                             wordInfo.word, self.getContext(text, wordInfo))
-                continue
-            if len(wordInfo.dictionaryForm):
+            elif len(wordInfo.dictionaryForm):
                 alternatives = self.dictionary.getAllReadingAndDefinition(wordInfo.dictionaryForm)
                 alternatives = jdictProcessor.filterOnReading(alternatives, wordInfo.kanaReading)
                 reading, definition = jdictProcessor.getBestAlternative(alternatives, wordInfo.partOfSpeech)
-                if settings.readingForKanjiOnly and not TextProcessor.hasKanji(wordInfo.dictionaryForm):
-                    reading = ''
-                allWords.append((wordInfo.dictionaryForm, reading, definition))
+                result.append(IntermediateWordInfo(wordInfo.dictionaryForm, wordInfo.startPos, wordInfo.partOfSpeech, reading, definition))
             else:
-                allWords.append((wordInfo.word, '', ''))
-                logging.error("'%s' not found in dictionary. Text: '%s'",
+                result.append(IntermediateWordInfo.createUnknownWord(wordInfo.word, wordInfo.startPos, wordInfo.partOfSpeech))
+                logging.info("'%s' not found in dictionary. Text: '%s'",
                                 wordInfo.word, self.getContext(text, wordInfo))
-        return allWords
+        return result
 
     def addToGlossary(self, glossary, allWords, sentence):
         for word in allWords:
             reading, definition = self.dictionary.getReadingAndDefinition(word)
             glossary.add(word, reading, definition, sentence)
 
-    def do(self, text, settings = Settings.All()):
+    def do(self, text, settings = Settings.Verbose(), mergeWords = False):
         p = TextParser(text)
         glossary = Glossary()
         for sentence in p.getSentences():
-            allWords = self.parseSentenceWithBestChoice(sentence, settings)
-            for word, reading, definition in allWords:
-                yield word, reading, definition, sentence
+            allWords = self.parseSentenceWithBestChoice(sentence, settings, mergeWords)
+            for word, startPos, reading, definition in allWords:
+                yield word, startPos, reading, definition, sentence
