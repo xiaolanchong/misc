@@ -142,7 +142,7 @@ function populateTable(data) {
 	var table = $('#wordtable > tbody:last');
 	data.forEach( function (element, row) {
 		var row = $('<tr></tr>').addClass(row % 2 ? "odd" : "even");
-		var link=$("<a href=\"#\"><img src=\"img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
+		var link=$("<a href=\"javascript:none\"><img src=\"img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
 		link.click(function(){
 							var addedImg = "img/Ok-icon.png";
 							if($("img", this).attr("src") == addedImg) {
