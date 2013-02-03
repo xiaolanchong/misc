@@ -33,6 +33,14 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(kaTokens, res)
 
     def testExactMatch(self):
+        res = self.dict.exactMatchSearch('～')
+        self.assertEqual(0, len(res))
+        res = self.dict.commonPrefixSearch('～')
+        self.assertEqual(0, len(res))
+        res = self.dict.commonPrefixSearch('検～')
+        self.assertEqual(1, len(res))
+
+    def testUnicodeError(self):
         res = self.dict.exactMatchSearch('かかわら')
         kaTokens = [ Token('かかわら', 780, 780, 31, 5413, 16382529, 0) ]
         self.assertEqual(kaTokens, res)

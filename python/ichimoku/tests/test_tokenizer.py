@@ -37,16 +37,50 @@ class TokenizerTest(unittest.TestCase):
         pos = self.tokenizer.findNonSpacePosition('\n  \t少し')
         self.assertEqual(4, pos)
 
-    def testNoTokenizeSymbols(self):
+    def testLatinSymbols(self):
+        """
+            Latin chars are grabbed as a whole
+        """
         nodes = self.tokenizer.lookUp('kana', 4)
         self.assertEqual(6, len(nodes))
         self.assertEqual(4 + 0, nodes[0].startPos)
-        self.assertEqual('kana', nodes[0].token.text)
+        for node in nodes:
+            self.assertEqual('kana', node.token.text)
+
+    def testBreakSymbol(self):
+        """
+           滲 can't be joined with 《
+        """
+        nodes = self.tokenizer.lookUp('滲《し》み込み', 4)
+        self.assertEqual(6, len(nodes))
+        for i in range(6):
+            self.assertEqual('滲', nodes[i].token.text)
+
+    def testUnicodeError(self):
+        """
+            '－' can't be encoded in euc-jp
+        """
+        nodes = self.tokenizer.lookUp('ドンキ－・バー', 0)
+        self.assertEqual(19, len(nodes))
+
+
+    def testUnknownKanaWord(self):
+        """
+            'ざめ' is unknown
+        """
+        nodes = self.tokenizer.lookUp('ざめて見えた', 0)
+        self.assertEqual(14, len(nodes))
 
     def testGroupUnknown(self):
+        """
+            Grabs the entire kana symbols + 2 chars
+        """
         nodes = self.tokenizer.lookUp('マール・ブランデーの壜', 0)
-        self.assertEqual(6, len(nodes))
-        self.assertEqual('マール・ブランデー', nodes[0].token.text)
+        self.assertEqual(12, len(nodes))
+        for i in range(0, 6):
+            self.assertEqual('マール・ブランデー', nodes[i].token.text)
+        for i in range(6, 12):
+            self.assertEqual('マー', nodes[i].token.text)
 
     def testComma(self):
         nodes = self.tokenizer.lookUp('、', 0)
@@ -58,16 +92,31 @@ class TokenizerTest(unittest.TestCase):
         nodes = self.tokenizer.lookUp('」', 0)
         self.assertEqual(1, len(nodes))
 
-    def testUnknownKana(self):
-        #nodes = self.tokenizer.lookUp('ジーン・モーラ', 0)
-        expected = 'ジーン・モーラ'
-        nodes = self.tokenizer.lookUp(expected, 0)
-        self.assertEqual(7, len(nodes))
+    def testKnownKanaInGroup(self):
+        nodes = self.tokenizer.lookUp('ジーン・モーラの姿', 0)
+        self.assertEqual(13, len(nodes))
         self.assertEqual('ジーン', nodes[0].token.text)
-        self.assertEqual(expected, nodes[1].token.text)
+        for i in range(1, 7):
+            self.assertEqual('ジーン・モーラ', nodes[i].token.text)
+        for i in range(7, 13):
+            self.assertEqual('ジー', nodes[i].token.text)
+
+    def testUnknownGrouppedChars(self):
+        nodes = self.tokenizer.lookUp('づめに', 0)
+        self.assertEqual(14, len(nodes))
+        for i in range(0, 7):
+            self.assertEqual('づめに', nodes[i].token.text)
+        for i in range(7, 14):
+            self.assertEqual('づめ', nodes[i].token.text)
+
+    def testKanjiRow(self):
+        nodes = self.tokenizer.lookUp('一列縦隊で', 0)
+        self.assertEqual(5, len(nodes))
+        for i in range(0, 4):
+            self.assertEqual('一', nodes[i].token.text)
+        self.assertEqual('一列縦隊', nodes[4].token.text)
 
     def testUnknownKanji(self):
-        #nodes = self.tokenizer.lookUp('ジーン・モーラ', 0)
         nodes = self.tokenizer.lookUp('四時頃に', 0)
         self.assertEqual(1, len(nodes[0].token.text))
         nodes = self.tokenizer.lookUp('時頃に', 0)

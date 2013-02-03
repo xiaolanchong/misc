@@ -49,6 +49,25 @@ class SentenceParserTest(unittest.TestCase):
         result = list(map(operator.attrgetter('word'), result))
         self.assertEquals(['所', 'に', '着い', 'た', 'の', 'は'], result)
 
+    def testNumericKanji(self):
+        result = self.pyparser.tokenize('一列縦隊')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['一', '列', '縦隊'], result)
+
+    def testUnicodeErrorInString(self):
+        result = self.pyparser.tokenize('ドンキ－・バー')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['ドンキ', '－', '・', 'バー'], result) # doubles the char ahead of unknown?
+
+
+    def testTokenizeNum(self):
+        """
+        ～
+        """
+        result = self.pyparser.tokenize('九～九')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['九', '～', '九'], result)
+
     def testWhiteSpaceInside(self):
         result = self.pyparser.tokenize('\n船が検 疫所に\n')
         words = list(map(operator.attrgetter('word'), result))

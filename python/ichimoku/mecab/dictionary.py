@@ -86,11 +86,26 @@ class Dictionary:
         E.g. 'abcd' produces 'a', 'ab' 'abc' given the latters are
         actual words
         """
-        return self.internalSearch(text, self.doubleArray.commonPrefixSearch)
+        try:
+            encodedText = bytearray(text, self.getCharSet())
+            return self.internalSearch(encodedText, self.doubleArray.commonPrefixSearch)
+        except UnicodeEncodeError as e:
+            posError = e.start
+            if posError == 0:
+                return []
+            else:
+                return self.commonPrefixSearch(text[:posError])
+            #raise RuntimeError(text_type(text) + ': ' + str(e))
+            #return []
+        #return self.internalSearch(text, self.doubleArray.commonPrefixSearch)
 
-    def internalSearch(self, text, functionToMatch):
+    def internalSearch(self, encodedText, functionToMatch):
         tokens = []
-        encodedText = bytearray(text, self.getCharSet())
+##        try:
+##            encodedText = bytearray(text, self.getCharSet())
+##        except UnicodeEncodeError as e:
+##            z = e.start
+##            raise RuntimeError(text_type(text) + ': ' + str(e))
         tokenStartIds = functionToMatch(encodedText)
         for tokenHandler, tokenLength in tokenStartIds:
             tokenNum = tokenHandler & 0xff
@@ -110,7 +125,13 @@ class Dictionary:
             the beginning.
             E.g. 'abcd' produces 'abcd'  given the latter is an existing word.
         """
-        return self.internalSearch(text, self.doubleArray.exactMatchSearch)
+        try:
+            encodedText = bytearray(text, self.getCharSet())
+            return self.internalSearch(encodedText, self.doubleArray.exactMatchSearch)
+        except UnicodeEncodeError as e:
+          #  posError = e.start
+          #  raise RuntimeError(text_type(text) + ': ' + str(e))
+            return []
 
     def getCharSet(self):
         """

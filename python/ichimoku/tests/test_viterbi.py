@@ -12,6 +12,7 @@ from mecab.node import Node
 from mecab.token import Token
 from mecab.runmecab import MecabOutputGetter
 from mecab.writer import Writer
+from mecab.utils import text_type
 from textproc.dataloader import getDataLoader
 
 class MockConnector:
@@ -49,7 +50,7 @@ class ViterbiTest(unittest.TestCase):
         self.compareOneSentence(self.defaultText)
 
     def testNoneToken(self):
-        expr = '船客の大部分はまだ眠っていた。' # FAILS !!!
+        expr = '船客の大部分はまだ眠っていた。'
         self.compareOneSentence(expr)
 
     def testUnknownNode(self):
@@ -70,8 +71,6 @@ class ViterbiTest(unittest.TestCase):
         pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
         runner = MecabOutputGetter()
         mecabResult = runner.run(expr)
-       # print(pyResult)
-      #  print(mecabResult)
         self.assertEqual(len(mecabResult), len(pyResult))
         for i in range(len(mecabResult)):
             self.assertEqual(mecabResult[i], pyResult[i])
@@ -83,13 +82,30 @@ class ViterbiTest(unittest.TestCase):
     def testError(self):
         self.compareOneSentence('づめに働い')
 
-    @unittest.skip("temp skipping")
+    #@unittest.skip("temp skipping")
     def testEntireFile(self):
         self.compareOnFile(r'../testdata/other/MaigraitInNewYork_ch1.txt')
         self.compareOnFile(r'../testdata/other/MaigraitInNewYork.txt')
 
     def outputNodes(self, nodes):
         return '\n'.join([str(node) for node in nodes])
+
+    def fixEncodingError(self, text):
+        # try to fix
+        # －  -> ー
+        # ～  ->  ~
+        table = str.maketrans('－～', 'ー~')
+        text = text.translate(table)
+        return text
+        # detect errors
+        try:
+            bytearray(text, 'euc-jp')
+        except UnicodeEncodeError as u:
+            raise RuntimeError(text + ': ' + str(e))
+        # ignore
+        if False:
+            b = bytearray(text, 'euc-jp', 'ignore')
+            return text_type(b)
 
     def compareOnFile(self, fileName):
         writer = Writer()
@@ -99,6 +115,7 @@ class ViterbiTest(unittest.TestCase):
             lineNum = 1
             for line in inFile.readlines():
                 text = line.strip()
+                text = self.fixEncodingError(text)
                 nodes = self.viterbi.getBestPath(text)
                 pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
                 mecabResult = runner.run(text)
@@ -107,7 +124,6 @@ class ViterbiTest(unittest.TestCase):
                 for i in range(len(mecabResult)):
                     self.assertEqual(mecabResult[i], pyResult[i], "at line " + str(lineNum) + ": '" + line + "'")
                 lineNum += 1
-
 
 
 if __name__ == '__main__':

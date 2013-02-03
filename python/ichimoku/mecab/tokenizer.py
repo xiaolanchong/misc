@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import copy
 from mecab.dictionary import Dictionary
 from mecab.charproperty import CharProperty
 from mecab.token import Token
@@ -15,6 +16,14 @@ class Tokenizer:
             raise RuntimeError('Unknown dictionary encoding: ' + self.sysDictionary.getCharSet())
         self.charProperties = CharProperty(loader, self.sysDictionary.getCharSet())
         self.spaceCharInfo = self.charProperties.getCharInfo(' ')
+        self.unkCategoryTokens = self.loadUnknownCategoryTokens()
+
+    def loadUnknownCategoryTokens(self):
+        unkCategoryTokens = []
+        for cat in self.charProperties.getCategories():
+            tokens = self.unkDictionary.exactMatchSearch(cat)
+            unkCategoryTokens.append(tokens)
+        return unkCategoryTokens
 
     def getFeature(self, featureId, isKnown):
         if isKnown:
@@ -46,25 +55,40 @@ class Tokenizer:
         text = text[startToLookup:]
         posInSentence += startToLookup
         tokens = self.sysDictionary.commonPrefixSearch(text)
+        result = []
         if tokens and len(tokens):
             result = [Node(token, posInSentence) for token in tokens]
-            if startCharInfo.canBeGrouped():
-                wordFound = tokens[0].text
-                endToLookupPos, endToLookup = self.seekToOtherCharType(text[len(wordFound):], startCharInfo)
-                if endToLookupPos != 0:
-                    # extend the context and convert the found tokens to unknown ones
-                    return result + self.getUnknownTokens(startCharInfo, text[0 : len(wordFound) + endToLookupPos], posInSentence)
+        if len(result) and not startCharInfo.needAddUnknownChar():
             return result
-        else:
-            #unknown token
+
+        endToLookupPos = len(text)
+        if len(text) == 1:
+            if len(result) == 0:
+                result += self.getUnknownTokens(startCharInfo, text[0], posInSentence)
+            return result
+       # nextCharInfo = self.charProperties.getCharInfo(text[1])
+        if startCharInfo.canBeGrouped():
             endToLookupPos, endToLookup = self.seekToOtherCharType(text, startCharInfo)
-            return self.getUnknownTokens(startCharInfo, text[0 : endToLookupPos], posInSentence)
+            if endToLookupPos > 1:
+                # extend the context and convert the found tokens to unknown ones
+                result += self.getUnknownTokens(startCharInfo, text[0 : endToLookupPos], posInSentence)
+        for i in range(1, startCharInfo.getExtraGroupNumber() + 1):
+            #unknown token
+            if i >= endToLookupPos:
+                break
+            charCategory = self.charProperties.getCharInfo(text[i])
+            if startCharInfo.isKindOf(charCategory):
+                result += self.getUnknownTokens(startCharInfo, text[0 : i+1], posInSentence)
+            else:
+                break
+        if len(result) == 0:
+            result += self.getUnknownTokens(startCharInfo, text[0], posInSentence)
+        return result
 
     def getUnknownTokens(self, startCharInfo, tokenText, posInSentence):
-        ch = startCharInfo.defaultType
-        cat = self.charProperties.getCategories()[ch]
-        tokens = self.unkDictionary.commonPrefixSearch(cat)
-        nodes = [Node(token, posInSentence) for token in tokens]
+        assert(startCharInfo.defaultType < len(self.unkCategoryTokens))
+        tokens = self.unkCategoryTokens[startCharInfo.defaultType]
+        nodes = [Node(copy.copy(token), posInSentence) for token in tokens]
         for node in nodes:
             node.token.text = tokenText
             node.isKnown = False

@@ -99,7 +99,8 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    res = runner.run('デッキに出て')
+    z = bytearray('－・', 'euc-jp', "ignore")
+    res = runner.run('ドンキ－・バー')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():

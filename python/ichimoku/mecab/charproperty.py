@@ -17,7 +17,13 @@ class CharInfo:
         return self.type & (1 << categoryId)
 
     def canBeGrouped(self):
-        return self.group and self.invoke and self.length
+        return self.group != 0
+
+    def getExtraGroupNumber(self):
+        return self.length // 2 # EUC-JP -> Unicode
+
+    def needAddUnknownChar(self):
+        return self.invoke != 0
 
     def __repr__(self):
         return 'type:{0}, defaultType:{1}, length:{2}, group:{3}, invoke:{4}'.format(

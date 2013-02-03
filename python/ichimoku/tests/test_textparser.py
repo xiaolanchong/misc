@@ -26,7 +26,7 @@ class ParserTest(unittest.TestCase):
             ]
         self.assertEqual(result, list(p.getSentences()))
 
-   # @unittest.skip("tep skipping")
+   # @unittest.skip("temp skipping")
     def testDirectSpeach(self):
         textToParse = \
         "「怒るって何をだね？" \
