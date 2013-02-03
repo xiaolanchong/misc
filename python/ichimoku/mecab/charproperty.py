@@ -20,7 +20,7 @@ class CharInfo:
         return self.group != 0
 
     def getExtraGroupNumber(self):
-        return self.length // 2 # EUC-JP -> Unicode
+        return self.length
 
     def needAddUnknownChar(self):
         return self.invoke != 0

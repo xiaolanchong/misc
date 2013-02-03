@@ -60,29 +60,46 @@ class Tokenizer:
             result = [Node(token, posInSentence) for token in tokens]
         if len(result) and not startCharInfo.needAddUnknownChar():
             return result
-
-        endToLookupPos = len(text)
         if len(text) == 1:
             if len(result) == 0:
                 result += self.getUnknownTokens(startCharInfo, text[0], posInSentence)
             return result
-       # nextCharInfo = self.charProperties.getCharInfo(text[1])
+        maxGroup, maxGroupPos = self.getMaxGroup(text, startCharInfo, posInSentence)
+        result += maxGroup
+        result += self.getExtraGroup(text, startCharInfo, maxGroupPos, posInSentence)
+        if len(result) == 0:
+            result += self.getUnknownTokens(startCharInfo, text[0], posInSentence)
+        return result
+
+    def getMaxGroup(self, text, startCharInfo, posInSentence):
+        """
+          managed by CharInfo.group
+        """
+        endToLookup = 0
+        result = []
         if startCharInfo.canBeGrouped():
             endToLookupPos, endToLookup = self.seekToOtherCharType(text, startCharInfo)
             if endToLookupPos > 1:
                 # extend the context and convert the found tokens to unknown ones
                 result += self.getUnknownTokens(startCharInfo, text[0 : endToLookupPos], posInSentence)
+        return result, endToLookup
+
+    def getExtraGroup(self, text, startCharInfo, maxGroupPos, posInSentence):
+        """
+            managed by cahrInfo.length
+        """
+        result = []
         for i in range(1, startCharInfo.getExtraGroupNumber() + 1):
             #unknown token
-            if i >= endToLookupPos:
+            if i == maxGroupPos:
+                continue
+            if i > len(text):
                 break
-            charCategory = self.charProperties.getCharInfo(text[i])
+            charCategory = self.charProperties.getCharInfo(text[i-1])
             if startCharInfo.isKindOf(charCategory):
-                result += self.getUnknownTokens(startCharInfo, text[0 : i+1], posInSentence)
+                result += self.getUnknownTokens(startCharInfo, text[0 : i], posInSentence)
             else:
                 break
-        if len(result) == 0:
-            result += self.getUnknownTokens(startCharInfo, text[0], posInSentence)
         return result
 
     def getUnknownTokens(self, startCharInfo, tokenText, posInSentence):

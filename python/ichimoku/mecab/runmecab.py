@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 import sys, os, platform, re, subprocess
 from mecab.utils import text_type, isPy2
+import time
 
 isWin = sys.platform == "win32"
 
@@ -30,7 +31,8 @@ class MecabRunner(object):
         self.lineDelimiter = '|'
         self.mecabArgs = ['--node-format=' + nodeFormat + self.lineDelimiter,
                           '--eos-format=' + eosNodeFormat + self.lineDelimiter,
-                          '--unk-format=' + unknownNodeFormat + self.lineDelimiter]
+                          '--unk-format=' + unknownNodeFormat + self.lineDelimiter,
+                          ]
 
     def setup(self):
         currentDir = os.path.dirname(__file__)
@@ -99,8 +101,8 @@ def getPartOfSpeech():
 
 def dumpNodeInfo():
     runner = MecabOutputGetter()
-    z = bytearray('－・', 'euc-jp', "ignore")
-    res = runner.run('ドンキ－・バー')
+    #z = bytearray('－・', 'euc-jp', "ignore")
+    res = runner.run('はっぴー・ばれん')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():

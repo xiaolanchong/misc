@@ -12,7 +12,7 @@ from mecab.node import Node
 from mecab.token import Token
 from mecab.runmecab import MecabOutputGetter
 from mecab.writer import Writer
-from mecab.utils import text_type
+from mecab.utils import text_type, isPy2
 from textproc.dataloader import getDataLoader
 
 class MockConnector:
@@ -82,48 +82,9 @@ class ViterbiTest(unittest.TestCase):
     def testError(self):
         self.compareOneSentence('づめに働い')
 
-    #@unittest.skip("temp skipping")
-    def testEntireFile(self):
-        self.compareOnFile(r'../testdata/other/MaigraitInNewYork_ch1.txt')
-        self.compareOnFile(r'../testdata/other/MaigraitInNewYork.txt')
+    def testDash(self):
+        self.compareOneSentence('-----')
 
-    def outputNodes(self, nodes):
-        return '\n'.join([str(node) for node in nodes])
-
-    def fixEncodingError(self, text):
-        # try to fix
-        # －  -> ー
-        # ～  ->  ~
-        table = str.maketrans('－～', 'ー~')
-        text = text.translate(table)
-        return text
-        # detect errors
-        try:
-            bytearray(text, 'euc-jp')
-        except UnicodeEncodeError as u:
-            raise RuntimeError(text + ': ' + str(e))
-        # ignore
-        if False:
-            b = bytearray(text, 'euc-jp', 'ignore')
-            return text_type(b)
-
-    def compareOnFile(self, fileName):
-        writer = Writer()
-        runner = MecabOutputGetter()
-
-        with io.open(fileName, encoding='utf-8') as inFile:
-            lineNum = 1
-            for line in inFile.readlines():
-                text = line.strip()
-                text = self.fixEncodingError(text)
-                nodes = self.viterbi.getBestPath(text)
-                pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
-                mecabResult = runner.run(text)
-                self.assertEqual(len(mecabResult), len(pyResult),
-                        text + '\npyPort:\n' + self.outputNodes(pyResult) + '\nmecab:\n' +self.outputNodes(mecabResult))  #text)
-                for i in range(len(mecabResult)):
-                    self.assertEqual(mecabResult[i], pyResult[i], "at line " + str(lineNum) + ": '" + line + "'")
-                lineNum += 1
 
 
 if __name__ == '__main__':

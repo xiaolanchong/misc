@@ -57,7 +57,8 @@ class SentenceParserTest(unittest.TestCase):
     def testUnicodeErrorInString(self):
         result = self.pyparser.tokenize('ドンキ－・バー')
         result = list(map(operator.attrgetter('word'), result))
-        self.assertEquals(['ドンキ', '－', '・', 'バー'], result) # doubles the char ahead of unknown?
+        self.assertEquals(['ドンキ', '－', '・', 'バー'], result)
+
 
 
     def testTokenizeNum(self):
@@ -97,6 +98,11 @@ class SentenceParserTest(unittest.TestCase):
         result = self.pyparser.tokenize('や、船客')
         result = list(map(operator.attrgetter('word'), result))
         self.assertEqual(['や', '、', '船客'], result)
+
+    def testUnkUnk(self):
+        result = self.pyparser.tokenize('はっぴー・ばれん')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEqual(['はっぴ', 'ー', '・', 'ばれ','ん'], result)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(SentenceParserTest)

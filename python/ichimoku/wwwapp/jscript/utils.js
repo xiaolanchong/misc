@@ -130,13 +130,13 @@ function showWordParameters(allChunks) {
 	$( "#dialog" ).dialog( "open" );
 }
 
-function addWord() {
-	$("#word").text();
-	$("#reading").val();
-	$("#definition").val();
-	$("#example").val();
-	tagText = $("#tags").val();
-	
+function readParametersAndAddCard() {
+	var word = $("#word").text();
+	var reading = $("#reading").val();
+	var definition = $("#definition").val();
+	var example = $("#example").val();
+	var tags = tagsToArray($("#tags").val());
+	addCard
 }
 
 /// Splits the given string into tags separated by comma and trims them

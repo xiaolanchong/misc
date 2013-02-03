@@ -8,6 +8,7 @@ sys.path.append(os.path.abspath('..'))
 from textproc import sqlitedict
 
 class DictionaryTest(unittest.TestCase):
+    @unittest.skip("SQLite is not used so far")
     def testSingleWord(self):
         path = os.path.join('..', 'data', 'dict.sqlite')
         dict = sqlitedict.SqliteDictionary(path)

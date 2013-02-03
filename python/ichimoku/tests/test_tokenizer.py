@@ -80,7 +80,7 @@ class TokenizerTest(unittest.TestCase):
         for i in range(0, 6):
             self.assertEqual('マール・ブランデー', nodes[i].token.text)
         for i in range(6, 12):
-            self.assertEqual('マー', nodes[i].token.text)
+            self.assertEqual('マ', nodes[i].token.text)
 
     def testComma(self):
         nodes = self.tokenizer.lookUp('、', 0)
@@ -99,7 +99,7 @@ class TokenizerTest(unittest.TestCase):
         for i in range(1, 7):
             self.assertEqual('ジーン・モーラ', nodes[i].token.text)
         for i in range(7, 13):
-            self.assertEqual('ジー', nodes[i].token.text)
+            self.assertEqual('ジ', nodes[i].token.text)
 
     def testUnknownGrouppedChars(self):
         nodes = self.tokenizer.lookUp('づめに', 0)
@@ -107,7 +107,7 @@ class TokenizerTest(unittest.TestCase):
         for i in range(0, 7):
             self.assertEqual('づめに', nodes[i].token.text)
         for i in range(7, 14):
-            self.assertEqual('づめ', nodes[i].token.text)
+            self.assertEqual('づ', nodes[i].token.text)
 
     def testKanjiRow(self):
         nodes = self.tokenizer.lookUp('一列縦隊で', 0)
@@ -123,6 +123,22 @@ class TokenizerTest(unittest.TestCase):
         self.assertEqual(1, len(nodes[0].token.text))
         nodes = self.tokenizer.lookUp('頃に', 0)
         self.assertEqual(1, len(nodes[0].token.text))
+
+    def testDash(self):
+        nodes = self.tokenizer.lookUp('ー・', 0)
+        self.assertEqual(12, len(nodes))
+        for i in range(0, 6):
+            self.assertEqual('ー・', nodes[i].token.text)
+        for i in range(6, 12):
+            self.assertEqual('ー', nodes[i].token.text)
+
+    def testKanjiGroup(self):
+        nodes = self.tokenizer.lookUp('疫所', 0)
+        self.assertEqual(6, len(nodes))
+        for i in range(0, 3):
+            self.assertEqual('疫', nodes[i].token.text)
+        for i in range(3, 6):
+            self.assertEqual('疫所', nodes[i].token.text)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TokenizerTest)
