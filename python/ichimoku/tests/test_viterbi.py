@@ -2,8 +2,10 @@
 
 from __future__ import unicode_literals
 import unittest
+import io
 import os.path
 import sys
+
 sys.path.append(os.path.abspath('..'))
 from mecab.viterbi import Viterbi
 from mecab.node import Node
@@ -54,6 +56,14 @@ class ViterbiTest(unittest.TestCase):
         expr = 'すべてに滲《し》み込み'
         self.compareOneSentence(expr)
 
+    def testWordWithUnknownNode(self):
+        expr = 'にもかかわらず、デッキに'
+        self.compareOneSentence(expr)
+
+    def testSymbol(self):
+        expr = '」'
+        self.compareOneSentence(expr)
+
     def compareOneSentence(self, expr):
         nodes = self.viterbi.getBestPath(expr)
         writer = Writer()
@@ -70,21 +80,33 @@ class ViterbiTest(unittest.TestCase):
     def out(text, mecabOutput, pyOutput):
         z = text + ' | ' + str(pyResult) + str(mecabResult)
 
-   # @unittest.skip("temp skipping")
+    def testError(self):
+        self.compareOneSentence('づめに働い')
+
+    @unittest.skip("temp skipping")
     def testEntireFile(self):
+        self.compareOnFile(r'../testdata/other/MaigraitInNewYork_ch1.txt')
+        self.compareOnFile(r'../testdata/other/MaigraitInNewYork.txt')
+
+    def outputNodes(self, nodes):
+        return '\n'.join([str(node) for node in nodes])
+
+    def compareOnFile(self, fileName):
         writer = Writer()
         runner = MecabOutputGetter()
-        return
-        with open(r'test/MaigraitInNewYork_ch1.txt', 'r', encoding='utf-8') as inFile:
+
+        with io.open(fileName, encoding='utf-8') as inFile:
+            lineNum = 1
             for line in inFile.readlines():
                 text = line.strip()
                 nodes = self.viterbi.getBestPath(text)
                 pyResult = writer.getMecabOutput(self.viterbi.getTokenizer(), nodes)
-
                 mecabResult = runner.run(text)
-                self.assertEqual(len(mecabResult), len(pyResult),  text + ' | ' + str(pyResult) + str(mecabResult))  #text)
+                self.assertEqual(len(mecabResult), len(pyResult),
+                        text + '\npyPort:\n' + self.outputNodes(pyResult) + '\nmecab:\n' +self.outputNodes(mecabResult))  #text)
                 for i in range(len(mecabResult)):
-                    self.assertEqual(mecabResult[i], pyResult[i])
+                    self.assertEqual(mecabResult[i], pyResult[i], "at line " + str(lineNum) + ": '" + line + "'")
+                lineNum += 1
 
 
 

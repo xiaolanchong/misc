@@ -107,7 +107,7 @@ class TextProcessorTest(unittest.TestCase):
         res = list(res)
         self.assertEqual(('準強姦', 0, 'じゅんごうかん'), res[0][0:3])
 
-    def testON2Reading(self):
+    def testONReadingFailure(self):
         # no word 車 with sha reading
         res = self.textProc.stepOne('逃走車', Settings.NoExcessiveReading())
 

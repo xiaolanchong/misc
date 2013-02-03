@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 import re
 import logging
 import codecs
-from mecab.utils import text_type, isPy2
+from mecab.utils import text_type
 from .textparser import TextParser
-from .sentenceparser import SentenceParser
+from .sentenceparser import PyPortSentenceParser, MecabSentenceParser
 from .glossary import Glossary
 from .dartsdict import DartsDictionary
 from .jdictprocessor import JDictProcessor
@@ -47,21 +47,15 @@ class Settings:
 class TextProcessor:
     def __init__(self, dataLoader):
       self.dictionary = DartsDictionary(dataLoader.load('jdict'))
-      self.parser = SentenceParser(dataLoader)
+      if True:
+        self.parser = PyPortSentenceParser(dataLoader)
+      else:
+        self.parser = MecabSentenceParser()
 
     @classmethod
     def hasKanji(cls, word):
         m = re.search("[\u4E00-\u9FFF]", word, re.S|re.UNICODE)
         return m is not None
-
-    def parseSentence(self, text):
-        """
-        Parses and looks up the 1st entry in JDIC
-        """
-        def isWordInDictionary(word):
-            return self.dictionary.getReadingAndDefinition(word)[0] is not None
-        allWords = self.parser.splitIntoWords(text, isWordInDictionary)
-        return allWords
 
     def getContext(self, text, wordInfo):
         """
@@ -88,8 +82,6 @@ class TextProcessor:
 
 
     def stepTwo(self, allWordInfo, settings):
-        #allWordInfo = self.parser.tokenize2(text)
-       # jdictProcessor = JDictProcessor(self.dictionary)
         result = []
         for wordInfo in allWordInfo:
             if wordInfo.isSymbol:
@@ -106,7 +98,7 @@ class TextProcessor:
         return result
 
     def stepOne(self, text, settings):
-        allWordInfo = self.parser.tokenize2(text)
+        allWordInfo = self.parser.tokenize(text)
         jdictProcessor = JDictProcessor(self.dictionary)
         result = []
         for wordInfo in allWordInfo:
@@ -124,11 +116,6 @@ class TextProcessor:
                 logging.info("'%s' not found in dictionary. Text: '%s'",
                                 wordInfo.word, self.getContext(text, wordInfo))
         return result
-
-    def addToGlossary(self, glossary, allWords, sentence):
-        for word in allWords:
-            reading, definition = self.dictionary.getReadingAndDefinition(word)
-            glossary.add(word, reading, definition, sentence)
 
     def do(self, text, settings = Settings.Verbose(), mergeWords = False):
         p = TextParser(text)

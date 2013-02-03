@@ -36,6 +36,10 @@ class Tokenizer:
         else:
             return False
 
+    def findNonSpacePosition(self, text):
+        startToLookup, startCharInfo = self.seekToOtherCharType(text, self.spaceCharInfo)
+        return startToLookup
+
     def lookUp(self, text, posInSentence):
         # skip leading spaces
         startToLookup, startCharInfo = self.seekToOtherCharType(text, self.spaceCharInfo)
@@ -43,17 +47,14 @@ class Tokenizer:
         posInSentence += startToLookup
         tokens = self.sysDictionary.commonPrefixSearch(text)
         if tokens and len(tokens):
-            if not startCharInfo.canBeGrouped():
-                return [Node(token, posInSentence) for token in tokens]
-            else:
+            result = [Node(token, posInSentence) for token in tokens]
+            if startCharInfo.canBeGrouped():
                 wordFound = tokens[0].text
                 endToLookupPos, endToLookup = self.seekToOtherCharType(text[len(wordFound):], startCharInfo)
-                if endToLookupPos == 0:
-                    # can't extend the tokens
-                    return [Node(token, posInSentence) for token in tokens]
-                else:
+                if endToLookupPos != 0:
                     # extend the context and convert the found tokens to unknown ones
-                    return self.getUnknownTokens(startCharInfo, text[0 : len(wordFound) + endToLookupPos], posInSentence)
+                    return result + self.getUnknownTokens(startCharInfo, text[0 : len(wordFound) + endToLookupPos], posInSentence)
+            return result
         else:
             #unknown token
             endToLookupPos, endToLookup = self.seekToOtherCharType(text, startCharInfo)

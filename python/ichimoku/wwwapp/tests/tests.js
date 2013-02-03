@@ -1,4 +1,4 @@
-/*
+
 test( "splitIntoChunks test", 
 function() {
 	var text = 
@@ -16,7 +16,7 @@ function() {
 		equal( result[8], "蟋蟀（きりぎりす）が一匹とまっている。" );
 }
 );
-*/
+
 test( "ChunkMerger test", 
 function() {
 	var expectedText = ["0", "1", "2", "3", "4", "5"];
@@ -39,5 +39,15 @@ function() {
 	equal(3, expectedText.length);
 	merger.addChunk(3, "3");
 	equal(0, expectedText.length);
+}
+);
+
+test( "Splitting tags test", 
+function() {
+	var result = tagsToArray("	verb, url:none  ,text-ok ");
+	equal(result.length, 3);
+	equal(result[0], "verb");
+	equal(result[1], "url:none");
+	equal(result[2], "text-ok");
 }
 );

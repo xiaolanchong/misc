@@ -6,12 +6,11 @@ import unittest
 import sys
 sys.path.append(os.path.abspath('..'))
 from mecab.charproperty import CharProperty
-import datapath
-import loader
+from textproc.dataloader import getDataLoader
 
 class CharInfoTest(unittest.TestCase):
     def testCharCategories(self):
-        prop = CharProperty(os.path.join('..', 'data', 'char.bin'))
+        prop = CharProperty(getDataLoader())
         self.assertEqual(['DEFAULT', 'SPACE', 'KANJI', 'SYMBOL',
                           'NUMERIC', 'ALPHA', 'HIRAGANA', 'KATAKANA',
                           'KANJINUMERIC', 'GREEK', 'CYRILLIC'], prop.getCategories())

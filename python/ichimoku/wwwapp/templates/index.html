@@ -38,8 +38,15 @@
            height: 'auto',
            width: 'auto',
 		  // resizable: false,
-		   buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } },
-		              { text: "Cancel", click: function() { $( this ).dialog( "close" ); } }]
+		   buttons: [ { text: "Ok", click: function() {
+											addWord();
+											$( this ).dialog( "close" ); 
+											} 
+					  },
+		              { text: "Cancel", click: function() { 
+											$( this ).dialog( "close" ); 
+											} 
+					  }]
 		});
 	});	
 </script>

@@ -17,14 +17,25 @@ class Viterbi:
         endNodes = [[] for i in range(len(text) + 1)]
         bosNode = self.tokenizer.getBOSNode(0)
         endNodes[0] = [bosNode]
-        for posInText in range(len(text)):
+        posInText = 0
+        while posInText < len(text):
+            nextPosInText = posInText + 1
             if len(endNodes[posInText]) > 0:
-                nodes = self.tokenizer.lookUp(text[posInText:], posInText)
+                skipCharNumber = self.tokenizer.findNonSpacePosition(text[posInText:])
+                lookFrom = skipCharNumber + posInText
+                nextPosInText = lookFrom + 1
+                if lookFrom >= len(text):
+                    break
+                nodes = self.tokenizer.lookUp(text[lookFrom:], lookFrom)
                 for node in nodes:
                     self.connect(endNodes[posInText], node)
-                    endNodes[posInText + len(node.token.text)].append(node)
+                    endNodes[lookFrom + len(node.token.text)].append(node)
+            posInText = nextPosInText
         eosNode = self.tokenizer.getEOSNode(len(text))
-        self.connect(endNodes[-1], eosNode)
+        for i in range(1, len(endNodes)):
+            if len(endNodes[-i]):
+                self.connect(endNodes[-i], eosNode)
+                break
         return self.createBackwardPath(eosNode)
 
     def connect(self, beginNodes, endNode):

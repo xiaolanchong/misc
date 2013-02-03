@@ -23,10 +23,23 @@ class Card(db.Model):
     """
     word = db.StringProperty(required=True)
     reading = db.StringProperty()
-    definition = db.StringProperty()
-    example = db.StringProperty()
+    definition = db.StringProperty(multiline=True)
+    example = db.StringProperty(multiline=True)
     tag = db.StringProperty()
     deck = db.ReferenceProperty(Deck)
+    added = db.DateTimeProperty(auto_now_add=True)
+
+class Tag(db.Model):
+    """
+        A label attached to a card
+    """
+    name = db.StringProperty(required=True)
+    user = db.ReferenceProperty(User, required=True)
+
+class TaggedCard(db.Model):
+    card = db.ReferenceProperty(Card, required=True)
+    tag = db.ReferenceProperty(Tag, required=True)
+
 
 defaultUser = u"llk"
 defaultDeck = u"MyDeck"

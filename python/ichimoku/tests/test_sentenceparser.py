@@ -2,83 +2,82 @@
 
 from __future__ import unicode_literals
 import unittest
+import operator
 import sys
 import os.path
 sys.path.append(os.path.abspath('..'))
 from mecab.writer import WordInfo
-from textproc.sentenceparser import SentenceParser
+from mecab import partofspeech as PoS
+from  textproc.dataloader import getDataLoader
+from textproc.sentenceparser import MecabSentenceParser, PyPortSentenceParser
 
 class SentenceParserTest(unittest.TestCase):
     def setUp(self):
-        self.parser = SentenceParser()
+        self.pyparser = PyPortSentenceParser(getDataLoader())
+        self.exeparser = MecabSentenceParser()
 
-    def testSimple(self):
-        res = self.parser.splitIntoWords('ですからあの人', lambda x: False)
-        self.assertEquals(['ですから', 'あの', '人'], res)
+    def testExeSimple(self):
+        res = self.exeparser.tokenize('ですからあの人')
+        expected = [WordInfo('ですから', 0, 'ですから', PoS.CONJ, 'デスカラ'),
+                    WordInfo('あの', 4, 'あの', PoS.FILLER, 'アノ'),
+                    WordInfo('人', 6, '人' ,PoS.NOUN, 'ヒト')]
+        self.assertEquals(expected, res)
 
-    def testNoNounSuffixJoin(self):
-        res = self.parser.splitIntoWords('船が検疫所に', lambda x: False)
-        self.assertEquals(['船', 'が', '検疫', '所', 'に'], res)
+    def testPySimple(self):
+        res = self.pyparser.tokenize('ですからあの人')
+        expected = [WordInfo('ですから', 0, 'ですから', PoS.CONJ, 'デスカラ'),
+                    WordInfo('あの', 4, 'あの', PoS.FILLER, 'アノ'),
+                    WordInfo('人', 6, '人' ,PoS.NOUN, 'ヒト')]
+        self.assertEquals(expected, res)
 
-    def testNounSuffixJoin(self):
-        res = self.parser.splitIntoWords('船が検疫所に', lambda x: True)
-        self.assertEquals(['船', 'が', '検疫所', 'に'], res)
-
-    def testUnknownToken(self):
-        res = self.parser.splitIntoWords('メグレは機関の止った瞬間', lambda x: False)
-        self.assertEquals(['メグレ', 'は', '機関', 'の', '止る', '瞬間'], res)  #止る た'
-
-    def testTwoNounSuffixJoin(self):
-        res = self.parser.splitIntoWords('朝の四時頃に', lambda x: True)
-        self.assertEquals(['朝', 'の', '四時頃', 'に'], res)
-
-    def testNaiFormAsEntireExpression(self):
-        res = self.parser.splitIntoWords('朝ちがいない', lambda x: True)
-        self.assertEquals(['朝', 'ちがいない'], res)
-
-    def testTaForm(self):
-        res = self.parser.splitIntoWords('所に着いたのは', lambda x: False)
-        self.assertEquals(['所', 'に', '着く', 'の', 'は'], res)
-
-    def testTeIruForm(self):
-        res = self.parser.splitIntoWords('雨が降っていた', lambda x: False, False)
-        self.assertEquals(['雨', 'が', '降る', 'いる'], res)
 
     def testMecabFailure(self):
-        res = self.parser.splitIntoWords('すべてに滲み込み', lambda x: False)
-        self.assertEquals(['すべて', 'に', '滲みる', '込み'], res)
+        """
+            A test where Mecab fails to recognize the verb 滲み込む
+        """
+        result = self.exeparser.tokenize('すべてに滲み込み')
+        result = list(map(operator.attrgetter('dictionaryForm'), result))
+        self.assertEquals(['すべて', 'に', '滲みる', '込み'], result)
 
     def testPyPort(self):
-        parser = SentenceParser('..')
-        res = parser.splitIntoWords('所に着いたのは', lambda x: False)
-        self.assertEquals(['所', 'に', '着い', 'の', 'は'], res)
+        result = self.pyparser.tokenize('所に着いたのは')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['所', 'に', '着い', 'た', 'の', 'は'], result)
+
+    def testWhiteSpace(self):
+        result = self.pyparser.tokenize('\n所に着いたのは')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['所', 'に', '着い', 'た', 'の', 'は'], result)
+
+    def testWhiteSpaceInside(self):
+        result = self.pyparser.tokenize('\n船が検 疫所に\n')
+        words = list(map(operator.attrgetter('word'), result))
+        self.assertEquals(['船', 'が', '検', '疫所', 'に'], words)
+        positions = list(map(operator.attrgetter('startPos'), result))
+        self.assertEquals([1, 2, 3, 5, 7], positions)
 
     def testTokenize2(self):
-        parser = SentenceParser('..')
-        res = parser.tokenize2('所に着いたのは')
-        expected = [ WordInfo('所', 0, '所', 38, 'トコロ'),
-                     WordInfo('に', 1, 'に', 13, 'ニ'),
-                     WordInfo('着い', 2, '着く', 31, 'ツイ'),
-                     WordInfo('た', 4, 'た', 25, 'タ'),
-                     WordInfo('の', 5, 'の', 63, 'ノ'),
-                     WordInfo('は', 6, 'は', 16, 'ハ')
+        res = self.pyparser.tokenize('所に着いたのは')
+        expected = [ WordInfo('所', 0, '所', PoS.NOUN, 'トコロ'),
+                     WordInfo('に', 1, 'に', PoS.PRT_CASE, 'ニ'),
+                     WordInfo('着い', 2, '着く', PoS.VERB, 'ツイ'),
+                     WordInfo('た', 4, 'た', PoS.VERB_AUX, 'タ'),
+                     WordInfo('の', 5, 'の', PoS.NOUN_NONIND, 'ノ'),
+                     WordInfo('は', 6, 'は', PoS.PRT_BIND, 'ハ')
                    ]
         self.assertEquals(expected, res)
 
     def testUnknownWord(self):
-        parser = SentenceParser('..')
-        res = parser.tokenize2('デッキに昇って行った')
-        expected = [ WordInfo('デッキ', 0, '', 38, ''),
-                     WordInfo('に', 3, 'に', 13, 'ニ')
+        res = self.pyparser.tokenize('デッキに昇って行った')
+        expected = [ WordInfo('デッキ', 0, 'デッキ', PoS.NOUN, 'デッキ'),
+                     WordInfo('に', 3, 'に', PoS.PRT_CASE, 'ニ')
                    ]
         self.assertEquals(expected, res[0:2])
 
     def testComma(self):
-        parser = SentenceParser('..')
-        res = parser.tokenize2('や、船客')
-        self.assertEqual(3, len(res))
-       # for i in range(6):
-       #     self.assertEqual('マール・ブランデー', res[i].token.text)
+        result = self.pyparser.tokenize('や、船客')
+        result = list(map(operator.attrgetter('word'), result))
+        self.assertEqual(['や', '、', '船客'], result)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(SentenceParserTest)

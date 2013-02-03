@@ -22,6 +22,8 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual([(42079745, 2), (42086145, 4)], res)
         res = self.dict.internalCommonPrefixSearch('かかわらず、')
         self.assertEqual([(4058371, 2), (4187651, 4), (4212737, 6), (4213249, 8)], res)
+        res = self.dict.internalCommonPrefixSearch('デッキ')
+        self.assertEqual([(23825665, 2), (23878657, 6)], res)
 
     def testCommonPrefix(self):
         res = self.dict.commonPrefixSearch('か')

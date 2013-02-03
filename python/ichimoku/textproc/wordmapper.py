@@ -138,6 +138,7 @@ class WordMapper:
         if len(probabilities):
             return maxIndex(probabilities)
         else:
+            # TODO: get rid of ML solution: adjectives and nouns classes to ifs
             for i in range(len(wordsAttributes)):
                 if self.match(wordsAttributes[i], pos):
                     return i

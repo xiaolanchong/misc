@@ -10,6 +10,7 @@ from textproc.dartsdict import DartsDictionary
 from textproc.dataloader import getDataLoader
 import mecab.partofspeech as PoS
 from mecab.writer import WordInfo
+from textproc.intwordinfo import IntermediateWordInfo
 
 class JDictProcessorTest(unittest.TestCase):
     def setUp(self):
@@ -57,24 +58,24 @@ class JDictProcessorTest(unittest.TestCase):
         self.assertEqual(definitions[0], res)
 
     def testMergeNoun(self):
-        a = WordInfo( '検疫', 0, '検疫', PoS.NOUN_VSURU, 'xx')
-        b = WordInfo( '所', 2, '所', PoS.NOUN_SUFFIX, 'xx')
-        newWord = self.processor.mergeWord(a, b)
-        expected = WordInfo('検疫所', 0, '検疫所' , PoS.NOUN, 'けんえきじょ')
-        self.assertEqual(newWord, expected)
+        a = IntermediateWordInfo( '検疫', 0, PoS.NOUN_VSURU, 'xx','')
+        b = IntermediateWordInfo( '所', 2, PoS.NOUN_SUFFIX, 'xx','')
+        newWord = self.processor.mergeWords([a, b])
+        expected = IntermediateWordInfo('検疫所', 0, PoS.NOUN, 'けんえきじょ', '(n) quarantine station')
+        self.assertEqual(newWord, [expected])
 
     def testMergeNoun3Kanji(self):
-        a = WordInfo( '数', 0, '数', PoS.NOUN_VSURU, 'xx')
-        b = WordInfo( '時間', 1, '時間', PoS.NOUN_SUFFIX, 'xx')
-        newWord = self.processor.mergeWord(a, b)
-        expected = WordInfo('数時間', 0, '数時間' , PoS.NOUN, 'すうじかん')
-        self.assertEqual(newWord, expected)
+        a = IntermediateWordInfo( '数', 0, PoS.NOUN_VSURU, 'xx', '')
+        b = IntermediateWordInfo( '時間', 1, PoS.NOUN_SUFFIX, 'xx', '')
+        newWord = self.processor.mergeWords([a, b])
+        expected = IntermediateWordInfo('数時間', 0, PoS.NOUN, 'すうじかん', '(n) a few hours/(P)')
+        self.assertEqual(newWord, [expected])
 
     def testMergeNoun4Kanji(self):
-        a = WordInfo( '予算', 0, '予算', PoS.NOUN, 'xx')
-        b = WordInfo( '補正', 2, '補正', PoS.NOUN, 'xx')
-        newWord = self.processor.mergeWord(a, b)
-        self.assertIsNone(newWord)
+        a = IntermediateWordInfo( '予算', 0,  PoS.NOUN, 'xx', '')
+        b = IntermediateWordInfo( '補正', 2, PoS.NOUN, 'xx', '')
+        newWord = self.processor.mergeWords([a, b])
+        self.assertIsNotNone(newWord)
 
     def testSelectNounOnReading(self):
         a = WordInfo('所' , 0, '所', PoS.NOUN_SUFFIX, 'ショ')
@@ -83,15 +84,15 @@ class JDictProcessorTest(unittest.TestCase):
         self.assertEqual(newWord, ('しょ', '(suf,ctr) counter for places'))
 
     def testMergeVerbs(self):
-        a = WordInfo('ちがい' , 0, 'ちがい', PoS.VERB, '')
-        b = WordInfo('ない' , 0, 'ない', PoS.VERB_AUX, '')
-        newWord = self.processor.mergeWord(a, b)
+        a = IntermediateWordInfo('ちがい' , 0, PoS.VERB, '', '')
+        b = IntermediateWordInfo('ない' , 0, PoS.VERB_AUX, '', '')
+        newWord = self.processor.mergeWords([a, b])
         self.assertIsNotNone(newWord)
 
     def testMergeVerbs2(self):
-        a = WordInfo('滲み' , 0, '滲みる', PoS.VERB, 'シミ')
-        b = WordInfo('込み' , 0, '込み', PoS.VERB_NONIND, 'コミ')
-        newWord = self.processor.mergeWord(a, b)
+        a = IntermediateWordInfo('滲み' , 0, PoS.VERB, 'シミ', '')
+        b = IntermediateWordInfo('込み' , 0, PoS.VERB_NONIND, 'コミ', '')
+        newWord = self.processor.mergeWords([a, b])
         self.assertIsNotNone(newWord)
 
 if __name__ == '__main__':

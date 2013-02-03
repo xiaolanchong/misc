@@ -79,12 +79,13 @@ var ChunkMerger = (function(callback) {
     return ChunkMerger;
 })();
 
-function addCard(chunks) {
+function addCard(word, reading, definition,
+				 example, tags) {
 	$.ajax({
 		type: 'post',
 		url: '/addcard',
-		data: { "word" : chunks[0], "reading" : chunks[1],
-				"definition" : chunks[2], "example" : chunks[3] },
+		data: { "word" : word, "reading" : reading,
+				"definition" : definition, "example" : example, 'tags':tags },
 		dataType: "json",
 		beforeSend:function(){
 			//launchpreloader();
@@ -129,6 +130,24 @@ function showWordParameters(allChunks) {
 	$( "#dialog" ).dialog( "open" );
 }
 
+function addWord() {
+	$("#word").text();
+	$("#reading").val();
+	$("#definition").val();
+	$("#example").val();
+	tagText = $("#tags").val();
+	
+}
+
+/// Splits the given string into tags separated by comma and trims them
+function tagsToArray(text) {
+	var tags = text.split(",");
+	for(var i = 0; i < tags.length; ++i) {
+		tags[i] = $.trim(tags[i]); 
+	}
+	return tags;
+}
+
 function populateTable(data) {
 	if($('#wordtable > thead > tr').length == 0)
 	{
@@ -143,7 +162,8 @@ function populateTable(data) {
 	data.forEach( function (element, row) {
 		var row = $('<tr></tr>').addClass(row % 2 ? "odd" : "even");
 		var link=$("<a href=\"javascript:none\"><img src=\"img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
-		link.click(function(){
+		link.click(function(e){
+							e.preventDefault();
 							var addedImg = "img/Ok-icon.png";
 							if($("img", this).attr("src") == addedImg) {
 								return false;

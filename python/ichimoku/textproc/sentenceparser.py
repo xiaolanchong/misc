@@ -5,98 +5,44 @@ import sys, os, platform, re, subprocess
 from mecab import utils
 from mecab import runmecab
 from mecab.viterbi import Viterbi
-from mecab.writer import Writer
+from mecab.writer import Writer, WordInfo
 from .dataloader import getDataLoader
 
-class SentenceParser(object):
+class MecabSentenceParser:
+    def __init__(self):
+        self.mecab = runmecab.MecabRunner(
+             '%m,%ps,%f[6],%h,%f[7] ', '\n', '[%m,%ps] ')
 
-    def __init__(self, rootDir=None):
-        if rootDir is None:
-            self.mecab = runmecab.MecabRunner(
-             '%m,%f[6],%f[0],%f[1],%f[2],%f[3],%f[4],%f[5] ', '\n', '[%m] ')
-        else:
-            self.mecab = None
-            self.viterbi = Viterbi(getDataLoader())
-            self.writer = Writer()
-
-    def tokenize(self, expr, dumpNodes=False):
-        if self.mecab:
-            return self.tokenizeNative(expr, dumpNodes)
-        else:
-            return self.tokenizePyPort(expr, dumpNodes)
-
-    def tokenizePyPort(self, expr, dumpNodes):
-        path = self.viterbi.getBestPath(expr)
-        res = self.writer.getMorphAndFeature(self.viterbi.getTokenizer(), path)
-        out = []
-        for tokenData in res:
-            # [(tokenData[7], tokenData[0], tokenData[1], tokenData[2]) for tokenData in res]
-            (originWord, dictionaryForm, symbolicPartOfSpeech, subType) =\
-                tokenData[7], tokenData[0], tokenData[1], tokenData[2]
-            isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
-            if dumpNodes and False:
-                print(node)
-            out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
-        return out
-
-    def tokenize2(self, expr):
-        path = self.viterbi.getBestPath(expr)
-        return self.writer.getWordInfo(self.viterbi.getTokenizer(), path)
-
-    def tokenizeNative(self, expr, dumpNodes):
+    def tokenize(self, expr):
         exprFromMecab = self.mecab.run(expr)
         out = []
         for line in exprFromMecab:
             for node in line.split(" "):
                 if not node:
                   break
-                m =  re.match("(.+),(.+),(.+),(.*),(?:.*),(?:.*),(?:.*),(?:.*)", node);
+                m =  re.match("(.+),(.+),(.+),(.*),(.*)", node);
                 if m is None:
-                    m = re.match("\[(.+)\]", node)
+                    m = re.match("\[(.+),(.+)\]", node)
                     if m:
                     #raise RuntimeError('unknown node: ' + node)
-                        word = m.groups(0)[0]
-                        out.append((word, word, False, False))
+                        word, startPos= m.groups(0)
+                        # word, startPos, dictionaryForm, partOfSpeech, kanaReading
+                        unicodeTextPos = int(startPos)/2
+                        out.append(WordInfo(word, unicodeTextPos, word, PoS.UNKNOWN, ''))
                     else:
                         raise RuntimeError(node)
                 else:
-                    (originWord, dictionaryForm, symbolicPartOfSpeech, subType) = m.groups()
-                    isSuffix, skipIfNoOccurrence = self.getSuffixInfo(symbolicPartOfSpeech, subType)
-                    if dumpNodes and False:
-                       print(node)
-                    out.append((originWord, dictionaryForm, isSuffix, skipIfNoOccurrence))
-
+                    word, startPos, dictionaryForm, partOfSpeech, kanaReading = m.groups(0)
+                    unicodeTextPos = int(startPos)/2
+                    out.append(WordInfo(word, unicodeTextPos, dictionaryForm, int(partOfSpeech), kanaReading))
         return out
 
-    def splitIntoWords(self, expr, dictionary, dumpNodes=False):
-        tokens = self.tokenize(expr, dumpNodes)
-        allWords = []
-        lastToken =None
-        for originWord, dictionaryForm, isSuffix, skipIfNoOccurrence in tokens:
-            if not isSuffix:
-                if lastToken:
-                    allWords.append(lastToken[1])
-                lastToken = (originWord, dictionaryForm)
-            else:
-                if not lastToken:
-                    lastToken = (originWord, dictionaryForm)
-                else:
-                    wordInDictionary = dictionary(lastToken[0] + originWord)
-                    if wordInDictionary:
-                        lastToken = (lastToken[0] + originWord, lastToken[1] + dictionaryForm)
-                    else:
-                        allWords.append(lastToken[1])
-                        if skipIfNoOccurrence:
-                            lastToken = None
-                        else:
-                            lastToken = (originWord, dictionaryForm)
-        if lastToken:
-            allWords.append(lastToken[1])
-        return allWords
+class PyPortSentenceParser(object):
+    def __init__(self, dataLoader):
+        self.mecab = None
+        self.viterbi = Viterbi(dataLoader)
+        self.writer = Writer()
 
-    def getSuffixInfo(self, partOfSpeech, subType):
-        result = { '名詞' : (subType == '接尾', False) ,
-                   '助動詞' : (True, True),
-                   '助詞' : (subType == '接続助詞', subType == '接続助詞')
-                  }
-        return result.get(partOfSpeech, (False, False))
+    def tokenize(self, expr):
+        path = self.viterbi.getBestPath(expr)
+        return self.writer.getWordInfo(self.viterbi.getTokenizer(), path)

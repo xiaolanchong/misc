@@ -92,7 +92,6 @@ class Writer:
             text = node.token.text
             featureStr = tokenizer.getFeature(node.token.featureId, node.isKnown)
             featureStr = featureStr.split(',')
-           # print(featureStr[7], featureStr[8], featureStr[9] if len(featureStr) >= 10 else '')
             out.append(WordInfo(text, node.startPos,  self.getItemOrEmptyStr(featureStr, 6),
                                 node.token.partOfSpeechId, self.getItemOrEmptyStr(featureStr, 7)))
         return out
