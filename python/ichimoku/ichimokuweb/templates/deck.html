@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load filter_extra %}
 
 {% block jscript %}
 <script src="{{STATIC_URL}}jscript/jquery.bpopup-0.8.0.min.js"></script>
@@ -77,8 +78,8 @@
 				<td class="word">{{ card.reading }}</td>
 				<td>{{ card.definition }}</td>
 				<td>{{ card.example }}</td>
-				<td></td>
-				<!-- <td>{{ card.tags|join:", " }}</td> -->
+				<!-- <td></td> -->
+				<td>{{ card.tag.all|sortbyname|join:", " }}</td>
 			</tr>
 		{% endfor %}
 	</tbody>

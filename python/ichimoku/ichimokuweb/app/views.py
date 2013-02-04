@@ -69,6 +69,7 @@ class AddCardView(View):
         tagSet = set()
         uniqueTags = []
         for tag in tagsText.split(','):
+            tag = tag.strip()
             if tag not in tagSet:
                 tagSet.add(tag)
                 uniqueTags.append(tag)
@@ -87,15 +88,32 @@ class AddCardView(View):
         return h
 
     def addCard(self, word, reading, definition, example, tags):
-        newCard = models.Card(deck_id=1, word=word, reading=reading,
+        card = models.Card.objects.filter(deck_id=1, word=word)
+        if not card.exists():
+            newCard = models.Card(deck_id=1, word=word, reading=reading,
                               definition =definition, example=example)
-        newCard.save()
+            newCard.save()
+            card = newCard
+        else:
+            card = card[0]
+        self.attachTags(1, card, tags)
+
+    def addTag(self, userId, tagName):
+        tag,created = models.Tag.objects.get_or_create(user_id=userId, name=tagName)
+        return tag
+
+    def attachTags(self, userId, card, tagList):
+        for tagName in tagList:
+            tag = self.addTag(userId, tagName)
+            card.tag.add(tag.pk)
+        card.save()
+
+
+
 
 class DeckView(TemplateView):
     template_name = 'deck.html'
     context_object_name = "context"
-    #queryset = models.Card.objects.all()
-   # model = models.Card
 
     def get_context_data(self, **kwargs):
         context = super(DeckView, self).get_context_data(**kwargs)
