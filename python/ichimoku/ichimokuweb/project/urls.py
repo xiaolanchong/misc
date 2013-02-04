@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from app.views import IndexView, AddCardView
+from app.views import IndexView, AddCardView, DeckView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', IndexView.as_view()),
     url(r'^addcard$', AddCardView.as_view()),
+    url(r'^mydeck$', DeckView.as_view()),
     # url(r'^ichimoku/', include('ichimoku.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

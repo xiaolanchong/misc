@@ -88,8 +88,16 @@ class AddCardView(View):
 
     def addCard(self, word, reading, definition, example, tags):
         newCard = models.Card(deck_id=1, word=word, reading=reading,
-                                     example=example)
+                              definition =definition, example=example)
         newCard.save()
 
 class DeckView(TemplateView):
     template_name = 'deck.html'
+    context_object_name = "context"
+    #queryset = models.Card.objects.all()
+   # model = models.Card
+
+    def get_context_data(self, **kwargs):
+        context = super(DeckView, self).get_context_data(**kwargs)
+        context['cards'] =  models.Card.objects.filter(deck_id=1)
+        return context

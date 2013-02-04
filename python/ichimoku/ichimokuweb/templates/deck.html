@@ -38,7 +38,7 @@
 <h2>My Deck</h2>
 <button id="openExportWnd">Export</button>
 <div id="element_to_pop_up">
-	<a class="bClose">x<a/>
+	<a class="bClose">x</a>
 	<fieldset>
 		<input type="checkbox" name="exportReading" checked>Reading<br>
 		<input type="checkbox" name="exportDefinition" checked>Definition<br>
@@ -71,13 +71,14 @@
 	<tbody>
 		{% for card in cards %}
 			<tr class="{% cycle 'odd' 'even' %}">
-				<td><a href="#"><img src="img/Close-2-icon.png" onclick="return deleteCard('{{card.key}}');" title="remove the word from the deck"/></a></td>
+				<td><a href="#"><img src="{{STATIC_URL}}img/Close-2-icon.png" onclick="return deleteCard('{{card.id}}');" title="remove the word from the deck"/></a></td>
 				<td><input type="checkbox" checked></td>
 				<td class="word">{{ card.word }}</td>
 				<td class="word">{{ card.reading }}</td>
 				<td>{{ card.definition }}</td>
 				<td>{{ card.example }}</td>
-				<td>{{ card.tags|join:", " }}</td>
+				<td></td>
+				<!-- <td>{{ card.tags|join:", " }}</td> -->
 			</tr>
 		{% endfor %}
 	</tbody>
