@@ -49,5 +49,11 @@ function() {
 	equal(result[0], "verb");
 	equal(result[1], "url:none");
 	equal(result[2], "text-ok");
+	var result = tagsToArray("	verb ");
+	equal(result.length, 1);
+	equal(result[0], "verb");
+	var result = tagsToArray("	verb,, ");
+	equal(result.length, 1);
+	equal(result[0], "verb");	
 }
 );

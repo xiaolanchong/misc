@@ -80,12 +80,14 @@ var ChunkMerger = (function(callback) {
 })();
 
 function addCard(word, reading, definition,
-				 example, tags) {
+				 example, tagsText) {
+	//console.log(tags.length.toString());
 	$.ajax({
 		type: 'post',
 		url: '/addcard',
 		data: { "word" : word, "reading" : reading,
-				"definition" : definition, "example" : example, 'tags':tags },
+				"definition" : definition, "example" : example, 
+				"tags" : tagsText },
 		dataType: "json",
 		beforeSend:function(){
 			//launchpreloader();
@@ -135,13 +137,14 @@ function readParametersAndAddCard() {
 	var reading = $("#reading").val();
 	var definition = $("#definition").val();
 	var example = $("#example").val();
-	var tags = tagsToArray($("#tags").val());
-	addCard
+	var tags = $("#tags").val();
+	addCard(word, reading, definition, example, tags);
 }
 
 /// Splits the given string into tags separated by comma and trims them
 function tagsToArray(text) {
 	var tags = text.split(",");
+	//var 
 	for(var i = 0; i < tags.length; ++i) {
 		tags[i] = $.trim(tags[i]); 
 	}

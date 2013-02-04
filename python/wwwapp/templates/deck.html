@@ -65,6 +65,7 @@
 			<th>Reading</th>
 			<th>Definition</th>
 			<th>Example</th>
+			<th>Tags</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -76,6 +77,7 @@
 				<td class="word">{{ card.reading }}</td>
 				<td>{{ card.definition }}</td>
 				<td>{{ card.example }}</td>
+				<td>{{ card.tags|join:", " }}</td>
 			</tr>
 		{% endfor %}
 	</tbody>

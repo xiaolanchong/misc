@@ -46,6 +46,15 @@ class MainPage(webapp2.RequestHandler):
         self.response.status = 502
         self.response.status_message = 'Time elapsed while processing the request'
 
+def getTags(tagsText):
+    tagSet = set()
+    uniqueTags = []
+    for tag in tagsText.split(','):
+        if tag not in tagSet:
+            tagSet.add(tag)
+            uniqueTags.append(tag)
+    return uniqueTags
+
 class AddCardPage(webapp2.RequestHandler):
   def post(self):
     logging.info('Received AddCard: %d', len(self.request.body))
@@ -53,8 +62,12 @@ class AddCardPage(webapp2.RequestHandler):
     reading = self.request.get('reading')
     definition = self.request.get('definition')
     example = self.request.get('example')
-    logging.info('add card: %d, %d, %d, %d', len(word), len(reading), len(definition), len(example))
-    models.addCard(word, reading, definition, example)
+    tags = self.request.get('tags')
+    tags = getTags(tags)
+    logging.info('Received : %s', self.request.body)
+    logging.info('add card: %s, readinglen=%d, deflen=%d, examplelen=%d, tagsnum=%d',
+                word, len(reading), len(definition), len(example), len(tags))
+    models.addCard(word, reading, definition, example, tags)
     self.response.out.write('')
 
 class DeleteCardPage(webapp2.RequestHandler):
