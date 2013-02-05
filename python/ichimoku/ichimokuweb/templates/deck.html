@@ -29,8 +29,42 @@
 			$("#element_to_pop_up").bPopup().close();
 			//console.log(csvContent);
 			submitFileContents(csvContent);
+		});	
+		$(".delCardImg").click(function(e) {
+			e.preventDefault();
+			var wordToDelete = $("#word", $(this).parent().parent().parent()).text();
+			$( "#deleteCard > #word" ).text(wordToDelete);
+			$( "#deleteCard" ).dialog( "open" );
+			//.
+		});
+		$(".editCardImg").click(function(e) {
+			e.preventDefault();
+			var wordToEdit = $("#word", $(this).parent().parent().parent()).text();
+			//$( "#deleteCard > #word" ).text(wordToDelete);
+			//$( "#deleteCard" ).dialog( "open" );
+			//.
 		});		
 	});
+	
+	$(function() {
+		$( "#deleteCard" ).dialog({
+		   autoOpen: false,
+		   modal: true,
+		   height: 'auto',
+		   width: 'auto',
+		  // resizable: false,
+		   buttons: [ { text: "Ok", click: function() {
+											//readParametersAndAddCard();
+											$( this ).dialog( "close" ); 
+											} 
+					  },
+					  { text: "Cancel", click: function() { 
+											$( this ).dialog( "close" ); 
+											} 
+					  }]
+		});
+	});		
+
 </script>
 {% endblock %}
 {% block body %}
@@ -57,29 +91,37 @@
 	</table>
 	<button id="exportBtn">Export</button>
 </div>
+<div id="deleteCard" title="Delete the card" style="display: none;text-align:center;">
+	<div id="word" style="font-size: 200%;margin-bottom: 10px;"/></div>
+	<div>Delete the card and all its properies from the deck?<br>
+		<span style="color: #ff1010;font-size:75%">Warning: the operation cannot be undone.<span>
+	</div>
+</div>
 <table id="wordtable">
 	<thead>
 		<tr>
-			<th>Delete</th>
-			<th>Export</th>
 			<th>Word</th>
 			<th>Reading</th>
 			<th>Definition</th>
 			<th>Example</th>
 			<th>Tags</th>
+			<th>Edit options</th>
+			<th>Export</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for card in cards %}
 			<tr class="{% cycle 'odd' 'even' %}">
-				<td><a href="#"><img src="{{STATIC_URL}}img/Close-2-icon.png" onclick="return deleteCard('{{card.id}}');" title="remove the word from the deck"/></a></td>
-				<td><input type="checkbox" checked></td>
-				<td class="word">{{ card.word }}</td>
+				<td class="word" style="font-size:125%;" id="word">{{ card.word }}</td>
 				<td class="word">{{ card.reading }}</td>
 				<td>{{ card.definition }}</td>
 				<td>{{ card.example }}</td>
-				<!-- <td></td> -->
 				<td>{{ card.tag.all|sortbyname|join:", " }}</td>
+				<td style="text-align:center;">
+				    <a href="#"><img src="{{STATIC_URL}}img/edit_card.png" id="card_{{card.id}}" class="editCardImg" title="Edit the card"/></a>
+					<a href="#"><img src="{{STATIC_URL}}img/Close-2-icon.png" id="card_{{card.id}}" class="delCardImg" title="Delete the word from the deck"/></a>
+				</td>				
+				<td><input type="checkbox" checked></td>				
 			</tr>
 		{% endfor %}
 	</tbody>

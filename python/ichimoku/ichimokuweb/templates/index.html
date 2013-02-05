@@ -40,6 +40,11 @@
 		  // resizable: false,
 		   buttons: [ { text: "Ok", click: function() {
 											readParametersAndAddCard();
+											// TODO: duplicated in utils.js
+											var addedImg = "static/img/Ok-icon.png";
+											var el = $("#imageToChange")
+											el.attr("src", addedImg);
+											el.attr("id", "");
 											$( this ).dialog( "close" ); 
 											} 
 					  },
