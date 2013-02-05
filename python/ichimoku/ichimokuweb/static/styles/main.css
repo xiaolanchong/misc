@@ -27,6 +27,12 @@ textarea {
 overflow: auto;
 }
 
+.knownWord td {
+	color : gray;
+	font-size: 75%;
+	background-color: #eeeeee;
+}
+
 #element_to_pop_up { 
     background-color:#fff;
     border-radius:15px;

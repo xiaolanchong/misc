@@ -12,34 +12,9 @@ sys.path.append(os.path.abspath('..'))
 from textproc.textprocessor import TextProcessor, Settings
 from textproc.dataloader import getDataLoader
 
-class AjaxableResponseMixin(object):
-    """
-    Mixin to add AJAX support to a form.
-    Must be used with an object-based FormView (e.g. CreateView)
-    """
-    def render_to_json_response(self, context, **response_kwargs):
-        data = json.dumps(context)
-        response_kwargs['content_type'] = 'application/json'
-        return HttpResponse(data, **response_kwargs)
-
-    def form_invalid(self, form):
-        if self.request.is_ajax():
-            return self.render_to_json_response(form.errors, status=400)
-        else:
-            return super(AjaxableResponseMixin, self).form_invalid(form)
-
-    def form_valid(self, form):
-        if self.request.is_ajax():
-            data = {
-                'pk': form.instance.pk,
-            }
-            return self.render_to_json_response(data)
-        else:
-            return super(AjaxableResponseMixin, self).form_valid(form)
-
 logger = logging.getLogger(__name__)
 
-class IndexView(AjaxableResponseMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
@@ -57,12 +32,16 @@ class IndexView(AjaxableResponseMixin, TemplateView):
             textProc = TextProcessor(getDataLoader())
             contents = textProc.do(userText, Settings.NoExcessiveReading(), True)
             for word, startPos, reading, definition, sentence in contents:
-                result.append((word, reading, definition, sentence))
+                result.append((word, reading, definition, sentence, self.getWordStatus(word)))
             #contents = list(contents)
           #  logging.info("%d records sent", len(result))
             data = simplejson.dumps(result)
             h = HttpResponse(data, mimetype="application/json", status=200)
             return h
+
+    def getWordStatus(self, word):
+        q = models.Card.objects.filter(word=word,deck_id=1)
+        return 1 if q.exists() else 0
 
 class AddCardView(View):
     def getTags(self, tagsText):
@@ -107,8 +86,6 @@ class AddCardView(View):
             tag = self.addTag(userId, tagName)
             card.tag.add(tag.pk)
         card.save()
-
-
 
 
 class DeckView(TemplateView):

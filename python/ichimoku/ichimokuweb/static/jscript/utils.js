@@ -41,7 +41,7 @@ var ChunkMerger = (function(callback) {
 	//  index - index of the chunk in the overall array, starting from 0
 	//  text - contents of the chunk, may have any type
     ChunkMerger.prototype.addChunk = function(index, text) {
-	console.log('populate');
+	//console.log('populate');
 		if(index < this._startIndex) {
 			console.error("Input index is out of the expected bound: " 
 						+ index.toString() + ", " + this._startIndex.toString());
@@ -123,12 +123,13 @@ function deleteCard(id) {
     return false;
 }
 
-function showWordParameters(allChunks) {
+function showWordParameters(allChunks, imgElement) {
 	//console.log(allChunks[0]);
 	$("#word").text(allChunks[0]);
 	$("#reading").val(allChunks[1]);
 	$("#definition").val(allChunks[2]);
 	$("#example").val(allChunks[3]);
+	$(imgElement).attr("id", "imageToChange");
 	$( "#dialog" ).dialog( "open" );
 }
 
@@ -163,11 +164,16 @@ function populateTable(data) {
 	}
 	var table = $('#wordtable > tbody:last');
 	data.forEach( function (element, row) {
-		var row = $('<tr></tr>').addClass(row % 2 ? "odd" : "even");
+		var isKnown = element.pop();
+		var rowClass = row % 2 ? "odd" : "even"
+		if (isKnown) {
+			rowClass = "knownWord";
+		}
+		var row = $('<tr></tr>').addClass(rowClass);
 		var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
 		link.click(function(e){
 							e.preventDefault();
-							var addedImg = "img/Ok-icon.png";
+							var addedImg = "static/img/Ok-icon.png";
 							if($("img", this).attr("src") == addedImg) {
 								return false;
 							}
@@ -177,12 +183,14 @@ function populateTable(data) {
 								});
 							allChunks.shift();
 							//addCard(allChunks);
-							showWordParameters(allChunks);
+							showWordParameters(allChunks, $("img", this));
 							
-							$("img", this).attr("src", addedImg);
-							return false;
+							
 						});
-		var td = $("<td></td>").append(link)
+		var td = $("<td></td>");
+		if(!isKnown) {
+			td.append(link);
+		}
 		row.append(td)
 		element.forEach( function (cellText, column) {
 			var cell = $("<td></td>").addClass(column < 2 ? "word" : "").text(cellText);
