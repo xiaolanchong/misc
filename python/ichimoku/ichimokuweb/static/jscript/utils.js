@@ -129,8 +129,11 @@ function showWordParameters(allChunks, imgElement) {
 	$("#reading").val(allChunks[1]);
 	$("#definition").val(allChunks[2]);
 	$("#example").val(allChunks[3]);
-	$(imgElement).attr("id", "imageToChange");
-	$( "#dialog" ).dialog( "open" );
+	console.log(imgElement.innerHtml);
+	//$(imgElement).attr("id", "imageToChange");
+	//
+	
+	$( "#dialog" ).data('imgToChange', imgElement).dialog( "open" );
 }
 
 function readParametersAndAddCard() {
@@ -183,7 +186,7 @@ function populateTable(data) {
 								});
 							allChunks.shift();
 							//addCard(allChunks);
-							showWordParameters(allChunks, $("img", this));
+							showWordParameters(allChunks, this);
 							
 							
 						});

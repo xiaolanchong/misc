@@ -94,5 +94,5 @@ class DeckView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DeckView, self).get_context_data(**kwargs)
-        context['cards'] =  models.Card.objects.filter(deck_id=1)
+        context['cards'] =  models.Card.objects.filter(deck_id=1).order_by('added')
         return context

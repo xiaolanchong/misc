@@ -32,7 +32,10 @@
 		});	
 		$(".delCardImg").click(function(e) {
 			e.preventDefault();
-			var wordToDelete = $("#word", $(this).parent().parent().parent()).text();
+			var trElem = $(this).parent().parent().parent();
+			var wordToDelete = $("#word", trElem).text();
+			cardId = $(this).id().substring("card_".length);
+			$( "#deleteCard" ).data("cardId", cardId).data("trToDelete", trElem);
 			$( "#deleteCard > #word" ).text(wordToDelete);
 			$( "#deleteCard" ).dialog( "open" );
 			//.
@@ -52,16 +55,15 @@
 		   modal: true,
 		   height: 'auto',
 		   width: 'auto',
-		  // resizable: false,
-		   buttons: [ { text: "Ok", click: function() {
-											//readParametersAndAddCard();
-											$( this ).dialog( "close" ); 
-											} 
-					  },
-					  { text: "Cancel", click: function() { 
-											$( this ).dialog( "close" ); 
-											} 
-					  }]
+		   buttons: { 
+				"Ok" : function() {
+							//readParametersAndAddCard();
+							$( this ).dialog( "close" ); 
+						},
+				  "Cancel", click: function() { 
+							$( this ).dialog( "close" ); 
+						} 
+			}
 		});
 	});		
 
