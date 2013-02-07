@@ -4,6 +4,15 @@
 {% block jscript %}
 <script src="{{STATIC_URL}}jscript/jquery.bpopup-0.8.0.min.js"></script>
 <script language="javascript">
+	var deckWords = [ 
+		{% autoescape off %}
+		{% for card in cards %}
+			[ '{{ card.word|addslashes }}', '{{ card.reading|addslashes}}', '{{ card.definition|addslashes}}', 
+			  '{{ card.example|addslashes }}', '{{ card.tag.all|sortbyname|join:", "|addslashes }}' ]{%if not forloop.last %},{% endif %}
+		{% endfor %}
+		{% endautoescape %}
+	];
+	
 	$(document).ready(function(){
 		$("#openExportWnd").click(function () {
 			$("#element_to_pop_up").bPopup({
@@ -15,7 +24,7 @@
 			$('#wordtable > tbody > tr').filter(':has(:checkbox:checked)').each(function(){
 				//console.log(csvContent);
 				var line = "";
-				$('td', this).slice(2).each(function() {
+				$('td', this).slice(0, -2).each(function() {
 					if(line.length) {
 						line += ";";
 					}
@@ -46,7 +55,13 @@
 			//$( "#deleteCard > #word" ).text(wordToDelete);
 			//$( "#deleteCard" ).dialog( "open" );
 			//.
-		});		
+		});	
+		$("#Pagination").pagination(deckWords.length, {
+			items_per_page: 20, 
+			num_edge_entries: 2,
+			callback:handlePaginationDeckClick
+		});
+		
 	});
 	
 	$(function() {
@@ -60,7 +75,7 @@
 							//readParametersAndAddCard();
 							$( this ).dialog( "close" ); 
 						},
-				  "Cancel", click: function() { 
+				"Cancel": function() { 
 							$( this ).dialog( "close" ); 
 						} 
 			}
@@ -72,7 +87,7 @@
 {% block body %}
 {% include "header.html" %}
 {% include "header_band.html" with linkDeck=0 %}
-<h2>My Deck</h2>
+<h2>My Deck, total words: {{ cards.all.count }}</h2>
 <button id="openExportWnd">Export</button>
 <div id="element_to_pop_up">
 	<a class="bClose">x</a>
@@ -96,9 +111,11 @@
 <div id="deleteCard" title="Delete the card" style="display: none;text-align:center;">
 	<div id="word" style="font-size: 200%;margin-bottom: 10px;"/></div>
 	<div>Delete the card and all its properies from the deck?<br>
-		<span style="color: #ff1010;font-size:75%">Warning: the operation cannot be undone.<span>
+		<span style="color: #ff1010;font-size:75%">Warning: the operation cannot be undone.</span>
 	</div>
 </div>
+<div id="Pagination" class="pagination"></div>
+<br style="clear:both;" />
 <table id="wordtable">
 	<thead>
 		<tr>
@@ -112,7 +129,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		{% for card in cards %}
+		
+		<!--
+		{% comment %}
 			<tr class="{% cycle 'odd' 'even' %}">
 				<td class="word" style="font-size:125%;" id="word">{{ card.word }}</td>
 				<td class="word">{{ card.reading }}</td>
@@ -125,7 +144,8 @@
 				</td>				
 				<td><input type="checkbox" checked></td>				
 			</tr>
-		{% endfor %}
+		{% endcomment %}
+		-->
 	</tbody>
 </table>
 

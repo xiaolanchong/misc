@@ -96,3 +96,16 @@ class DeckView(TemplateView):
         context = super(DeckView, self).get_context_data(**kwargs)
         context['cards'] =  models.Card.objects.filter(deck_id=1).order_by('added')
         return context
+
+class ExportDeckView(View):
+
+    def post(self, request, *args, **kwargs):
+        logging.info('Get am Export POST!')
+        if request.method == 'POST':
+            #userText = request.POST['text']
+            data = request.POST['exportdata']
+            h = HttpResponse(data, mimetype="text/plain",
+                            status=200)
+            h['Content-Type'] = 'application/force-download'
+            h['Content-disposition'] = 'attachment; filename=deck.csv'
+            return h

@@ -53,8 +53,8 @@ overflow: auto;
 #wordtable {
 	border: 2px solid #CCCCCC;
 	border-collapse: collapse;
-	margin-left: auto;
-    margin-right: auto;
+	margin-left: 10px;
+    margin-right: 10px;
 }
 #wordtable td, #wordtable th {
 	border: 1px solid #CCC;
@@ -63,6 +63,24 @@ overflow: auto;
 
 #wordtable td.word {
 	text-align: center;
+}
+
+#wordtable td.wordz {
+	text-align: center;
+	font-size: 125%;
+	font-weight: bold;
+}
+
+#wordtable td.definition {
+	text-align: center;
+}
+
+#wordtable td.example {
+}
+
+#wordtable td.tags {
+	text-align: center;
+	font-size: small;
 }
 
 #wordtable th {

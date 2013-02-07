@@ -41,7 +41,6 @@ var ChunkMerger = (function(callback) {
 	//  index - index of the chunk in the overall array, starting from 0
 	//  text - contents of the chunk, may have any type
     ChunkMerger.prototype.addChunk = function(index, text) {
-	//console.log('populate');
 		if(index < this._startIndex) {
 			console.error("Input index is out of the expected bound: " 
 						+ index.toString() + ", " + this._startIndex.toString());
@@ -124,16 +123,11 @@ function deleteCard(id) {
 }
 
 function showWordParameters(allChunks, imgElement) {
-	//console.log(allChunks[0]);
 	$("#word").text(allChunks[0]);
 	$("#reading").val(allChunks[1]);
 	$("#definition").val(allChunks[2]);
 	$("#example").val(allChunks[3]);
-	console.log(imgElement.innerHtml);
-	//$(imgElement).attr("id", "imageToChange");
-	//
-	
-	$( "#dialog" ).data('imgToChange', imgElement).dialog( "open" );
+	$("#dialog").data('imgToChange', imgElement).dialog("open");
 }
 
 function readParametersAndAddCard() {
@@ -155,6 +149,67 @@ function tagsToArray(text) {
 	return tags;
 }
 
+function fillRow(rowData, rowIndex, table) {
+	var isKnown = rowData[rowData.length - 1];
+	var rowClass = rowIndex % 2 ? "odd" : "even"
+	if (isKnown) {
+		rowClass = "knownWord";
+	}
+	var row = $('<tr></tr>').addClass(rowClass);
+	var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
+	link.click(function(e){
+						e.preventDefault();
+						var addedImg = "static/img/Ok-icon.png";
+						if($("img", this).attr("src") == addedImg) {
+							return false;
+						}
+						var allChunks = new Array();
+						$("td", row).each(function(index, tdElem){
+								allChunks.push($(tdElem).text());
+							});
+						allChunks.shift();
+						//addCard(allChunks);
+						showWordParameters(allChunks, this);
+						
+						
+					});
+	var td = $("<td></td>");
+	if(!isKnown) {
+		td.append(link);
+	}
+	row.append(td);
+	rowData.forEach( function (cellText, column) {
+		if(column == rowData.length - 1) {
+			return;
+		}
+		var cell = $("<td></td>").addClass(column < 2 ? "word" : "").text(cellText);
+		row.append(cell);
+	});
+	table.append(row);
+}
+
+var annotatedWords = [];
+
+function handlePaginationClick(page_index, jq) {
+	$("#wordtable > tbody > tr").remove();
+	var table = $('#wordtable > tbody:last');
+	var items_per_page = 20;
+    var max_elem = Math.min((page_index+1) * items_per_page, annotatedWords.length);
+	for(var i=page_index*items_per_page;i<max_elem;i++) {
+		fillRow(annotatedWords[i], i, table);
+	}
+	return false;
+}
+
+function populatePaginatedTable(data) {
+	annotatedWords = annotatedWords.concat(data);
+	$("#Pagination").pagination(annotatedWords.length, {
+		items_per_page: 20, 
+		num_edge_entries: 2,
+		callback:handlePaginationClick
+	});
+}
+
 function populateTable(data) {
 	if($('#wordtable > thead > tr').length == 0)
 	{
@@ -166,41 +221,81 @@ function populateTable(data) {
 		$('#wordtable > thead:last').append(headRow);
 	}
 	var table = $('#wordtable > tbody:last');
-	data.forEach( function (element, row) {
-		var isKnown = element.pop();
-		var rowClass = row % 2 ? "odd" : "even"
-		if (isKnown) {
-			rowClass = "knownWord";
-		}
-		var row = $('<tr></tr>').addClass(rowClass);
-		var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
-		link.click(function(e){
-							e.preventDefault();
-							var addedImg = "static/img/Ok-icon.png";
-							if($("img", this).attr("src") == addedImg) {
-								return false;
-							}
-							var allChunks = new Array();
-							$("td", row).each(function(index, tdElem){
-									allChunks.push($(tdElem).text());
-								});
-							allChunks.shift();
-							//addCard(allChunks);
-							showWordParameters(allChunks, this);
-							
-							
-						});
-		var td = $("<td></td>");
-		if(!isKnown) {
-			td.append(link);
-		}
-		row.append(td)
-		element.forEach( function (cellText, column) {
-			var cell = $("<td></td>").addClass(column < 2 ? "word" : "").text(cellText);
-			row.append(cell);
+	data.forEach(function(rowData, rowIndex) {
+			fillRow(rowData, rowIndex, table);
 		});
-		table.append(row);
+}
+
+////////////////////////////////////
+// Deck page
+///////////////////////////////////
+
+function fillDeckRow(rowData, rowIndex, table) {
+	var rowClass = rowIndex % 2 ? "odd" : "even"
+	var row = $('<tr></tr>').addClass(rowClass);
+/*	var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
+	link.click(function(e){
+						e.preventDefault();
+						var addedImg = "static/img/Ok-icon.png";
+						if($("img", this).attr("src") == addedImg) {
+							return false;
+						}
+						var allChunks = new Array();
+						$("td", row).each(function(index, tdElem){
+								allChunks.push($(tdElem).text());
+							});
+						allChunks.shift();
+						//addCard(allChunks);
+						showWordParameters(allChunks, this);
+						
+						
+					});
+	var td = $("<td></td>");
+	if(!isKnown) {
+		td.append(link);
+	}
+	row.append(td);*/
+	var columnClasses = { 
+			0: "wordz", 
+			1: "word", 
+			4: "tags"
+			};
+	rowData.forEach( function (cellText, column) {
+		var cell = $("<td></td>").addClass(columnClasses[column]).text(cellText);
+		row.append(cell);
 	});
+	var td = $("<td></td>").attr("style", "text-align:center;");
+	var img = $("<img></img>").attr("src", "static/img/edit_card.png")
+							  .attr("id", "card_1")
+							  .addClass("editCardImg")
+							  .attr("title", "Edit the card");
+	var a = $("<a></a>").attr("href", "#");
+	a.append(img);
+	td.append(a);
+	img = $("<img></img>").attr("src", "static/img/Close-2-icon.png")
+						  .attr("id", "card_1")
+						  .addClass("delCardImg")
+						  .attr("title", "Delete the word from the deck");
+	a = $("<a></a>").attr("href", "#");	
+	a.append(img);
+	td.append(a);
+	row.append(td);
+	td = $("<td></td>").attr("style", "text-align:center;");
+	checkBox = $("<input>").attr("type", "checkbox");//.attr("checked","");
+	td.append(checkBox);
+	row.append(td);
+	table.append(row);
+}
+
+function handlePaginationDeckClick(page_index, jq) {
+	$("#wordtable > tbody > tr").remove();
+	var table = $('#wordtable > tbody:last');
+	var items_per_page = 20;
+	var max_elem = Math.min((page_index+1) * items_per_page, deckWords.length);
+	for(var i=page_index*items_per_page;i<max_elem;i++) {
+		fillDeckRow(deckWords[i], i, table);
+	}
+	return false;
 }
 
 function submitFileContents(data) {
