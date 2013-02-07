@@ -43,13 +43,13 @@
 			"Ok" : function() {
 						readParametersAndAddCard();
 						// TODO: duplicated in utils.js
+						var addedImg = "{{STATIC_URL}}img/Ok-icon.png";
+						var el = $( this ).data('imgToChange');
+						$("img", el).attr("src", addedImg).unwrap();						
 						$( this ).dialog( "close" ); 
 					} ,
 					  
 			"Cancel" : function() { 
-							var addedImg = "{{STATIC_URL}}img/Ok-icon.png";
-							var el = $( this ).data('imgToChange');
-							$("img", el).attr("src", addedImg).unwrap();
 							$( this ).dialog( "close" ); 
 						} 
 			}
