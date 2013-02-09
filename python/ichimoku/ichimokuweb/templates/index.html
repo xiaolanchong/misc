@@ -9,6 +9,8 @@
 			var text = $("#submitTextBox").val();
 			var chunks = splitIntoChunks(text);
 			annotatedWords = [];
+			currentPage = 0; // start from the 1st page
+			populatePaginatedTable([]);
 			var merger = new ChunkMerger( 
 						function(chunk){
 							populatePaginatedTable(chunk);
@@ -64,11 +66,11 @@
 	<table width="100%" style="margin-left: auto;margin-right: auto;">
 		<tbody>
 			<tr>
-				<td colspan="2" style="text-align:center;padding-bottom:10px;"><span id="word" style="font-size:200%"/></td>
+				<td colspan="2" style="text-align:center;padding-bottom:10px;"><span id="word" style="font-size:200%"></td>
 			</tr>
 			<tr>
 				<td>Reading</td>
-				<td class="col2"><input type="text" id="reading" style="width:100%;"/></td>
+				<td class="col2"><input type="text" id="reading" style="width:100%;"></td>
 			</tr>
 			<tr>
 				<td>Definition</td>

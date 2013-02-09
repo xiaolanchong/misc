@@ -33,6 +33,13 @@ overflow: auto;
 	background-color: #eeeeee;
 }
 
+td.example{
+	color : black;
+	font-size: 100%;
+	background-color: white;
+	text-align: center;	
+}
+
 #element_to_pop_up { 
     background-color:#fff;
     border-radius:15px;

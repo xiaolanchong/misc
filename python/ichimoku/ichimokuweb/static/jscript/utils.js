@@ -149,8 +149,9 @@ function tagsToArray(text) {
 	return tags;
 }
 
-function fillRow(rowData, rowIndex, table) {
+function fillRow(rowData, rowIndex, table, tdSentenceElem) {
 	var isKnown = rowData[rowData.length - 1];
+	var sentenceIndex = rowData.length - 2;
 	var rowClass = rowIndex % 2 ? "odd" : "even"
 	if (isKnown) {
 		rowClass = "knownWord";
@@ -158,45 +159,59 @@ function fillRow(rowData, rowIndex, table) {
 	var row = $('<tr></tr>').addClass(rowClass);
 	var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
 	link.click(function(e){
-						e.preventDefault();
-						var addedImg = "static/img/Ok-icon.png";
-						if($("img", this).attr("src") == addedImg) {
-							return false;
-						}
-						var allChunks = new Array();
-						$("td", row).each(function(index, tdElem){
-								allChunks.push($(tdElem).text());
-							});
-						allChunks.shift();
-						//addCard(allChunks);
-						showWordParameters(allChunks, this);
-						
-						
-					});
+				e.preventDefault();
+				var addedImg = "static/img/Ok-icon.png";
+				if($("img", this).attr("src") == addedImg) {
+					return false;
+				}
+				var allChunks = rowData.slice(0, rowData.length - 1);
+				showWordParameters(allChunks, this);				
+			});
 	var td = $("<td></td>");
 	if(!isKnown) {
 		td.append(link);
 	}
 	row.append(td);
 	rowData.forEach( function (cellText, column) {
-		if(column == rowData.length - 1) {
+		// skip the sentence and the word status
+		if(column >= sentenceIndex) {
 			return;
 		}
 		var cell = $("<td></td>").addClass(column < 2 ? "word" : "").text(cellText);
 		row.append(cell);
 	});
+	if( tdSentenceElem != null &&
+		$(tdSentenceElem).text() == rowData[sentenceIndex]) {
+			var val = $(tdSentenceElem).attr("rowspan");
+			if(val == undefined && val == null) {
+				$(tdSentenceElem).attr("rowspan", "2");
+			}
+			else {
+				val = parseInt(val) + 1;
+				$(tdSentenceElem).attr("rowspan", val.toString());			
+			}
+		}
+		else {
+			var cell = $("<td></td>").text(rowData[sentenceIndex]).addClass("example");
+			row.append(cell);
+			tdSentenceElem = cell;
+		}
 	table.append(row);
+	return tdSentenceElem;
 }
 
 var annotatedWords = [];
+var currentPage = 0;
 
 function handlePaginationClick(page_index, jq) {
+	currentPage = page_index;
 	$("#wordtable > tbody > tr").remove();
 	var table = $('#wordtable > tbody:last');
 	var items_per_page = 20;
     var max_elem = Math.min((page_index+1) * items_per_page, annotatedWords.length);
+	var tdSentenceElem = null;
 	for(var i=page_index*items_per_page;i<max_elem;i++) {
-		fillRow(annotatedWords[i], i, table);
+		tdSentenceElem = fillRow(annotatedWords[i], i, table, tdSentenceElem);
 	}
 	return false;
 }
@@ -206,6 +221,7 @@ function populatePaginatedTable(data) {
 	$("#Pagination").pagination(annotatedWords.length, {
 		items_per_page: 20, 
 		num_edge_entries: 2,
+		current_page: currentPage,
 		callback:handlePaginationClick
 	});
 }
@@ -233,28 +249,6 @@ function populateTable(data) {
 function fillDeckRow(rowData, rowIndex, table) {
 	var rowClass = rowIndex % 2 ? "odd" : "even"
 	var row = $('<tr></tr>').addClass(rowClass);
-/*	var link=$("<a href=\"javascript:none\"><img src=\"static/img/add-icon.png\" title=\"Add the word to the deck\" /></a>");
-	link.click(function(e){
-						e.preventDefault();
-						var addedImg = "static/img/Ok-icon.png";
-						if($("img", this).attr("src") == addedImg) {
-							return false;
-						}
-						var allChunks = new Array();
-						$("td", row).each(function(index, tdElem){
-								allChunks.push($(tdElem).text());
-							});
-						allChunks.shift();
-						//addCard(allChunks);
-						showWordParameters(allChunks, this);
-						
-						
-					});
-	var td = $("<td></td>");
-	if(!isKnown) {
-		td.append(link);
-	}
-	row.append(td);*/
 	var columnClasses = { 
 			0: "wordz", 
 			1: "word", 
