@@ -17,11 +17,18 @@
 						}
 					);
 			chunks.forEach( function(chunk, index){
+				var unknownWordsOnly = $("#unknownWordsOnly").prop('checked') ? 1 : 0;
+				var addReading = $("#addReading").prop('checked') ? 1 : 0;
 				$.ajax({
 					type: 'post',
 					url: '/',
-					data: { "text" : chunk, "word" : 1, "reading" : 1,
-							"definition" : 1, "sentence" : 1 },
+					data: { "text" : chunk, 
+							"word" : 1, 
+							"reading" : addReading,
+							"definition" : 1, 
+							"sentence" : 1,
+							"unknownWordsOnly" : unknownWordsOnly
+						},
 					dataType: "json",
 					beforeSend:function(){
 					},
@@ -91,7 +98,11 @@
 <div><textarea name="content" rows="5" cols="80" id="submitTextBox">ある日の暮方の事である</textarea></div>
 <table style="padding:5px;"><tr>
 	<td style="margin-right: 20px;"><input type="button" value="Annotate" id="submitBtn"></td>
-	<td style="margin-right: 20px;"><input type="checkbox"/>Reading<input type="checkbox"/>Definition</td>
+	<td style="margin-right: 20px;">
+		<input type="checkbox" id="addReading"/>Reading
+		<input type="checkbox" id="addDefinition"/>Definition
+		<input type="checkbox" id="unknownWordsOnly"/>Show unknown words only
+	</td>
 </tr></table>
 <div id="submitStatus"></div>
 <div id="Pagination" class="pagination"></div>

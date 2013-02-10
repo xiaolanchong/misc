@@ -28,11 +28,25 @@ class IndexView(TemplateView):
         logging.info('Get a message!')
         if request.method == 'POST':
             userText = request.POST['text']
+            addWord = request.POST['word']
+            addReading = request.POST['reading']
+            addDefinition = request.POST['definition']
+            addSentence = request.POST['sentence']
+            unknownWordsOnly = request.POST['unknownWordsOnly']
+            logger = logging.getLogger('console')
+            logger.info('POST settings: userTextLen:%s, word:%s, reading:%s, '
+                         'definition:%s, sentence:%s, unknownWordsOnly:%s',
+                         len(userText), addWord, addReading, addDefinition,
+                         addSentence, unknownWordsOnly)
+            unknownWordsOnly = int(unknownWordsOnly)
             result = []
             textProc = TextProcessor(getDataLoader())
             contents = textProc.do(userText, Settings.NoExcessiveReading(), True)
             for word, startPos, reading, definition, sentence in contents:
-                result.append((word, reading, definition, sentence, self.getWordStatus(word)))
+                isKnown = self.getWordStatus(word)
+                if not unknownWordsOnly or not isKnown:
+                    result.append((word, reading, definition, sentence, isKnown))
+            logger.info('# of words to return: %d', len(result))
             #contents = list(contents)
           #  logging.info("%d records sent", len(result))
             data = simplejson.dumps(result)
