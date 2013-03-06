@@ -43,13 +43,32 @@ def main():
             contents = unicode(contents, 'utf-8')
         textProc = TextProcessor(getDataLoader())
         with openOutputFile(os.path.join('testdata/other', 'ichimoku_zz_py.txt')) as outFile:
-            for word, startPos, reading, definition, sentence in textProc.do(contents):
-                line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
-                if isPy2():
-                    outFile.write(line.encode('utf-8'))
-                    #print(line.encode('utf-8'))
-                else:
-                    outFile.write(line)
+            getUniqueCSVList(textProc, contents, outFile)
+
+
+def doo(textProc, contents, outFile):
+    for word, startPos, reading, definition, sentence in textProc.do(contents):
+        line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
+        if isPy2():
+            outFile.write(line.encode('utf-8'))
+            #print(line.encode('utf-8'))
+        else:
+            outFile.write(line)
+
+def getUniqueCSVList(textProc, contents, outFile):
+    tag = "maigret_bench_01";
+    allWords = set()
+    for word, startPos, reading, definition, sentence in textProc.do(contents):
+        if word in allWords:
+            continue
+        else:
+            allWords.add(word)
+        line = text_type('"{0:}";"{1:}";"{2:}";"{3}";"{4}"\n').format(word, reading, definition,sentence, tag)
+        if isPy2():
+            outFile.write(line.encode('utf-8'))
+            #print(line.encode('utf-8'))
+        else:
+            outFile.write(line)
 
 def dryBurn():
     from pkgutil import iter_modules
