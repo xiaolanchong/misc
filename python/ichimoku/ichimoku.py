@@ -7,6 +7,7 @@ import logging
 import logging.handlers
 from textproc.textprocessor import TextProcessor
 from textproc.dataloader import getDataLoader
+from textproc.deckwords import DeckWords
 from mecab.utils import isPy2, text_type
 
 def setupLogger():
@@ -42,7 +43,7 @@ def main():
         if isPy2():
             contents = unicode(contents, 'utf-8')
         textProc = TextProcessor(getDataLoader())
-        with openOutputFile(os.path.join('testdata/other', 'ichimoku_zz_py.txt')) as outFile:
+        with openOutputFile(os.path.join('testdata/other', 'maigret_bench_02.txt')) as outFile:
             getUniqueCSVList(textProc, contents, outFile)
 
 
@@ -56,10 +57,11 @@ def doo(textProc, contents, outFile):
             outFile.write(line)
 
 def getUniqueCSVList(textProc, contents, outFile):
-    tag = "maigret_bench_01";
+    deck = DeckWords(r'c:\Users\eugeneg\Documents\Anki\JapWordsAnki.txt')
+    tag = "maigret_bench_02";
     allWords = set()
     for word, startPos, reading, definition, sentence in textProc.do(contents):
-        if word in allWords:
+        if word in allWords or not definition  or deck and deck.isInDeck(word):
             continue
         else:
             allWords.add(word)
