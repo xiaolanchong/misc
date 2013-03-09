@@ -202,12 +202,12 @@ function fillRow(rowData, rowIndex, table, tdSentenceElem) {
 
 var annotatedWords = [];
 var currentPage = 0;
+var items_per_page = 30;
 
 function handlePaginationClick(page_index, jq) {
 	currentPage = page_index;
 	$("#wordtable > tbody > tr").remove();
 	var table = $('#wordtable > tbody:last');
-	var items_per_page = 20;
     var max_elem = Math.min((page_index+1) * items_per_page, annotatedWords.length);
 	var tdSentenceElem = null;
 	for(var i=page_index*items_per_page;i<max_elem;i++) {
@@ -219,7 +219,7 @@ function handlePaginationClick(page_index, jq) {
 function populatePaginatedTable(data) {
 	annotatedWords = annotatedWords.concat(data);
 	$("#Pagination").pagination(annotatedWords.length, {
-		items_per_page: 20, 
+		items_per_page: items_per_page, 
 		num_edge_entries: 2,
 		current_page: currentPage,
 		callback:handlePaginationClick
@@ -284,7 +284,6 @@ function fillDeckRow(rowData, rowIndex, table) {
 function handlePaginationDeckClick(page_index, jq) {
 	$("#wordtable > tbody > tr").remove();
 	var table = $('#wordtable > tbody:last');
-	var items_per_page = 20;
 	var max_elem = Math.min((page_index+1) * items_per_page, deckWords.length);
 	for(var i=page_index*items_per_page;i<max_elem;i++) {
 		fillDeckRow(deckWords[i], i, table);
