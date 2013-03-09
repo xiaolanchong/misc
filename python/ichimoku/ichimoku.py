@@ -7,6 +7,7 @@ import logging
 import logging.handlers
 from textproc.textprocessor import TextProcessor
 from textproc.dataloader import getDataLoader
+from textproc.deckwords import DeckWords
 from mecab.utils import isPy2, text_type
 
 def setupLogger():
@@ -42,14 +43,34 @@ def main():
         if isPy2():
             contents = unicode(contents, 'utf-8')
         textProc = TextProcessor(getDataLoader())
-        with openOutputFile(os.path.join('testdata/other', 'ichimoku_zz_py.txt')) as outFile:
-            for word, startPos, reading, definition, sentence in textProc.do(contents):
-                line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
-                if isPy2():
-                    outFile.write(line.encode('utf-8'))
-                    #print(line.encode('utf-8'))
-                else:
-                    outFile.write(line)
+        with openOutputFile(os.path.join('testdata/other', 'maigret_bench_02.txt')) as outFile:
+            getUniqueCSVList(textProc, contents, outFile)
+
+
+def doo(textProc, contents, outFile):
+    for word, startPos, reading, definition, sentence in textProc.do(contents):
+        line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
+        if isPy2():
+            outFile.write(line.encode('utf-8'))
+            #print(line.encode('utf-8'))
+        else:
+            outFile.write(line)
+
+def getUniqueCSVList(textProc, contents, outFile):
+    deck = DeckWords(r'c:\Users\eugeneg\Documents\Anki\JapWordsAnki.txt')
+    tag = "maigret_bench_02";
+    allWords = set()
+    for word, startPos, reading, definition, sentence in textProc.do(contents):
+        if word in allWords or not definition  or deck and deck.isInDeck(word):
+            continue
+        else:
+            allWords.add(word)
+        line = text_type('"{0:}";"{1:}";"{2:}";"{3}";"{4}"\n').format(word, reading, definition,sentence, tag)
+        if isPy2():
+            outFile.write(line.encode('utf-8'))
+            #print(line.encode('utf-8'))
+        else:
+            outFile.write(line)
 
 def dryBurn():
     from pkgutil import iter_modules
