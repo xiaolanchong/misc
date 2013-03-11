@@ -5,7 +5,7 @@ import sys
 import os.path
 import logging
 import logging.handlers
-from textproc.textprocessor import TextProcessor
+from textproc.textprocessor import TextProcessor, Settings
 from textproc.dataloader import getDataLoader
 from textproc.deckwords import DeckWords
 from mecab.utils import isPy2, text_type
@@ -43,12 +43,12 @@ def main():
         if isPy2():
             contents = unicode(contents, 'utf-8')
         textProc = TextProcessor(getDataLoader())
-        with openOutputFile(os.path.join('testdata/other', 'maigret_bench_02.txt')) as outFile:
+        with openOutputFile(os.path.join('testdata/other', 'maigret_bench_03.txt')) as outFile:
             getUniqueCSVList(textProc, contents, outFile)
 
 
 def doo(textProc, contents, outFile):
-    for word, startPos, reading, definition, sentence in textProc.do(contents):
+    for word, startPos, reading, definition, sentence in textProc.do(contents, Settings.NoExcessiveReading(), True):
         line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
         if isPy2():
             outFile.write(line.encode('utf-8'))
@@ -58,9 +58,9 @@ def doo(textProc, contents, outFile):
 
 def getUniqueCSVList(textProc, contents, outFile):
     deck = DeckWords(r'c:\Users\eugeneg\Documents\Anki\JapWordsAnki.txt')
-    tag = "maigret_bench_02";
+    tag = "maigret_bench_03";
     allWords = set()
-    for word, startPos, reading, definition, sentence in textProc.do(contents):
+    for word, startPos, reading, definition, sentence in textProc.do(contents, Settings.NoExcessiveReading(), True):
         if word in allWords or not definition  or deck and deck.isInDeck(word):
             continue
         else:
@@ -83,7 +83,7 @@ def dryBurn():
     setupLogger()
     contents = '船が検疫所に着いたのは'
     textProc = TextProcessor(getDataLoader())
-    for word, reading, definition, sentence in textProc.do(contents):
+    for word, reading, definition, sentence in textProc.do(contents, Settings.NoExcessiveReading(), True):
         line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
         line = line.strip('\n')
         print(line.encode('utf-8'))
