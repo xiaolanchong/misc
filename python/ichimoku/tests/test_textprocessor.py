@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import unittest
 import os.path
 import sys
+import operator
 sys.path.append(os.path.abspath('..'))
 from textproc.textprocessor import TextProcessor, Settings
 from textproc.dataloader import getDataLoader
@@ -106,6 +107,11 @@ class TextProcessorTest(unittest.TestCase):
         res = self.textProc.do('準強姦の罪に', Settings.NoExcessiveReading(), True)
         res = list(res)
         self.assertEqual(('準強姦', 0, 'じゅんごうかん'), res[0][0:3])
+
+    def testNounNounSuffix(self):
+        result = self.textProc.do('海泡石', Settings.NoExcessiveReading(), True)
+        result = list(map(operator.itemgetter(0), result))
+        self.assertEquals(['海泡石'], result)
 
     def testONReadingFailure(self):
         # no word 車 with sha reading

@@ -94,7 +94,7 @@ class MecabOutputGetter(MecabRunner):
 
 def getPartOfSpeech():
     runner = MecabRunner('%m,%h')
-    res = runner.run('船が検疫所に着いたのは')
+    res = runner.run('海泡石')
     for line in res:
         if not isPy2():
             print(''.join(line))
@@ -109,5 +109,5 @@ def dumpNodeInfo():
             print(' '.join(line))
 
 if __name__ == '__main__':
-    #getPartOfSpeech()
-    dumpNodeInfo()
+    getPartOfSpeech()
+    #dumpNodeInfo()
