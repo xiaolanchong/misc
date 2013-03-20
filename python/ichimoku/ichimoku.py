@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+from __future__ import print_function
 import sys
 import os.path
 import logging
 import logging.handlers
+import argparse
 from textproc.textprocessor import TextProcessor, Settings
 from textproc.dataloader import getDataLoader
 from textproc.deckwords import DeckWords
@@ -29,13 +31,21 @@ def openOutputFile(fileName):
     if isPy2():
         return open(fileName, 'w')
     else:
-        #print('Py3333333')
         return open(fileName, 'w', encoding='utf-8')
 
 def main():
-    if len(sys.argv) != 2:
-        print(sys.argv[0], '<filename>')
-        exit(0)
+    parser = argparse.ArgumentParser(description='Get the list word in the text.')
+    parser.add_argument('inputfile', metavar='input file name',
+                   help='inputfile zzz')
+    parser.add_argument('-o', metavar='output file name', required=False,
+                   help='inputfile zzz')
+    parser.add_argument('-d', metavar='deck file name', required=False,
+                   help='deck file')
+    parser.add_argument('-t', metavar='tag', required=False,
+                   help='optional tag added to the list')
+    args = parser.parse_args()
+    if args.o:
+        sys.stdout = open(args.o, 'w', encoding='utf-8')
 
     setupLogger()
     with openInputFile(sys.argv[1]) as file:
@@ -43,34 +53,26 @@ def main():
         if isPy2():
             contents = unicode(contents, 'utf-8')
         textProc = TextProcessor(getDataLoader())
-        with openOutputFile(os.path.join('testdata/other', 'maigret_bench_03.txt')) as outFile:
-            getUniqueCSVList(textProc, contents, outFile)
+        getUniqueCSVList(textProc, contents, args.d, args.t)
 
-
-def doo(textProc, contents, outFile):
-    for word, startPos, reading, definition, sentence in textProc.do(contents, Settings.NoExcessiveReading(), True):
-        line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
-        if isPy2():
-            outFile.write(line.encode('utf-8'))
-            #print(line.encode('utf-8'))
-        else:
-            outFile.write(line)
-
-def getUniqueCSVList(textProc, contents, outFile):
-    deck = DeckWords(r'c:\Users\eugeneg\Documents\Anki\JapWordsAnki.txt')
-    tag = "maigret_bench_03";
+def getUniqueCSVList(textProc, contents, deckFileName, tag):
+    if deckFileName:
+        deck = DeckWords(deckFileName)
+    else:
+        deck = None
+    if tag is None:
+        tag = ''
     allWords = set()
     for word, startPos, reading, definition, sentence in textProc.do(contents, Settings.NoExcessiveReading(), True):
         if word in allWords or not definition  or deck and deck.isInDeck(word):
             continue
         else:
             allWords.add(word)
-        line = text_type('"{0:}";"{1:}";"{2:}";"{3}";"{4}"\n').format(word, reading, definition,sentence, tag)
+        line = text_type('"{0:}";"{1:}";"{2:}";"{3}";"{4}"').format(word, reading, definition,sentence, tag)
         if isPy2():
-            outFile.write(line.encode('utf-8'))
-            #print(line.encode('utf-8'))
+            print(line.encode('utf-8'))
         else:
-            outFile.write(line)
+            print(line)
 
 def dryBurn():
     from pkgutil import iter_modules
@@ -87,7 +89,6 @@ def dryBurn():
         line = text_type('{0:<10}  {1:<10}  {2:<10}  {3}\n').format(word, reading, definition,sentence)
         line = line.strip('\n')
         print(line.encode('utf-8'))
-
 
 
 if __name__ == '__main__':
