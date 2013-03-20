@@ -93,8 +93,9 @@ class MecabOutputGetter(MecabRunner):
             raise RuntimeError('Incorrect mecab output: ' + expr)
 
 def getPartOfSpeech():
-    runner = MecabRunner('%m,%h')
-    res = runner.run('海泡石')
+    runner = MecabRunner('%m,%f[7]')
+    res = runner.run('雨が降っていたん')
+    #res = runner.run('海泡石')
     for line in res:
         if not isPy2():
             print(''.join(line))
@@ -102,7 +103,7 @@ def getPartOfSpeech():
 def dumpNodeInfo():
     runner = MecabOutputGetter()
     #z = bytearray('－・', 'euc-jp', "ignore")
-    res = runner.run('はっぴー・ばれん')
+    res = runner.run('雨が降っていたん')
    # res = runner.run('すべてに滲《し》み込み')
     for line in res:
         if not isPy2():

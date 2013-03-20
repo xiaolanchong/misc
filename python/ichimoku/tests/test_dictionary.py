@@ -39,8 +39,6 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(0, len(res))
         res = self.dict.commonPrefixSearch('検～')
         self.assertEqual(1, len(res))
-        #a = bytearray('〝〟', 'shift-jis')
-        a = a
 
     def testUnicodeError(self):
         res = self.dict.exactMatchSearch('かかわら')

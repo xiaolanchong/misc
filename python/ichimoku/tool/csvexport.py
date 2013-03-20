@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import csv
 
 def saveCustom(result):
-    with open('../data/dict.txt', 'w', encoding='utf-8') as f:
+    with open('../tool/dict.txt', 'w', encoding='utf-8') as f:
         for line in result:
             f.write('|||'.join([token if token else '' for token in line]) + '\n')
 
@@ -22,7 +22,7 @@ def saveXML(result):
     c = ET.SubElement(a, 'c')
     d = ET.SubElement(c, 'd')
 
-conn = sqlite3.connect('../data/dict.sqlite')
+conn = sqlite3.connect('../tool/dict.sqlite')
 c = conn.cursor()
 c.execute("select kanji, kana, entry from dict")
 result = c.fetchall()

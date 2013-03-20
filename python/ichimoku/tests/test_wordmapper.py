@@ -52,6 +52,9 @@ class WordMapperTest(unittest.TestCase):
     def testNoun(self):
         self.assertEqual(0, self.mapper.selectBestWord([['n'], ['vi', 'v5r', 'uk']], PoS.NOUN))
 
+    def testAdj(self):
+        self.assertEqual(1, self.mapper.selectBestWord([['n'], ['vs', 'adj-no']], PoS.ADJ))
+
     def testPrenounAdj(self):
         self.assertEqual(1, self.mapper.selectBestWord([['n'], ['adj-pn', 'uk']], PoS.ADJ_PRENOUN))
 

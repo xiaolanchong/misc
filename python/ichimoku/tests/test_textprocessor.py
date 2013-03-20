@@ -108,15 +108,25 @@ class TextProcessorTest(unittest.TestCase):
         res = list(res)
         self.assertEqual(('準強姦', 0, 'じゅんごうかん'), res[0][0:3])
 
-    def testNounNounSuffix(self):
+    def testThreeTokenJoin(self):
         result = self.textProc.do('海泡石', Settings.NoExcessiveReading(), True)
         result = list(map(operator.itemgetter(0), result))
         self.assertEquals(['海泡石'], result)
+
+class TextProcessorTest2(unittest.TestCase):
+    def setUp(self):
+        self.textProc = TextProcessor(getDataLoader())
+        self.maxDiff = None
 
     def testONReadingFailure(self):
         # no word 車 with sha reading
         res = self.textProc.stepOne('逃走車', Settings.NoExcessiveReading())
 
+    def test2(self):
+        res = self.textProc.do('電燈', Settings.NoExcessiveReading(), True)
+        res = list(res)
+        res = res
+
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TextProcessorTest)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TextProcessorTest2)
     unittest.TextTestRunner(verbosity=2).run(suite)

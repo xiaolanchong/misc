@@ -135,6 +135,8 @@ class WordMapper:
             probabilities =[self.getVerbNonIndependentProbability(self.mergeVerbAttributes(a)) for a in wordsAttributes]
         elif PoS.isNounSuffix(pos):
             probabilities =[self.getNounSuffixProbability(a) for a in wordsAttributes]
+        elif pos == PoS.ADJ:
+            probabilities =[self.getAdjectiveProbability(a) for a in wordsAttributes]
         if len(probabilities):
             return maxIndex(probabilities)
         else:
@@ -317,6 +319,16 @@ class WordMapper:
         'pref' : 92, 'vs' : 16, 'suf' : 379,
         'n-pref' : 51, 'n-t' : 29, 'n-adv' : 46,
         'adv' : 17, 'conj' : 6
+        }
+        return self.getOccupiedProbability(attributes, classProbability)
+
+    def getAdjectiveProbability(self, attributes):
+        classProbability = \
+        {
+        'adv' : 15000, 'vs' : 17000, 'n' : 20000,
+        'adv-to' : 8500, 'adj-f' : 3650, 'adj-na' : 10000,
+        'adj-no' : 7770, 'adj-i' : 1545, 'aux' : 540,
+        'n-suf' : 336
         }
         return self.getOccupiedProbability(attributes, classProbability)
 
