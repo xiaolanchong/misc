@@ -13,7 +13,8 @@ from textproc.deckwords import DeckWords
 from mecab.utils import isPy2, text_type
 
 def setupLogger():
-    handler = logging.handlers.RotatingFileHandler("logs/ichimoku.txt", "a",
+    fullPath = os.path.join(os.path.dirname(__file__), 'logs', 'ichimoku.txt')
+    handler = logging.handlers.RotatingFileHandler(fullPath, "a",
                         encoding = "utf-8", maxBytes=1024*512, backupCount=20)
     formatter = logging.Formatter('%(asctime)-15s %(levelname)s %(module)s %(message)s')
     handler.setFormatter(formatter)
@@ -36,19 +37,19 @@ def openOutputFile(fileName):
 def main():
     parser = argparse.ArgumentParser(description='Get the list word in the text.')
     parser.add_argument('inputfile', metavar='input file name',
-                   help='inputfile zzz')
-    parser.add_argument('-o', metavar='output file name', required=False,
-                   help='inputfile zzz')
+                   help='input file name')
     parser.add_argument('-d', metavar='deck file name', required=False,
-                   help='deck file')
+                   help='deck file nime')
     parser.add_argument('-t', metavar='tag', required=False,
-                   help='optional tag added to the list')
+                   help='optional tag appended to the list')
+    parser.add_argument('-o', metavar='output file name', required=False,
+                   help='output file name')
     args = parser.parse_args()
     if args.o:
         sys.stdout = open(args.o, 'w', encoding='utf-8')
 
     setupLogger()
-    with openInputFile(sys.argv[1]) as file:
+    with openInputFile(args.inputfile) as file:
         contents = file.read()
         if isPy2():
             contents = unicode(contents, 'utf-8')
